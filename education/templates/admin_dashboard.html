@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block title %}Панель администратора - Okurmen Kids{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 mb-4">
+        <h1 class="text-white">
+            <i class="bi bi-shield-check"></i> Панель администратора
+        </h1>
+        <p class="text-white opacity-75">Добро пожаловать, {{ user.get_full_name }}</p>
+    </div>
+</div>
+
+<!-- Статистика -->
+<div class="row g-4 mb-4">
+    <div class="col-md-3">
+        <div class="stat-card">
+            <i class="bi bi-people-fill" style="font-size: 2rem; opacity: 0.8;"></i>
+            <h3 class="mt-2">{{ total_students }}</h3>
+            <p>Активных учеников</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+            <i class="bi bi-mortarboard-fill" style="font-size: 2rem; opacity: 0.8;"></i>
+            <h3 class="mt-2">{{ total_mentors }}</h3>
+            <p>Менторов</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+            <i class="bi bi-book-fill" style="font-size: 2rem; opacity: 0.8;"></i>
+            <h3 class="mt-2">{{ total_courses }}</h3>
+            <p>Активных курсов</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+            <i class="bi bi-calendar-check-fill" style="font-size: 2rem; opacity: 0.8;"></i>
+            <h3 class="mt-2">{{ upcoming_lessons.count }}</h3>
+            <p>Предстоящих занятий</p>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- Последние записи -->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="bi bi-person-plus-fill"></i> Последние записи на курсы
+            </div>
+            <div class="card-body">
+                {% if recent_enrollments %}
+                    <div class="list-group list-group-flush">
+                        {% for enrollment in recent_enrollments %}
+                            <div class="list-group-item">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h6 class="mb-1">{{ enrollment.student.user.get_full_name }}</h6>
+                                        <p class="mb-1 text-muted small">{{ enrollment.course.name }}</p>
+                                        <small class="text-muted">
+                                            <i class="bi bi-calendar3"></i> {{ enrollment.enrollment_date|date:"d.m.Y" }}
+                                        </small>
+                                    </div>
+                                    <span class="badge bg-success">Активна</span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-muted">Нет записей</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Предстоящие занятия -->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="bi bi-calendar-event"></i> Предстоящие занятия
+            </div>
+            <div class="card-body">
+                {% if upcoming_lessons %}
+                    <div class="list-group list-group-flush">
+                        {% for lesson in upcoming_lessons %}
+                            <div class="list-group-item">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h6 class="mb-1">{{ lesson.title }}</h6>
+                                        <p class="mb-1 text-muted small">{{ lesson.course.name }}</p>
+                                        <small class="text-muted">
+                                            <i class="bi bi-calendar3"></i> {{ lesson.date|date:"d.m.Y" }}
+                                            <i class="bi bi-clock ms-2"></i> {{ lesson.start_time|time:"H:i" }}
+                                            <i class="bi bi-geo-alt ms-2"></i> {{ lesson.room }}
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-muted">Нет предстоящих занятий</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Быстрые действия -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="bi bi-lightning-fill"></i> Быстрые действия
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <a href="/admin/education/student/add/" class="btn btn-outline-primary w-100">
+                            <i class="bi bi-person-plus"></i> Добавить ученика
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="/admin/education/mentor/add/" class="btn btn-outline-success w-100">
+                            <i class="bi bi-mortarboard"></i> Добавить ментора
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="/admin/education/course/add/" class="btn btn-outline-info w-100">
+                            <i class="bi bi-book"></i> Создать курс
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="/admin/education/announcement/add/" class="btn btn-outline-warning w-100">
+                            <i class="bi bi-megaphone"></i> Новое объявление
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

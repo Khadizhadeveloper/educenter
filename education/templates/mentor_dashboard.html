@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block title %}Панель ментора - Okurmen Kids{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 mb-4">
+        <h1 class="text-white">
+            <i class="bi bi-mortarboard-fill"></i> Панель ментора
+        </h1>
+        <p class="text-white opacity-75">Добро пожаловать, {{ user.get_full_name }}</p>
+    </div>
+</div>
+
+<!-- Статистика -->
+<div class="row g-4 mb-4">
+    <div class="col-md-4">
+        <div class="stat-card">
+            <i class="bi bi-book-fill" style="font-size: 2rem; opacity: 0.8;"></i>
+            <h3 class="mt-2">{{ my_courses.count }}</h3>
+            <p>Мои курсы</p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+            <i class="bi bi-calendar-check-fill" style="font-size: 2rem; opacity: 0.8;"></i>
+            <h3 class="mt-2">{{ today_lessons.count }}</h3>
+            <p>Занятий сегодня</p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+            <i class="bi bi-clipboard-check-fill" style="font-size: 2rem; opacity: 0.8;"></i>
+            <h3 class="mt-2">{{ pending_homework }}</h3>
+            <p>ДЗ на проверке</p>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- Мои курсы -->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="bi bi-book"></i> Мои курсы
+            </div>
+            <div class="card-body">
+                {% if my_courses %}
+                    <div class="list-group list-group-flush">
+                        {% for course in my_courses %}
+                            <a href="{% url 'course_detail' course.id %}" class="list-group-item list-group-item-action">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h6 class="mb-1">{{ course.name }}</h6>
+                                        <p class="mb-1 text-muted small">{{ course.description|truncatewords:10 }}</p>
+                                        <small class="text-muted">
+                                            <i class="bi bi-people"></i> {{ course.enrollments.count }} учеников
+                                        </small>
+                                    </div>
+                                    <span class="badge bg-primary">{{ course.duration_weeks }} нед.</span>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-muted">У вас пока нет курсов</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Занятия сегодня -->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="bi bi-calendar-day"></i> Занятия сегодня
+            </div>
+            <div class="card-body">
+                {% if today_lessons %}
+                    <div class="list-group list-group-flush">
+                        {% for lesson in today_lessons %}
+                            <div class="list-group-item">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h6 class="mb-1">{{ lesson.title }}</h6>
+                                        <p class="mb-1 text-muted small">{{ lesson.course.name }}</p>
+                                        <small class="text-muted">
+                                            <i class="bi bi-clock"></i> {{ lesson.start_time|time:"H:i" }} - {{ lesson.end_time|time:"H:i" }}
+                                            <i class="bi bi-geo-alt ms-2"></i> {{ lesson.room }}
+                                        </small>
+                                    </div>
+                                    {% if lesson.is_cancelled %}
+                                        <span class="badge bg-danger">Отменено</span>
+                                    {% else %}
+                                        <span class="badge bg-success">Запланировано</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-muted">Сегодня нет занятий</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Быстрые действия -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="bi bi-lightning-fill"></i> Быстрые действия
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <a href="/admin/education/lesson/add/" class="btn btn-outline-primary w-100">
+                            <i class="bi bi-plus-circle"></i> Создать занятие
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="/admin/education/homework/add/" class="btn btn-outline-success w-100">
+                            <i class="bi bi-journal-plus"></i> Добавить ДЗ
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="/admin/education/grade/add/" class="btn btn-outline-warning w-100">
+                            <i class="bi bi-star"></i> Выставить оценку
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="{% url 'homework_list' %}" class="btn btn-outline-info w-100">
+                            <i class="bi bi-clipboard-check"></i> Проверить ДЗ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

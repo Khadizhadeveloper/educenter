@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ course.name }} - Okurmen Kids{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 mb-4">
+        <h1 class="text-white">{{ course.name }}</h1>
+        <p class="text-white opacity-75">Подробная информация о курсе</p>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- Основная информация -->
+    <div class="col-md-8">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="bi bi-info-circle"></i> О курсе
+            </div>
+            <div class="card-body">
+                <p class="lead">{{ course.description }}</p>
+
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <h6><i class="bi bi-person-badge"></i> Информация о менторе</h6>
+                        <div class="d-flex align-items-center mb-3">
+                            {% if course.mentor.photo %}
+                                <img src="{{ course.mentor.photo.url }}" class="rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                            {% elif course.mentor.user.avatar %}
+                                <img src="{{ course.mentor.user.avatar.url }}" class="rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                            {% else %}
+                                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center me-3" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                                    {{ course.mentor.user.first_name.0 }}{{ course.mentor.user.last_name.0 }}
+                                </div>
+                            {% endif %}
+                            <div>
+                                <h6 class="mb-0">{{ course.mentor.user.get_full_name }}</h6>
+                                <small class="text-muted">{{ course.mentor.specialization }}</small>
+                                <br>
+                                <small class="text-muted">Опыт: {{ course.mentor.experience_years }} лет</small>
+                            </div>
+                        </div>
+                        {% if course.mentor.bio %}
+                            <p class="small text-muted">{{ course.mentor.bio|truncatewords:30 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-6">
+                        <h6><i class="bi bi-calendar-range"></i> Детали курса</h6>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <strong>Длительность:</strong> {{ course.duration_weeks }} недель
+                            </li>
+                            <li class="mb-2">
+                                <strong>Начало:</strong> {{ course.start_date|date:"d.m.Y" }}
+                            </li>
+                            <li class="mb-2">
+                                <strong>Окончание:</strong> {{ course.end_date|date:"d.m.Y" }}
+                            </li>
+                            <li class="mb-2">
+                                <strong>Мест:</strong> {{ enrollments.count }} / {{ course.max_students }}
+                            </li>
+                            <li>
+                                <strong>Статус:</strong>
+                                {% if course.is_active %}
+                                    <span class="badge bg-success">Активен</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">Неактивен</span>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Занятия -->
+        <div class="card">
+            <div class="card-header">
+                <i class="bi bi-calendar3"></i> Занятия курса
+            </div>
+            <div class="card-body">
+                {% if lessons %}
+                    <div class="list-group list-group-flush">
+                        {% for lesson in lessons|slice:":10" %}
+                            <div class="list-group-item">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-1">{{ lesson.title }}</h6>
+                                        <p class="mb-2 text-muted small">{{ lesson.description|truncatewords:15 }}</p>
+                                        <small class="text-muted">
+                                            <i class="bi bi-calendar3"></i> {{ lesson.date|date:"d.m.Y" }}
+                                            <i class="bi bi-clock ms-2"></i> {{ lesson.start_time|time:"H:i" }} - {{ lesson.end_time|time:"H:i" }}
+                                            <i class="bi bi-geo-alt ms-2"></i> {{ lesson.room }}
+                                        </small>
+                                    </div>
+                                    {% if lesson.is_cancelled %}
+                                        <span class="badge bg-danger">Отменено</span>
+                                    {% else %}
+                                        <span class="badge bg-success">Запланировано</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-muted">Занятий пока не запланировано</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Боковая панель -->
+    <div class="col-md-4">
+        <!-- Действия -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="bi bi-gear"></i> Действия
+            </div>
+            <div class="card-body">
+                {% if user.role == 'admin' or user.role == 'mentor' %}
+                    <div class="d-grid gap-2">
+                        <a href="/admin/education/course/{{ course.id }}/change/" class="btn btn-primary">
+                            <i class="bi bi-pencil"></i> Редактировать
+                        </a>
+                        <a href="/admin/education/lesson/add/?course={{ course.id }}" class="btn btn-success">
+                            <i class="bi bi-plus-circle"></i> Добавить занятие
+                        </a>
+                        <a href="/admin/education/enrollment/?course__id__exact={{ course.id }}" class="btn btn-info">
+                            <i class="bi bi-people"></i> Записи учеников
+                        </a>
+                    </div>
+                {% else %}
+                    <p class="text-muted small">
+                        Для записи на курс обратитесь к администрации
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Ученики -->
+        <div class="card">
+            <div class="card-header">
+                <i class="bi bi-people-fill"></i> Ученики ({{ enrollments.count }})
+            </div>
+            <div class="card-body">
+                {% if enrollments %}
+                    <div class="list-group list-group-flush">
+                        {% for enrollment in enrollments|slice:":10" %}
+                            <div class="list-group-item px-0 py-2">
+                                <div class="d-flex align-items-center">
+                                    {% if enrollment.student.user.avatar %}
+                                        <img src="{{ enrollment.student.user.avatar.url }}" class="rounded-circle me-2" style="width: 32px; height: 32px; object-fit: cover;">
+                                    {% else %}
+                                        <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px; font-size: 0.8rem;">
+                                            {{ enrollment.student.user.first_name.0 }}{{ enrollment.student.user.last_name.0 }}
+                                        </div>
+                                    {% endif %}
+                                    <div>
+                                        <small class="fw-bold">{{ enrollment.student.user.get_full_name }}</small>
+                                        <br>
+                                        <small class="text-muted">{{ enrollment.student.grade }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% if enrollments.count > 10 %}
+                        <p class="text-center mt-2 mb-0">
+                            <small class="text-muted">и еще {{ enrollments.count|add:"-10" }} учеников...</small>
+                        </p>
+                    {% endif %}
+                {% else %}
+                    <p class="text-muted small">Пока нет записанных учеников</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

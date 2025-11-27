@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+
+{% block title %}Оценки - Okurmen Kids{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 mb-4">
+        <h1 class="text-white">
+            <i class="bi bi-star-fill"></i> Оценки
+        </h1>
+        <p class="text-white opacity-75">Успеваемость учеников</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-list-stars"></i> Все оценки</span>
+                {% if user.role == 'mentor' or user.role == 'admin' %}
+                    <a href="/admin/education/grade/add/" class="btn btn-sm btn-success">
+                        <i class="bi bi-plus-circle"></i> Выставить оценку
+                    </a>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                {% if grades %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    {% if user.role == 'parent' or user.role == 'mentor' or user.role == 'admin' %}
+                                        <th>Ученик</th>
+                                    {% endif %}
+                                    <th>Курс</th>
+                                    <th>Занятие</th>
+                                    <th>Оценка</th>
+                                    <th>Дата</th>
+                                    <th>Комментарий</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for grade in grades %}
+                                    <tr>
+                                        {% if user.role == 'parent' or user.role == 'mentor' or user.role == 'admin' %}
+                                            <td>
+                                                <strong>{{ grade.student.user.get_full_name }}</strong>
+                                                <br>
+                                                <small class="text-muted">{{ grade.student.grade }}</small>
+                                            </td>
+                                        {% endif %}
+                                        <td>{{ grade.course.name }}</td>
+                                        <td>
+                                            {% if grade.lesson %}
+                                                {{ grade.lesson.title }}
+                                            {% else %}
+                                                <span class="text-muted">Общая оценка</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <span class="badge fs-6 {% if grade.grade >= 4 %}bg-success{% elif grade.grade >= 3 %}bg-warning{% else %}bg-danger{% endif %}">
+                                                {{ grade.grade }}
+                                            </span>
+                                        </td>
+                                        <td>{{ grade.date|date:"d.m.Y" }}</td>
+                                        <td>
+                                            {% if grade.comment %}
+                                                <span class="d-inline-block text-truncate" style="max-width: 200px;" title="{{ grade.comment }}">
+                                                    {{ grade.comment }}
+                                                </span>
+                                            {% else %}
+                                                <span class="text-muted">-</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Статистика -->
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h6 class="mb-3"><i class="bi bi-graph-up"></i> Статистика</h6>
+                                    <div class="row text-center">
+                                        <div class="col-md-3">
+                                            <div class="mb-2">
+                                                <h4 class="mb-0 text-primary">{{ grades.count }}</h4>
+                                                <small class="text-muted">Всего оценок</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="mb-2">
+                                                <h4 class="mb-0 text-success">
+                                                    {% widthratio grades|length 1 grades|length %}
+                                                </h4>
+                                                <small class="text-muted">Средний балл</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="mb-2">
+                                                <h4 class="mb-0 text-warning">-</h4>
+                                                <small class="text-muted">Отличных (5)</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="mb-2">
+                                                <h4 class="mb-0 text-info">-</h4>
+                                                <small class="text-muted">Хороших (4)</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="text-center py-5">
+                        <i class="bi bi-star" style="font-size: 4rem; color: #ccc;"></i>
+                        <h4 class="mt-3 text-muted">Оценок пока нет</h4>
+                        <p class="text-muted">Оценки появятся после проверки работ</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Фильтры -->
+{% if grades %}
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="bi bi-funnel"></i> Фильтры
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label class="form-label">Курс</label>
+                        <select class="form-select">
+                            <option value="">Все курсы</option>
+                            {% for grade in grades %}
+                                <option value="{{ grade.course.id }}">{{ grade.course.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {% if user.role == 'parent' or user.role == 'admin' or user.role == 'mentor' %}
+                        <div class="col-md-3">
+                            <label class="form-label">Ученик</label>
+                            <select class="form-select">
+                                <option value="">Все ученики</option>
+                            </select>
+                        </div>
+                    {% endif %}
+                    <div class="col-md-3">
+                        <label class="form-label">Период</label>
+                        <select class="form-select">
+                            <option value="">Все время</option>
+                            <option value="week">Эта неделя</option>
+                            <option value="month">Этот месяц</option>
+                            <option value="quarter">Эта четверть</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">&nbsp;</label>
+                        <button class="btn btn-primary w-100">
+                            <i class="bi bi-search"></i> Применить
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

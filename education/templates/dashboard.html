@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}Панель управления - Okurmen Kids{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 mb-4">
+        <h1 class="text-white">
+            <i class="bi bi-speedometer2"></i> Добро пожаловать, {{ user.get_full_name }}!
+        </h1>
+        <p class="text-white opacity-75">Ваша роль: {{ user.get_role_display }}</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body text-center py-5">
+                <i class="bi bi-info-circle" style="font-size: 4rem; color: var(--primary-color);"></i>
+                <h3 class="mt-3">Добро пожаловать в EduCenter</h3>
+                <p class="text-muted">Используйте меню навигации для доступа к различным разделам системы.</p>
+
+                <div class="row mt-5 g-4">
+                    <div class="col-md-3">
+                        <a href="{% url 'schedule' %}" class="text-decoration-none">
+                            <div class="card h-100 border-primary">
+                                <div class="card-body text-center">
+                                    <i class="bi bi-calendar3 text-primary" style="font-size: 3rem;"></i>
+                                    <h5 class="mt-3">Расписание</h5>
+                                    <p class="text-muted small">Просмотр расписания занятий</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <a href="{% url 'homework_list' %}" class="text-decoration-none">
+                            <div class="card h-100 border-success">
+                                <div class="card-body text-center">
+                                    <i class="bi bi-journal-text text-success" style="font-size: 3rem;"></i>
+                                    <h5 class="mt-3">Домашние задания</h5>
+                                    <p class="text-muted small">Управление домашними заданиями</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <a href="{% url 'grades' %}" class="text-decoration-none">
+                            <div class="card h-100 border-warning">
+                                <div class="card-body text-center">
+                                    <i class="bi bi-star text-warning" style="font-size: 3rem;"></i>
+                                    <h5 class="mt-3">Оценки</h5>
+                                    <p class="text-muted small">Просмотр успеваемости</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <a href="{% url 'course_list' %}" class="text-decoration-none">
+                            <div class="card h-100 border-info">
+                                <div class="card-body text-center">
+                                    <i class="bi bi-book text-info" style="font-size: 3rem;"></i>
+                                    <h5 class="mt-3">Курсы</h5>
+                                    <p class="text-muted small">Все доступные курсы</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
