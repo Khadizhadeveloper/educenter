@@ -1,6 +1,16 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import *
+from .models.user import User
+from .models.mentor import Mentor
+from .models.student import Student
+from .models.lesson import Lesson
+from .models.schedule import Schedule
+from .models.course import Course
+from .models.homework import Homework, HomeworkSubmission
+from .models.grade import Grade
+from .models.attendance import Attendance
+from .models.announcement import Announcement
+from .models.enrollment import Enrollment
 
 
 @admin.register(User)

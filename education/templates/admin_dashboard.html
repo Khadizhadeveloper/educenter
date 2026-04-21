@@ -5,10 +5,10 @@
 {% block content %}
 <div class="row">
     <div class="col-12 mb-4">
-        <h1 class="text-white">
-            <i class="bi bi-shield-check"></i> Панель администратора
+        <h1 class="display-4 fw-bold mb-4">
+            <i class="display-4 fw-bold mb-4"></i> Панель администратора
         </h1>
-        <p class="text-white opacity-75">Добро пожаловать, {{ user.get_full_name }}</p>
+        <p class="display-4 fw-bold mb-4">Добро пожаловать, {{ user.get_full_name }}</p>
     </div>
 </div>
 
@@ -18,7 +18,7 @@
         <div class="stat-card">
             <i class="bi bi-people-fill" style="font-size: 2rem; opacity: 0.8;"></i>
             <h3 class="mt-2">{{ total_students }}</h3>
-            <p>Активных учеников</p>
+            <p>500 Активных учеников</p>
         </div>
     </div>
 
@@ -26,7 +26,7 @@
         <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
             <i class="bi bi-mortarboard-fill" style="font-size: 2rem; opacity: 0.8;"></i>
             <h3 class="mt-2">{{ total_mentors }}</h3>
-            <p>Менторов</p>
+            <p>10 Менторов</p>
         </div>
     </div>
 
@@ -34,7 +34,7 @@
         <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
             <i class="bi bi-book-fill" style="font-size: 2rem; opacity: 0.8;"></i>
             <h3 class="mt-2">{{ total_courses }}</h3>
-            <p>Активных курсов</p>
+            <p>5 Активных курсов</p>
         </div>
     </div>
 
@@ -42,7 +42,7 @@
         <div class="stat-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
             <i class="bi bi-calendar-check-fill" style="font-size: 2rem; opacity: 0.8;"></i>
             <h3 class="mt-2">{{ upcoming_lessons.count }}</h3>
-            <p>Предстоящих занятий</p>
+            <p>20 Предстоящих занятий</p>
         </div>
     </div>
 </div>

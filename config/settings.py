@@ -18,6 +18,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -125,7 +126,7 @@ LOGOUT_REDIRECT_URL = 'home'
 
 # Настройки email (для отправки уведомлений)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Для разработки
-# Для продакшена используйте SMTP:
+
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST = 'smtp.gmail.com'
 # EMAIL_PORT = 587
@@ -133,11 +134,55 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Для ра�
 # EMAIL_HOST_USER = 'your-email@gmail.com'
 # EMAIL_HOST_PASSWORD = 'your-password'
 
-# Настройки сессий
-SESSION_COOKIE_AGE = 86400  # 24 часа
+JAZZMIN_SETTINGS = {
+    "site_title": "EduCenter",
+    "site_header": "EduCenter",
+    "site_brand": "EduCenter",
+    "welcome_sign": "Добро пожаловать в админку Okurmen Kids!",
+    "topmenu_links": [
+        {"name": "Главная", "url": "/admin/", "permissions": ["auth.view_user"]},
+    ],
+    "show_ui_builder": True,
+
+}
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": True,
+    "brand_small_text": False,
+    "brand_colour": False,
+    "accent": "accent-navy",
+    "navbar": "navbar-white navbar-light",
+    "no_navbar_border": False,
+    "navbar_fixed": False,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": False,
+    "sidebar": "sidebar-dark-info",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_child_indent": False,
+    "sidebar_nav_compact_style": False,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": False,
+    "theme": "lumen",
+    "dark_mode_theme": None,
+    "button_classes": {
+        "primary": "btn-outline-primary",
+        "secondary": "btn-outline-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success"
+    }
+}
+
+
+
+SESSION_COOKIE_AGE = 86400
 SESSION_SAVE_EVERY_REQUEST = True
 
-# Настройки безопасности для продакшена
+
 if not DEBUG:
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
@@ -146,17 +191,17 @@ if not DEBUG:
     SECURE_CONTENT_TYPE_NOSNIFF = True
     X_FRAME_OPTIONS = 'DENY'
 
-# Настройки файлов
-FILE_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10 MB
-DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10 MB
 
-# Форматы даты и времени
+FILE_UPLOAD_MAX_MEMORY_SIZE = 10485760
+DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760
+
+
 DATE_FORMAT = 'd.m.Y'
 DATETIME_FORMAT = 'd.m.Y H:i'
 SHORT_DATE_FORMAT = 'd.m.Y'
 SHORT_DATETIME_FORMAT = 'd.m.Y H:i'
 
-# Настройки логирования
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

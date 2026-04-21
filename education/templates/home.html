@@ -4,18 +4,20 @@
 
 {% block content %}
 <!-- Hero Section -->
+<!-- Hero Section -->
 <div class="row mb-5">
-    <div class="col-12 text-center">
-        <div class="py-5">
-            <h1 class="display-3 fw-bold text-white mb-4">
+    <div class="col-12">
+        <div class="hero text-center">
+            <h1 class="display-4 fw-bold mb-4">
                 Добро пожаловать в Okurmen Kids
             </h1>
-            <p class="lead text-white mb-4">
+            <p class="lead mb-4">
                 Современная платформа для управления образовательным процессом
             </p>
+
             {% if not user.is_authenticated %}
                 <div class="d-flex justify-content-center gap-3">
-                    <a href="{% url 'register' %}" class="btn btn-light btn-lg">
+                    <a href="{% url 'register' %}" class="btn btn-primary btn-lg">
                         <i class="bi bi-person-plus"></i> Регистрация
                     </a>
                     <a href="{% url 'login' %}" class="btn btn-outline-light btn-lg">
@@ -23,7 +25,7 @@
                     </a>
                 </div>
             {% else %}
-                <a href="{% url 'dashboard' %}" class="btn btn-light btn-lg">
+                <a href="{% url 'dashboard' %}" class="btn btn-primary btn-lg">
                     <i class="bi bi-speedometer2"></i> Перейти в панель
                 </a>
             {% endif %}
