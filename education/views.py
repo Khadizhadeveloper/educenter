@@ -13,6 +13,12 @@ def is_admin(user):
 def is_mentor(user):
     return user.is_authenticated and user.role == 'mentor'
 
+def is_parent(user):
+    return user.is_authenticated and user.role == 'parent'
+
+def is_student(user):
+    return user.is_authenticated and user.role == 'student'
+
 
 def home(request):
     announcements = Announcement.objects.filter(target_audience='all')[:5]
@@ -54,6 +60,8 @@ def register_view(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            if user.role == 'student':
+                Student.objects.get_or_create(user=user, defaults={'grade': '', 'parent': None})
             login(request, user)
             messages.success(request, 'Регистрация прошла успешно!')
             return redirect('dashboard')
@@ -103,6 +111,115 @@ def mentor_dashboard(request):
     return render(request, 'mentor_dashboard.html', context)
 
 
+@login_required
+@user_passes_test(is_mentor)
+def mentor_create_homework(request):
+    # Страница для добавления ДЗ ментором без доступа к админке
+    try:
+        mentor = request.user.mentor_profile
+    except Exception:
+        messages.error(request, 'Профиль ментора не найден.')
+        return redirect('home')
+
+    if request.method == 'POST':
+        form = HomeworkForm(request.POST, request.FILES)
+        # Ограничиваем выбор уроков только уроками курсов данного ментора
+        if 'lesson' in form.fields:
+            form.fields['lesson'].queryset = Lesson.objects.filter(course__mentor=mentor)
+        if form.is_valid():
+            homework = form.save()
+            messages.success(request, 'Домашнее задание успешно добавлено.')
+            return redirect('homework_list')
+    else:
+        form = HomeworkForm()
+        if 'lesson' in form.fields:
+            form.fields['lesson'].queryset = Lesson.objects.filter(course__mentor=mentor)
+
+    return render(request, 'mentor/homework_create.html', {'form': form})
+
+
+@login_required
+@user_passes_test(is_mentor)
+def mentor_create_lesson(request):
+    # Создание занятия ментором без доступа к админке
+    try:
+        mentor = request.user.mentor_profile
+    except Exception:
+        messages.error(request, 'Профиль ментора не найден.')
+        return redirect('home')
+
+    if request.method == 'POST':
+        form = LessonForm(request.POST)
+        # Разрешаем выбирать только свои курсы
+        if 'course' in form.fields:
+            form.fields['course'].queryset = Course.objects.filter(mentor=mentor, is_active=True)
+        if form.is_valid():
+            lesson = form.save()
+            messages.success(request, 'Занятие успешно создано.')
+            return redirect('course_detail', course_id=lesson.course.id)
+    else:
+        form = LessonForm()
+        if 'course' in form.fields:
+            form.fields['course'].queryset = Course.objects.filter(mentor=mentor, is_active=True)
+
+    return render(request, 'mentor/lesson_create.html', {'form': form})
+
+
+@login_required
+@user_passes_test(is_mentor)
+def mentor_give_grade(request):
+    # Выставление оценки ментором без доступа к админке
+    try:
+        mentor = request.user.mentor_profile
+    except Exception:
+        messages.error(request, 'Профиль ментора не найден.')
+        return redirect('home')
+
+    if request.method == 'POST':
+        form = GradeForm(request.POST)
+        # Ограничиваем выбор значениями в зоне ответственности ментора
+        if 'course' in form.fields:
+            form.fields['course'].queryset = Course.objects.filter(mentor=mentor, is_active=True)
+        if 'lesson' in form.fields:
+            form.fields['lesson'].queryset = Lesson.objects.filter(course__mentor=mentor)
+        if 'student' in form.fields:
+            form.fields['student'].queryset = Student.objects.filter(
+                enrollments__course__mentor=mentor,
+                enrollments__is_active=True
+            ).distinct()
+
+        if form.is_valid():
+            grade_obj = form.save(commit=False)
+            # Дополнительные проверки согласованности
+            if grade_obj.lesson and grade_obj.lesson.course != grade_obj.course:
+                form.add_error('lesson', 'Выбранный урок не относится к выбранному курсу.')
+            # Проверка, что студент записан на курс
+            is_enrolled = Enrollment.objects.filter(
+                student=grade_obj.student,
+                course=grade_obj.course,
+                is_active=True
+            ).exists()
+            if not is_enrolled:
+                form.add_error('student', 'Студент не записан на выбранный курс.')
+
+            if not form.errors:
+                grade_obj.save()
+                messages.success(request, 'Оценка успешно выставлена.')
+                return redirect('grades')
+    else:
+        form = GradeForm()
+        if 'course' in form.fields:
+            form.fields['course'].queryset = Course.objects.filter(mentor=mentor, is_active=True)
+        if 'lesson' in form.fields:
+            form.fields['lesson'].queryset = Lesson.objects.filter(course__mentor=mentor)
+        if 'student' in form.fields:
+            form.fields['student'].queryset = Student.objects.filter(
+                enrollments__course__mentor=mentor,
+                enrollments__is_active=True
+            ).distinct()
+
+    return render(request, 'mentor/grade_create.html', {'form': form})
+
 
 @login_required
 def admin_dashboard(request):
@@ -126,6 +243,7 @@ def admin_dashboard(request):
 
 
 @login_required
+@user_passes_test(is_parent)
 def parent_dashboard(request):
     children = Student.objects.filter(parent=request.user, is_active=True)
     today = timezone.now().date()
@@ -156,6 +274,7 @@ def parent_dashboard(request):
 
 
 @login_required
+@user_passes_test(is_student)
 def student_dashboard(request):
     try:
         student = request.user.student_profile
@@ -321,12 +440,20 @@ def schedule_view(request):
             enrollments__student__in=children, is_active=True
         ).distinct()
     elif user.role == 'student':
-        student = user.student_profile
+        try:
+            student = user.student_profile
+        except Exception:
+            messages.error(request, 'Профиль ученика не найден.')
+            return redirect('home')
         courses = Course.objects.filter(
             enrollments__student=student, enrollments__is_active=True
         )
     elif user.role == 'mentor':
-        mentor = user.mentor_profile
+        try:
+            mentor = user.mentor_profile
+        except Exception:
+            messages.error(request, 'Профиль ментора не найден.')
+            return redirect('home')
         courses = Course.objects.filter(mentor=mentor, is_active=True)
     else:
         courses = Course.objects.filter(is_active=True)
@@ -347,10 +474,36 @@ def homework_list(request):
     user = request.user
 
     if user.role == 'student':
-        student = user.student_profile
-        homework = HomeworkSubmission.objects.filter(
-            student=student
-        ).select_related('homework', 'homework__lesson')
+        # Для ученика показываем ВСЕ задания по его активным курсам,
+        # вместе со статусом его отправки (если уже сдавал)
+        try:
+            student = user.student_profile
+        except Exception:
+            messages.error(request, 'Профиль ученика не найден.')
+            return redirect('home')
+
+        course_ids = student.enrollments.filter(is_active=True).values_list('course_id', flat=True)
+        assignments = Homework.objects.filter(
+            lesson__course_id__in=course_ids
+        ).select_related('lesson', 'lesson__course').order_by('-due_date')
+
+        submissions = HomeworkSubmission.objects.filter(
+            student=student,
+            homework__in=assignments
+        ).select_related('homework')
+        submissions_by_hw = {s.homework_id: s for s in submissions}
+
+        combined = [
+            {
+                'homework': hw,
+                'submission': submissions_by_hw.get(hw.id)
+            }
+            for hw in assignments
+        ]
+        return render(request, 'homework_list.html', {
+            'student_assignments': combined
+        })
+
     elif user.role == 'parent':
         children = Student.objects.filter(parent=user, is_active=True)
         homework = HomeworkSubmission.objects.filter(
@@ -372,9 +525,25 @@ def homework_list(request):
 
 
 @login_required
+@user_passes_test(is_student)
 def homework_submit(request, homework_id):
     homework = get_object_or_404(Homework, id=homework_id)
     student = request.user.student_profile
+
+    # Проверяем, что студент записан на курс данного задания
+    is_enrolled = Enrollment.objects.filter(
+        student=student,
+        course=homework.lesson.course,
+        is_active=True
+    ).exists()
+    if not is_enrolled:
+        messages.error(request, 'Вы не записаны на курс этого задания.')
+        return redirect('homework_list')
+
+    # Проверяем, не сдавал ли студент это задание ранее
+    if HomeworkSubmission.objects.filter(homework=homework, student=student).exists():
+        messages.error(request, 'Вы уже отправили это задание.')
+        return redirect('homework_list')
 
     if request.method == 'POST':
         form = HomeworkSubmissionForm(request.POST, request.FILES)
@@ -416,7 +585,11 @@ def grades_view(request):
     user = request.user
 
     if user.role == 'student':
-        student = user.student_profile
+        try:
+            student = user.student_profile
+        except Exception:
+            messages.error(request, 'Профиль ученика не найден.')
+            return redirect('home')
         grades = Grade.objects.filter(student=student).select_related('course', 'lesson')
     elif user.role == 'parent':
         children = Student.objects.filter(parent=user, is_active=True)

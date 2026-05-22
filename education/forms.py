@@ -236,13 +236,16 @@ class ScheduleForm(forms.ModelForm):
         for field in self.fields:
             self.fields[field].widget.attrs.update({'class': 'form-control'})
 
-
 class HomeworkForm(forms.ModelForm):
+    due_date = forms.DateTimeField(
+        widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
+        input_formats=['%Y-%m-%dT%H:%M'],
+    )
+
     class Meta:
         model = Homework
         fields = ('lesson', 'title', 'description', 'due_date', 'file')
         widgets = {
-            'due_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
             'description': forms.Textarea(attrs={'rows': 5}),
         }
 

@@ -19,6 +19,11 @@ urlpatterns = [
     path('homework/', views.homework_list, name='homework_list'),
     path('homework/submit/<int:homework_id>/', views.homework_submit, name='homework_submit'),
 
+    # Mentor routes
+    path('mentor/dashboard/', views.mentor_dashboard, name='mentor_dashboard'),
+    path('mentor/homework/add/', views.mentor_create_homework, name='mentor_create_homework'),
+    path('mentor/lesson/add/', views.mentor_create_lesson, name='mentor_create_lesson'),
+    path('mentor/grade/add/', views.mentor_give_grade, name='mentor_give_grade'),
 
     path('courses/', views.course_list, name='course_list'),
     path('courses/<int:course_id>/', views.course_detail, name='course_detail'),

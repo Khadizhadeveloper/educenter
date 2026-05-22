@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}Создать занятие - Панель ментора{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-12 mb-3">
+    <h1 class="h3"><i class="bi bi-plus-circle"></i> Создать занятие</h1>
+    <p class="text-muted">Заполните данные занятия. Вы можете выбрать только свои курсы.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <form method="post">
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label class="form-label">Курс</label>
+            {{ form.course }}
+            {% if form.course.errors %}
+              <div class="text-danger small">{{ form.course.errors }}</div>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Тема</label>
+            {{ form.title }}
+            {% if form.title.errors %}
+              <div class="text-danger small">{{ form.title.errors }}</div>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Описание</label>
+            {{ form.description }}
+            {% if form.description.errors %}
+              <div class="text-danger small">{{ form.description.errors }}</div>
+            {% endif %}
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label class="form-label">Дата</label>
+                {{ form.date }}
+                {% if form.date.errors %}
+                  <div class="text-danger small">{{ form.date.errors }}</div>
+                {% endif %}
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="mb-3">
+                <label class="form-label">Начало</label>
+                {{ form.start_time }}
+                {% if form.start_time.errors %}
+                  <div class="text-danger small">{{ form.start_time.errors }}</div>
+                {% endif %}
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="mb-3">
+                <label class="form-label">Конец</label>
+                {{ form.end_time }}
+                {% if form.end_time.errors %}
+                  <div class="text-danger small">{{ form.end_time.errors }}</div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Аудитория</label>
+            {{ form.room }}
+            {% if form.room.errors %}
+              <div class="text-danger small">{{ form.room.errors }}</div>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Заметки</label>
+            {{ form.notes }}
+            {% if form.notes.errors %}
+              <div class="text-danger small">{{ form.notes.errors }}</div>
+            {% endif %}
+          </div>
+
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">
+              <i class="bi bi-check2-circle"></i> Сохранить
+            </button>
+            <a href="{% url 'mentor_dashboard' %}" class="btn btn-outline-secondary">Отмена</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

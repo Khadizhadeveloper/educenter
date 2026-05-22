@@ -16,25 +16,31 @@
 <div class="row g-4 mb-4">
     <div class="col-md-4">
         <div class="stat-card">
-            <i class="bi bi-book-fill" style="font-size: 2rem; opacity: 0.8;"></i>
-            <h3 class="mt-2">{{ my_courses.count }}</h3>
-            <p>Мои курсы</p>
+            <div class="icon"><i class="bi bi-book-fill"></i></div>
+            <div>
+                <h3>{{ my_courses.count }}</h3>
+                <p>Мои курсы</p>
+            </div>
         </div>
     </div>
 
     <div class="col-md-4">
-        <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-            <i class="bi bi-calendar-check-fill" style="font-size: 2rem; opacity: 0.8;"></i>
-            <h3 class="mt-2">{{ today_lessons.count }}</h3>
-            <p>Занятий сегодня</p>
+        <div class="stat-card">
+            <div class="icon"><i class="bi bi-calendar-check-fill"></i></div>
+            <div>
+                <h3>{{ today_lessons.count }}</h3>
+                <p>Занятий сегодня</p>
+            </div>
         </div>
     </div>
 
     <div class="col-md-4">
-        <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-            <i class="bi bi-clipboard-check-fill" style="font-size: 2rem; opacity: 0.8;"></i>
-            <h3 class="mt-2">{{ pending_homework }}</h3>
-            <p>ДЗ на проверке</p>
+        <div class="stat-card">
+            <div class="icon"><i class="bi bi-clipboard-check-fill"></i></div>
+            <div>
+                <h3>{{ pending_homework }}</h3>
+                <p>ДЗ на проверке</p>
+            </div>
         </div>
     </div>
 </div>
@@ -118,17 +124,17 @@
             <div class="card-body">
                 <div class="row g-3">
                     <div class="col-md-3">
-                        <a href="/admin/education/lesson/add/" class="btn btn-outline-primary w-100">
+                        <a href="{% url 'mentor_create_lesson' %}" class="btn btn-outline-primary w-100">
                             <i class="bi bi-plus-circle"></i> Создать занятие
                         </a>
                     </div>
                     <div class="col-md-3">
-                        <a href="/admin/education/homework/add/" class="btn btn-outline-success w-100">
+                        <a href="{% url 'mentor_create_homework' %}" class="btn btn-outline-success w-100">
                             <i class="bi bi-journal-plus"></i> Добавить ДЗ
                         </a>
                     </div>
                     <div class="col-md-3">
-                        <a href="/admin/education/grade/add/" class="btn btn-outline-warning w-100">
+                        <a href="{% url 'mentor_give_grade' %}" class="btn btn-outline-warning w-100">
                             <i class="bi bi-star"></i> Выставить оценку
                         </a>
                     </div>

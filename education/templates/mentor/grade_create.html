@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Выставить оценку - Панель ментора{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-12 mb-3">
+    <h1 class="h3"><i class="bi bi-star"></i> Выставить оценку</h1>
+    <p class="text-muted">Выберите курс/урок и студента из ваших групп. Поля автоматически ограничены вашими курсами.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <form method="post">
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label class="form-label">Студент</label>
+            {{ form.student }}
+            {% if form.student.errors %}
+              <div class="text-danger small">{{ form.student.errors }}</div>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Курс</label>
+            {{ form.course }}
+            {% if form.course.errors %}
+              <div class="text-danger small">{{ form.course.errors }}</div>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Занятие (опционально)</label>
+            {{ form.lesson }}
+            {% if form.lesson.errors %}
+              <div class="text-danger small">{{ form.lesson.errors }}</div>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Оценка</label>
+            {{ form.grade }}
+            {% if form.grade.errors %}
+              <div class="text-danger small">{{ form.grade.errors }}</div>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Комментарий</label>
+            {{ form.comment }}
+            {% if form.comment.errors %}
+              <div class="text-danger small">{{ form.comment.errors }}</div>
+            {% endif %}
+          </div>
+
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-warning">
+              <i class="bi bi-check2-circle"></i> Сохранить
+            </button>
+            <a href="{% url 'mentor_dashboard' %}" class="btn btn-outline-secondary">Отмена</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

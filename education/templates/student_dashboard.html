@@ -16,23 +16,23 @@
 <div class="row g-4 mb-4">
     <div class="col-md-4">
         <div class="stat-card">
-            <i class="bi bi-book-fill" style="font-size: 2rem; opacity: 0.8;"></i>
+            <i class="bi bi-book-fill icon-2x opacity-80"></i>
             <h3 class="mt-2">{{ my_courses.count }}</h3>
             <p>Мои курсы</p>
         </div>
     </div>
 
     <div class="col-md-4">
-        <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-            <i class="bi bi-journal-text" style="font-size: 2rem; opacity: 0.8;"></i>
+        <div class="stat-card grad-pink">
+            <i class="bi bi-journal-text icon-2x opacity-80"></i>
             <h3 class="mt-2">{{ my_homework.count }}</h3>
             <p>Домашних заданий</p>
         </div>
     </div>
 
     <div class="col-md-4">
-        <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-            <i class="bi bi-star-fill" style="font-size: 2rem; opacity: 0.8;"></i>
+        <div class="stat-card grad-cyan">
+            <i class="bi bi-star-fill icon-2x opacity-80"></i>
             <h3 class="mt-2">
                 {% if recent_grades %}
                     {{ recent_grades.first.grade|default:"N/A" }}
