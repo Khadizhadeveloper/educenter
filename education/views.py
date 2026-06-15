@@ -26,8 +26,10 @@ def is_student(user):
 
 
 def home(request):
+    from .models.news import News
     announcements = Announcement.objects.filter(target_audience='all')[:5]
-    return render(request, 'home.html', {'announcements': announcements})
+    news_list = News.objects.filter(is_published=True)[:6]
+    return render(request, 'home.html', {'announcements': announcements, 'news_list': news_list})
 
 
 

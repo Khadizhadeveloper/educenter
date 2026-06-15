@@ -13,3 +13,4 @@ from .kpi import StudentKPI, MentorKPI
 from .test_system import Topic, Test, Question, Answer, TestAttempt, StudentAnswer
 from .group import Group
 from .notification import Notification
+from .news import News

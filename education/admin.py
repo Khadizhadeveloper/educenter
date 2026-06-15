@@ -11,6 +11,7 @@ from .models.grade import Grade
 from .models.attendance import Attendance
 from .models.announcement import Announcement
 from .models.enrollment import Enrollment
+from .models.news import News
 from .models.group import Group
 
 
@@ -164,3 +165,12 @@ class AnnouncementAdmin(admin.ModelAdmin):
     list_filter = ('target_audience', 'is_pinned', 'created_at')
     search_fields = ('title', 'content')
     date_hierarchy = 'created_at'
+
+
+@admin.register(News)
+class NewsAdmin(admin.ModelAdmin):
+    list_display = ('title', 'author', 'is_published', 'created_at')
+    list_filter = ('is_published', 'created_at')
+    search_fields = ('title', 'content')
+    date_hierarchy = 'created_at'
+    list_editable = ('is_published',)
