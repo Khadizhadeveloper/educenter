@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% block title %}Проверка: {{ submission.student.user.get_full_name }}{% endblock %}
+
+{% block content %}
+<div class="row mb-3 align-items-center">
+    <div class="col">
+        <h1 class="fw-bold" style="color:var(--ok-white);">
+            <i class="bi bi-pencil-square" style="color:var(--ok-accent);"></i> Проверка работы
+        </h1>
+        <p class="ok-muted">
+            {{ submission.homework.title }} · {{ submission.student.user.get_full_name }}
+        </p>
+    </div>
+    <div class="col-auto">
+        <a href="{% url 'mentor_homework_submissions' submission.homework.id %}"
+           class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-arrow-left"></i> Назад
+        </a>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- Submission content -->
+    <div class="col-md-7">
+        <div class="card h-100">
+            <div class="card-header">
+                <i class="bi bi-file-text"></i> Работа ученика
+                <small class="ok-muted ms-2">{{ submission.submitted_at|date:"d.m.Y H:i" }}</small>
+            </div>
+            <div class="card-body">
+                <div style="white-space:pre-wrap;color:var(--ok-text);line-height:1.7;">{{ submission.content }}</div>
+                {% if submission.file %}
+                <div class="mt-3 pt-3" style="border-top:1px solid var(--ok-border-2);">
+                    <a href="{{ submission.file.url }}" class="btn btn-outline-primary btn-sm" target="_blank">
+                        <i class="bi bi-paperclip"></i> Прикреплённый файл
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Review form -->
+    <div class="col-md-5">
+        <!-- Task description -->
+        <div class="card mb-3">
+            <div class="card-header"><i class="bi bi-journal-text"></i> Задание</div>
+            <div class="card-body">
+                <h6 style="color:var(--ok-white);">{{ submission.homework.title }}</h6>
+                <p class="ok-muted small mb-2">{{ submission.homework.description }}</p>
+                <small class="ok-muted">
+                    <i class="bi bi-clock"></i> Срок: {{ submission.homework.due_date|date:"d.m.Y H:i" }}
+                </small>
+                {% if submission.homework.file %}
+                <div class="mt-2">
+                    <a href="{{ submission.homework.file.url }}" class="btn btn-outline-secondary btn-sm" target="_blank">
+                        <i class="bi bi-paperclip"></i> Файл задания
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Grade form -->
+        <div class="card">
+            <div class="card-header"><i class="bi bi-star-fill" style="color:var(--ok-accent);"></i> Оценка</div>
+            <div class="card-body">
+                {% if submission.status == 'checked' %}
+                <div class="alert alert-success mb-3" style="font-size:.9rem;">
+                    <i class="bi bi-check-circle-fill"></i> Уже проверено {{ submission.checked_at|date:"d.m H:i" }}
+                </div>
+                {% endif %}
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label class="form-label" style="color:var(--ok-white);">Оценка (1–10)</label>
+                        <div class="d-flex gap-2 flex-wrap" id="grade-btns">
+                            {% for val in grade_range %}
+                            <button type="button"
+                                class="btn btn-sm grade-btn {% if submission.grade == val %}btn-primary{% else %}btn-outline-secondary{% endif %}"
+                                data-val="{{ val }}"
+                                onclick="selectGrade({{ val }})">
+                                {{ val }}
+                            </button>
+                            {% endfor %}
+                        </div>
+                        <input type="hidden" name="grade" id="grade-input"
+                               value="{{ submission.grade|default_if_none:'' }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" style="color:var(--ok-white);">Комментарий</label>
+                        <textarea name="feedback" class="form-control" rows="4"
+                                  placeholder="Напишите комментарий к работе...">{{ submission.feedback }}</textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="bi bi-check2-circle"></i> Сохранить оценку
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function selectGrade(val) {
+    document.getElementById('grade-input').value = val;
+    document.querySelectorAll('.grade-btn').forEach(btn => {
+        btn.classList.toggle('btn-primary',      parseInt(btn.dataset.val) === val);
+        btn.classList.toggle('btn-outline-secondary', parseInt(btn.dataset.val) !== val);
+    });
+}
+// Restore selected grade on load
+(function() {
+    const v = parseInt(document.getElementById('grade-input').value);
+    if (v) selectGrade(v);
+})();
+</script>
+{% endblock %}

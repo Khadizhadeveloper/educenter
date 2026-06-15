@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block title %}Редактировать тест — {{ test.title }}{% endblock %}
+
+{% block content %}
+<div class="row mb-3 align-items-center">
+    <div class="col">
+        <h1 class="fw-bold" style="color:var(--ok-white);">
+            <i class="bi bi-pencil-square" style="color:var(--ok-accent);"></i> {{ test.title }}
+        </h1>
+        <p class="ok-muted">{{ test.topic.title }} · {{ test.topic.course.name }}</p>
+    </div>
+    <div class="col-auto d-flex gap-2">
+        <a href="{% url 'mentor_question_add' test.id %}" class="btn btn-primary btn-sm">
+            <i class="bi bi-plus-square"></i> Добавить вопрос
+        </a>
+        <a href="{% url 'mentor_topic_list' test.topic.course_id %}" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-arrow-left"></i> К темам
+        </a>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- Edit test settings -->
+    <div class="col-md-5">
+        <div class="card">
+            <div class="card-header"><i class="bi bi-gear"></i> Настройки теста</div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="mb-3">
+                        <label class="form-label" style="color:var(--ok-white);">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.help_text %}
+                        <div class="form-text ok-muted">{{ field.help_text }}</div>
+                        {% endif %}
+                        {% if field.errors %}
+                        <div class="text-danger small">{{ field.errors.as_text }}</div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="bi bi-check-lg"></i> Сохранить
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Questions list -->
+    <div class="col-md-7">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-list-ol"></i> Вопросы ({{ questions|length }})</span>
+                <span class="ok-muted small">Итого: {{ test.total_points }} б.</span>
+            </div>
+            <div class="card-body p-0">
+                {% if questions %}
+                <div class="list-group list-group-flush">
+                    {% for q in questions %}
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="flex-grow-1">
+                                <p class="mb-1" style="color:var(--ok-white);">
+                                    <strong>{{ forloop.counter }}.</strong> {{ q.text }}
+                                </p>
+                                <small class="ok-muted">
+                                    {{ q.get_question_type_display }} · {{ q.points }} б.
+                                </small>
+                                <div class="mt-1">
+                                    {% for ans in q.answers.all %}
+                                    <span class="badge {% if ans.is_correct %}bg-success{% else %}bg-secondary{% endif %} me-1">
+                                        {{ ans.text|truncatechars:30 }}
+                                        {% if ans.is_correct %} ✓{% endif %}
+                                    </span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <a href="{% url 'mentor_question_edit' q.id %}" class="btn btn-sm btn-outline-primary ms-2">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="p-4 text-center ok-muted">
+                    <i class="bi bi-question-circle" style="font-size:2rem;"></i>
+                    <p class="mt-2 mb-0">Вопросов пока нет</p>
+                    <a href="{% url 'mentor_question_add' test.id %}" class="btn btn-primary btn-sm mt-2">
+                        Добавить первый вопрос
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -4,8 +4,6 @@ from django.utils import timezone
 from .user import User
 
 
-
-
 class Student(models.Model):
     """Модель ученика"""
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='student_profile')

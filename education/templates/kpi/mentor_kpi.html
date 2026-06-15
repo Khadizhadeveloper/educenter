@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% block title %}KPI тренера - Okurmen Kids{% endblock %}
+
+{% block extra_css %}
+<style>
+.kpi-ring { width:120px;height:120px;position:relative;display:inline-flex;align-items:center;justify-content:center; }
+.kpi-ring svg { position:absolute;top:0;left:0;transform:rotate(-90deg); }
+.kpi-ring .kpi-val { font-size:1.7rem;font-weight:800;color:var(--ok-white);z-index:1;line-height:1; }
+.component-bar { height:10px;border-radius:999px;overflow:hidden;background:var(--ok-surface-2); }
+.component-bar .fill { height:100%;border-radius:999px; }
+.fill-attendance { background:linear-gradient(90deg,#38bdf8,#0284c7); }
+.fill-homework   { background:linear-gradient(90deg,var(--ok-accent),var(--ok-accent-dark)); }
+.fill-grade      { background:linear-gradient(90deg,#4ade80,#16a34a); }
+.fill-total      { background:linear-gradient(90deg,var(--ok-accent),#c2410c); }
+.student-row td  { vertical-align:middle; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+  <h1 class="fw-bold"><i class="bi bi-graph-up-arrow" style="color:var(--ok-accent)"></i> Мой KPI</h1>
+  <p class="ok-muted">Показатели эффективности тренера</p>
+</div>
+
+<div class="row g-4 mb-4">
+  <!-- Mentor KPI ring -->
+  <div class="col-md-3">
+    <div class="card text-center h-100">
+      <div class="card-header"><i class="bi bi-trophy-fill"></i> Общий KPI</div>
+      <div class="card-body d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="kpi-ring mb-3">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="50" fill="none" stroke="var(--ok-surface-2)" stroke-width="12"/>
+            <circle cx="60" cy="60" r="50" fill="none"
+              stroke="{% if mentor_kpi.total_kpi >= 85 %}#4ade80{% elif mentor_kpi.total_kpi >= 70 %}#38bdf8{% elif mentor_kpi.total_kpi >= 50 %}#fbbf24{% else %}#f87171{% endif %}"
+              stroke-width="12"
+              stroke-dasharray="calc({{ mentor_kpi.total_kpi }} * 3.14) 314"
+              stroke-linecap="round"/>
+          </svg>
+          <div class="kpi-val">{{ mentor_kpi.total_kpi|floatformat:0 }}<span style="font-size:.75rem">%</span></div>
+        </div>
+        <span class="badge bg-{{ mentor_kpi.kpi_color }} fs-6">{{ mentor_kpi.kpi_label }}</span>
+        <p class="ok-muted mt-3 mb-0" style="font-size:.78rem">{{ mentor_kpi.updated_at|date:"d.m.Y H:i" }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Components -->
+  <div class="col-md-5">
+    <div class="card h-100">
+      <div class="card-header"><i class="bi bi-bar-chart-fill"></i> Компоненты KPI</div>
+      <div class="card-body">
+        <div class="mb-3">
+          <div class="d-flex justify-content-between mb-1">
+            <span><i class="bi bi-people-fill text-info"></i> Средний KPI учеников</span>
+            <strong>{{ mentor_kpi.avg_student_kpi|floatformat:1 }}%</strong>
+          </div>
+          <div class="component-bar"><div class="fill fill-attendance" style="width:{{ mentor_kpi.avg_student_kpi }}%"></div></div>
+          <small class="ok-muted">Вес: 40%</small>
+        </div>
+        <div class="mb-3">
+          <div class="d-flex justify-content-between mb-1">
+            <span><i class="bi bi-calendar-check" style="color:var(--ok-accent)"></i> Посещаемость групп</span>
+            <strong>{{ mentor_kpi.avg_attendance|floatformat:1 }}%</strong>
+          </div>
+          <div class="component-bar"><div class="fill fill-homework" style="width:{{ mentor_kpi.avg_attendance }}%"></div></div>
+          <small class="ok-muted">Вес: 30%</small>
+        </div>
+        <div class="mb-3">
+          <div class="d-flex justify-content-between mb-1">
+            <span><i class="bi bi-journal-check text-success"></i> Выполнение ДЗ</span>
+            <strong>{{ mentor_kpi.homework_completion_rate|floatformat:1 }}%</strong>
+          </div>
+          <div class="component-bar"><div class="fill fill-grade" style="width:{{ mentor_kpi.homework_completion_rate }}%"></div></div>
+          <small class="ok-muted">Вес: 30%</small>
+        </div>
+        <hr class="my-3">
+        <div>
+          <div class="d-flex justify-content-between mb-1">
+            <span class="fw-bold"><i class="bi bi-trophy-fill" style="color:var(--ok-accent)"></i> Итоговый KPI</span>
+            <strong style="color:var(--ok-accent)">{{ mentor_kpi.total_kpi|floatformat:1 }}%</strong>
+          </div>
+          <div class="component-bar" style="height:14px"><div class="fill fill-total" style="width:{{ mentor_kpi.total_kpi }}%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick stats -->
+  <div class="col-md-4">
+    <div class="card h-100">
+      <div class="card-header"><i class="bi bi-lightning-fill"></i> Сводка</div>
+      <div class="card-body">
+        <div class="stat-card mb-3" style="padding:.9rem 1rem;">
+          <div class="icon"><i class="bi bi-book-fill"></i></div>
+          <div><h3 style="font-size:1.4rem">{{ mentor_kpi.courses_count }}</h3><p>Активных курсов</p></div>
+        </div>
+        <div class="stat-card grad-pink" style="padding:.9rem 1rem;">
+          <div class="icon"><i class="bi bi-people-fill"></i></div>
+          <div><h3 style="font-size:1.4rem">{{ mentor_kpi.students_count }}</h3><p>Учеников всего</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Students table -->
+<div class="card">
+  <div class="card-header"><i class="bi bi-table"></i> KPI учеников</div>
+  <div class="card-body p-0">
+    {% if student_kpis %}
+    <div class="table-responsive">
+      <table class="table mb-0">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Ученик</th>
+            <th>Посещаемость</th>
+            <th>Домашние</th>
+            <th>Оценки</th>
+            <th>KPI</th>
+            <th>Статус</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for k in student_kpis %}
+          <tr class="student-row">
+            <td class="ok-muted">{{ forloop.counter }}</td>
+            <td><strong>{{ k.student.user.get_full_name }}</strong></td>
+            <td>
+              <div class="d-flex align-items-center gap-2">
+                <div class="component-bar flex-grow-1"><div class="fill fill-attendance" style="width:{{ k.attendance_score }}%"></div></div>
+                <small>{{ k.attendance_score|floatformat:0 }}%</small>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex align-items-center gap-2">
+                <div class="component-bar flex-grow-1"><div class="fill fill-homework" style="width:{{ k.homework_score }}%"></div></div>
+                <small>{{ k.homework_score|floatformat:0 }}%</small>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex align-items-center gap-2">
+                <div class="component-bar flex-grow-1"><div class="fill fill-grade" style="width:{{ k.grade_score }}%"></div></div>
+                <small>{{ k.grade_score|floatformat:0 }}%</small>
+              </div>
+            </td>
+            <td><strong style="color:var(--ok-accent)">{{ k.total_kpi|floatformat:1 }}%</strong></td>
+            <td><span class="badge bg-{{ k.kpi_color }}">{{ k.kpi_label }}</span></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="p-4 text-center ok-muted">Нет учеников в ваших курсах.</div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

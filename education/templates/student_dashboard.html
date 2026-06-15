@@ -1,54 +1,129 @@
 {% extends 'base.html' %}
-
 {% block title %}Панель ученика - Okurmen Kids{% endblock %}
 
+{% block extra_css %}
+<style>
+.kpi-ring-sm { width:96px;height:96px;position:relative;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0; }
+.kpi-ring-sm svg { position:absolute;top:0;left:0;transform:rotate(-90deg); }
+.kpi-ring-sm .kpi-val { font-size:1.35rem;font-weight:800;color:var(--ok-white);z-index:1;line-height:1; }
+.mini-bar { height:7px;border-radius:999px;background:var(--ok-surface-2);overflow:hidden;margin-bottom:2px; }
+.mini-bar .fill { height:100%;border-radius:999px; }
+.fill-att { background:linear-gradient(90deg,#38bdf8,#0284c7); }
+.fill-hw  { background:linear-gradient(90deg,var(--ok-accent),var(--ok-accent-dark)); }
+.fill-gr  { background:linear-gradient(90deg,#4ade80,#16a34a); }
+.fill-tot { background:linear-gradient(90deg,var(--ok-accent),#c2410c); }
+</style>
+{% endblock %}
+
 {% block content %}
-<div class="row">
-    <div class="col-12 mb-4">
-        <h1 class="text-white">
-            <i class="bi bi-mortarboard-fill"></i> Моя панель
+<div class="row mb-3">
+    <div class="col-12">
+        <h1 class="fw-bold" style="color:var(--ok-white);">
+            <i class="bi bi-mortarboard-fill" style="color:var(--ok-accent);"></i> Моя панель
         </h1>
-        <p class="bi bi-mortarboard-fill">Добро пожаловать, {{ user.get_full_name }}!</p>
+        <p class="ok-muted">Добро пожаловать, {{ user.get_full_name }}!</p>
     </div>
 </div>
 
-<!-- Статистика -->
+<!-- Stat cards -->
 <div class="row g-4 mb-4">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="stat-card">
-            <i class="bi bi-book-fill icon-2x opacity-80"></i>
-            <h3 class="mt-2">{{ my_courses.count }}</h3>
-            <p>Мои курсы</p>
+            <div class="icon"><i class="bi bi-book-fill"></i></div>
+            <div><h3>{{ my_courses.count }}</h3><p>Мои курсы</p></div>
         </div>
     </div>
-
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="stat-card grad-pink">
-            <i class="bi bi-journal-text icon-2x opacity-80"></i>
-            <h3 class="mt-2">{{ my_homework.count }}</h3>
-            <p>Домашних заданий</p>
+            <div class="icon"><i class="bi bi-journal-text"></i></div>
+            <div><h3>{{ pending_hw_count }}</h3><p>Не сдано ДЗ</p></div>
         </div>
     </div>
-
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="stat-card grad-cyan">
-            <i class="bi bi-star-fill icon-2x opacity-80"></i>
-            <h3 class="mt-2">
-                {% if recent_grades %}
-                    {{ recent_grades.first.grade|default:"N/A" }}
-                {% else %}
-                    N/A
-                {% endif %}
-            </h3>
-            <p>Последняя оценка</p>
+            <div class="icon"><i class="bi bi-star-fill"></i></div>
+            <div>
+                <h3>{% if recent_grades %}{{ recent_grades.first.grade }}{% else %}—{% endif %}</h3>
+                <p>Последняя оценка</p>
+            </div>
+        </div>
+    </div>
+    <!-- KPI stat card -->
+    <div class="col-md-3">
+        <div class="stat-card" style="background:linear-gradient(135deg,#7c2d12,#c2410c);">
+            <div class="icon" style="background:rgba(255,255,255,.15);color:#fff;">
+                <i class="bi bi-graph-up-arrow"></i>
+            </div>
+            <div>
+                <h3>{{ kpi.total_kpi|floatformat:0 }}%</h3>
+                <p>Мой KPI</p>
+            </div>
         </div>
     </div>
 </div>
 
-<div class="row g-4">
-    <!-- Расписание на неделю -->
+<!-- KPI widget + schedule -->
+<div class="row g-4 mb-4">
+
+    <!-- KPI виджет -->
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-header">
+                <i class="bi bi-trophy-fill"></i> Показатели KPI
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <!-- mini ring -->
+                    <div class="kpi-ring-sm">
+                        <svg width="96" height="96" viewBox="0 0 96 96">
+                            <circle cx="48" cy="48" r="40" fill="none" stroke="var(--ok-surface-2)" stroke-width="10"/>
+                            <circle cx="48" cy="48" r="40" fill="none"
+                                stroke="{% if kpi.total_kpi >= 85 %}#4ade80{% elif kpi.total_kpi >= 70 %}#38bdf8{% elif kpi.total_kpi >= 50 %}#fbbf24{% else %}#f87171{% endif %}"
+                                stroke-width="10"
+                                stroke-dasharray="calc({{ kpi.total_kpi }} * 2.513) 251.3"
+                                stroke-linecap="round"/>
+                        </svg>
+                        <div class="kpi-val">{{ kpi.total_kpi|floatformat:0 }}<span style="font-size:.65rem">%</span></div>
+                    </div>
+                    <div>
+                        <div class="fw-bold" style="font-size:1.1rem;color:var(--ok-white);">{{ kpi.kpi_label }}</div>
+                        <small class="ok-muted">Обновлено {{ kpi.updated_at|date:"d.m H:i" }}</small>
+                    </div>
+                </div>
+
+                <!-- Components -->
+                <div class="mb-2">
+                    <div class="d-flex justify-content-between mb-1">
+                        <small><i class="bi bi-calendar-check text-info"></i> Посещаемость</small>
+                        <small class="fw-bold">{{ kpi.attendance_score|floatformat:0 }}%</small>
+                    </div>
+                    <div class="mini-bar"><div class="fill fill-att" style="width:{{ kpi.attendance_score }}%"></div></div>
+                </div>
+                <div class="mb-2">
+                    <div class="d-flex justify-content-between mb-1">
+                        <small><i class="bi bi-journal-text" style="color:var(--ok-accent)"></i> Домашние задания</small>
+                        <small class="fw-bold">{{ kpi.homework_score|floatformat:0 }}%</small>
+                    </div>
+                    <div class="mini-bar"><div class="fill fill-hw" style="width:{{ kpi.homework_score }}%"></div></div>
+                </div>
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between mb-1">
+                        <small><i class="bi bi-star-fill text-success"></i> Оценки</small>
+                        <small class="fw-bold">{{ kpi.grade_score|floatformat:0 }}%</small>
+                    </div>
+                    <div class="mini-bar"><div class="fill fill-gr" style="width:{{ kpi.grade_score }}%"></div></div>
+                </div>
+
+                <a href="{% url 'student_kpi' %}" class="btn btn-primary btn-sm w-100">
+                    <i class="bi bi-bar-chart-fill"></i> Подробный KPI
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Расписание -->
     <div class="col-md-8">
-        <div class="card">
+        <div class="card h-100">
             <div class="card-header">
                 <i class="bi bi-calendar-week"></i> Расписание на неделю
             </div>
@@ -60,10 +135,10 @@
                                 <div class="d-flex justify-content-between align-items-start">
                                     <div>
                                         <h6 class="mb-1">{{ lesson.title }}</h6>
-                                        <p class="mb-1 text-muted small">{{ lesson.course.name }}</p>
-                                        <small class="text-muted">
+                                        <p class="mb-1 ok-muted small">{{ lesson.course.name }}</p>
+                                        <small class="ok-muted">
                                             <i class="bi bi-calendar3"></i> {{ lesson.date|date:"d.m.Y" }}
-                                            <i class="bi bi-clock ms-2"></i> {{ lesson.start_time|time:"H:i" }} - {{ lesson.end_time|time:"H:i" }}
+                                            <i class="bi bi-clock ms-2"></i> {{ lesson.start_time|time:"H:i" }} – {{ lesson.end_time|time:"H:i" }}
                                             <i class="bi bi-geo-alt ms-2"></i> {{ lesson.room }}
                                         </small>
                                     </div>
@@ -72,37 +147,36 @@
                         {% endfor %}
                     </div>
                     <div class="mt-3">
-                        <a href="{% url 'schedule' %}" class="btn btn-primary">
+                        <a href="{% url 'schedule' %}" class="btn btn-primary btn-sm">
                             <i class="bi bi-calendar3"></i> Полное расписание
                         </a>
                     </div>
                 {% else %}
-                    <p class="text-muted">Нет предстоящих занятий</p>
+                    <p class="ok-muted">Нет предстоящих занятий</p>
                 {% endif %}
             </div>
         </div>
     </div>
+</div>
 
+<!-- Курсы + ДЗ + Оценки -->
+<div class="row g-4">
     <!-- Мои курсы -->
     <div class="col-md-4">
-        <div class="card">
-            <div class="card-header">
-                <i class="bi bi-book"></i> Мои курсы
-            </div>
+        <div class="card h-100">
+            <div class="card-header"><i class="bi bi-book"></i> Мои курсы</div>
             <div class="card-body">
                 {% if my_courses %}
                     <div class="list-group list-group-flush">
                         {% for enrollment in my_courses %}
                             <a href="{% url 'course_detail' enrollment.course.id %}" class="list-group-item list-group-item-action">
                                 <h6 class="mb-1">{{ enrollment.course.name }}</h6>
-                                <small class="text-muted">
-                                    <i class="bi bi-person"></i> {{ enrollment.course.mentor.user.get_full_name }}
-                                </small>
+                                <small class="ok-muted"><i class="bi bi-person"></i> {{ enrollment.course.mentor.user.get_full_name }}</small>
                             </a>
                         {% endfor %}
                     </div>
                 {% else %}
-                    <p class="text-muted">Вы пока не записаны ни на один курс</p>
+                    <p class="ok-muted">Вы пока не записаны ни на один курс</p>
                 {% endif %}
                 <div class="mt-3">
                     <a href="{% url 'course_list' %}" class="btn btn-primary btn-sm w-100">
@@ -112,63 +186,55 @@
             </div>
         </div>
     </div>
-</div>
 
-<!-- Домашние задания и оценки -->
-<div class="row mt-4 g-4">
     <!-- Домашние задания -->
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <i class="bi bi-journal-text"></i> Мои домашние задания
-            </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-header"><i class="bi bi-journal-text"></i> Домашние задания</div>
             <div class="card-body">
                 {% if my_homework %}
                     <div class="list-group list-group-flush">
-                        {% for hw in my_homework|slice:":5" %}
+                        {% for item in my_homework|slice:":5" %}
+                        {% with hw=item.homework sub=item.submission %}
                             <div class="list-group-item">
                                 <div class="d-flex justify-content-between align-items-start">
                                     <div>
-                                        <h6 class="mb-1">{{ hw.homework.title }}</h6>
-                                        <small class="text-muted">
-                                            {{ hw.homework.lesson.course.name }}
-                                        </small>
-                                        <br>
-                                        <small class="text-muted">
-                                            <i class="bi bi-clock"></i> Срок: {{ hw.homework.due_date|date:"d.m.Y H:i" }}
-                                        </small>
+                                        <h6 class="mb-1" style="font-size:.9rem;color:var(--ok-white);">{{ hw.title }}</h6>
+                                        <small class="ok-muted">{{ hw.lesson.course.name }}</small>
+                                        <br><small class="ok-muted"><i class="bi bi-clock"></i> до {{ hw.due_date|date:"d.m H:i" }}</small>
                                     </div>
-                                    {% if hw.status == 'pending' %}
-                                        <span class="badge bg-warning">Ожидает</span>
-                                    {% elif hw.status == 'checked' %}
-                                        <span class="badge bg-success">
-                                            {% if hw.grade %}{{ hw.grade }}{% else %}Проверено{% endif %}
-                                        </span>
-                                    {% elif hw.status == 'late' %}
-                                        <span class="badge bg-danger">Опоздал</span>
+                                    {% if sub %}
+                                        {% if sub.status == 'pending' %}
+                                            <span class="badge bg-warning">На проверке</span>
+                                        {% elif sub.status == 'checked' %}
+                                            <span class="badge bg-success">{% if sub.grade %}{{ sub.grade }}{% else %}✓{% endif %}</span>
+                                        {% elif sub.status == 'late' %}
+                                            <span class="badge bg-danger">Опоздал</span>
+                                        {% endif %}
+                                    {% else %}
+                                        <a href="{% url 'homework_submit' hw.id %}" class="badge bg-primary text-decoration-none">Сдать</a>
                                     {% endif %}
                                 </div>
                             </div>
+                        {% endwith %}
                         {% endfor %}
                     </div>
                     <div class="mt-3">
-                        <a href="{% url 'homework_list' %}" class="btn btn-primary">
-                            <i class="bi bi-list"></i> Все задания
+                        <a href="{% url 'homework_list' %}" class="btn btn-primary btn-sm w-100">
+                            <i class="bi bi-list"></i> Все задания ({{ my_homework|length }})
                         </a>
                     </div>
                 {% else %}
-                    <p class="text-muted">Нет домашних заданий</p>
+                    <p class="ok-muted">Нет домашних заданий</p>
                 {% endif %}
             </div>
         </div>
     </div>
 
     <!-- Последние оценки -->
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <i class="bi bi-star-fill"></i> Последние оценки
-            </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-header"><i class="bi bi-star-fill"></i> Последние оценки</div>
             <div class="card-body">
                 {% if recent_grades %}
                     <div class="table-responsive">
@@ -183,25 +249,23 @@
                             <tbody>
                                 {% for grade in recent_grades|slice:":5" %}
                                     <tr>
-                                        <td>{{ grade.course.name }}</td>
+                                        <td style="font-size:.85rem">{{ grade.course.name }}</td>
                                         <td>
-                                            <span class="badge {% if grade.grade >= 4 %}bg-success{% elif grade.grade >= 3 %}bg-warning{% else %}bg-danger{% endif %}">
+                                            <span class="badge {% if grade.grade >= 8 %}bg-success{% elif grade.grade >= 5 %}bg-warning{% else %}bg-danger{% endif %}">
                                                 {{ grade.grade }}
                                             </span>
                                         </td>
-                                        <td>{{ grade.date|date:"d.m.Y" }}</td>
+                                        <td><small class="ok-muted">{{ grade.date|date:"d.m" }}</small></td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
                         </table>
                     </div>
-                    <div class="mt-3">
-                        <a href="{% url 'grades' %}" class="btn btn-primary">
-                            <i class="bi bi-star"></i> Все оценки
-                        </a>
-                    </div>
+                    <a href="{% url 'grades' %}" class="btn btn-primary btn-sm w-100">
+                        <i class="bi bi-star"></i> Все оценки
+                    </a>
                 {% else %}
-                    <p class="text-muted">Оценок пока нет</p>
+                    <p class="ok-muted">Оценок пока нет</p>
                 {% endif %}
             </div>
         </div>

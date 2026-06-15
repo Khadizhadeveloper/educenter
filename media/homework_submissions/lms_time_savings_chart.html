@@ -1,0 +1,125 @@
+<div style="padding: 1rem 0">
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin-bottom: 1.5rem;">
+    <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 1rem; text-align: center;">
+      <p style="font-size: 13px; color: var(--color-text-secondary); margin: 0 0 4px;">До внедрения LMS</p>
+      <p style="font-size: 26px; font-weight: 500; color: var(--color-text-primary); margin: 0;">66 ч</p>
+      <p style="font-size: 12px; color: var(--color-text-secondary); margin: 4px 0 0;">в месяц</p>
+    </div>
+    <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 1rem; text-align: center;">
+      <p style="font-size: 13px; color: var(--color-text-secondary); margin: 0 0 4px;">После внедрения LMS</p>
+      <p style="font-size: 26px; font-weight: 500; color: var(--color-text-primary); margin: 0;">15.4 ч</p>
+      <p style="font-size: 12px; color: var(--color-text-secondary); margin: 4px 0 0;">в месяц</p>
+    </div>
+    <div style="background: var(--color-background-success); border-radius: var(--border-radius-md); padding: 1rem; text-align: center;">
+      <p style="font-size: 13px; color: var(--color-text-success); margin: 0 0 4px;">Экономия</p>
+      <p style="font-size: 26px; font-weight: 500; color: var(--color-text-success); margin: 0;">50.6 ч</p>
+      <p style="font-size: 12px; color: var(--color-text-success); margin: 4px 0 0;">в месяц</p>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 16px; margin-bottom: 8px; font-size: 12px; color: var(--color-text-secondary);">
+    <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #A32D2D;"></span>До внедрения</span>
+    <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #0F6E56;"></span>После внедрения</span>
+  </div>
+
+  <div style="position: relative; width: 100%; height: 300px;">
+    <canvas id="timeChart" role="img" aria-label="Сравнение затрат рабочего времени до и после внедрения LMS. До: 66 часов в месяц. После: 15.4 часа в месяц. Экономия: 50.6 часов.">До внедрения LMS — 66 ч/мес, после — 15.4 ч/мес, экономия 50.6 ч/мес.</canvas>
+  </div>
+
+  <div style="margin-top: 1.5rem; position: relative; width: 100%; height: 160px;">
+    <canvas id="savingChart" role="img" aria-label="Структура рабочего времени после внедрения LMS: 15.4 часа затрачено, 50.6 часа сэкономлено">Затрачено 15.4 ч, сэкономлено 50.6 ч.</canvas>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+new Chart(document.getElementById('timeChart'), {
+  type: 'bar',
+  data: {
+    labels: ['До внедрения LMS', 'После внедрения LMS'],
+    datasets: [
+      {
+        label: 'Затраченное время (ч/мес)',
+        data: [66, 15.4],
+        backgroundColor: ['#A32D2D', '#0F6E56'],
+        borderColor: ['#791F1F', '#085041'],
+        borderWidth: 1,
+        borderRadius: 6,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => ` ${ctx.parsed.y} ч/мес`
+        }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        max: 80,
+        ticks: {
+          callback: (v) => v + ' ч',
+          stepSize: 20
+        },
+        grid: { color: 'rgba(128,128,128,0.15)' }
+      },
+      x: {
+        grid: { display: false },
+        ticks: { autoSkip: false }
+      }
+    }
+  }
+});
+
+new Chart(document.getElementById('savingChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Структура 66 ч/мес'],
+    datasets: [
+      {
+        label: 'Затрачено после LMS',
+        data: [15.4],
+        backgroundColor: '#0F6E56',
+        borderRadius: 6,
+        stack: 'stack'
+      },
+      {
+        label: 'Сэкономлено',
+        data: [50.6],
+        backgroundColor: '#9FE1CB',
+        borderRadius: 6,
+        stack: 'stack'
+      }
+    ]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: { label: (ctx) => ` ${ctx.parsed.x.toFixed(1)} ч` }
+      }
+    },
+    scales: {
+      x: {
+        stacked: true,
+        max: 70,
+        ticks: { callback: (v) => v + ' ч' },
+        grid: { color: 'rgba(128,128,128,0.15)' }
+      },
+      y: {
+        stacked: true,
+        grid: { display: false }
+      }
+    }
+  }
+});
+</script>

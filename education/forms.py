@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from .models.user import User
@@ -8,6 +9,7 @@ from .models.lesson import Lesson
 from .models.schedule import Schedule
 from .models.course import Course
 from .models.homework import Homework, HomeworkSubmission
+from .models.test_system import Topic, Test, Question, Answer
 from .models.grade import Grade
 from .models.attendance import Attendance
 from .models.announcement import Announcement
@@ -311,3 +313,64 @@ class AnnouncementForm(forms.ModelForm):
         for field in self.fields:
             if field not in ['is_pinned']:
                 self.fields[field].widget.attrs.update({'class': 'form-control'})
+
+
+# ── Test system forms ─────────────────────────────────────────────────────────
+
+class TopicForm(forms.ModelForm):
+    class Meta:
+        model = Topic
+        fields = ['title', 'description', 'order', 'is_active']
+        widgets = {'description': forms.Textarea(attrs={'rows': 3})}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for f in self.fields:
+            if f != 'is_active':
+                self.fields[f].widget.attrs['class'] = 'form-control'
+
+
+class TestForm(forms.ModelForm):
+    class Meta:
+        model = Test
+        fields = ['title', 'description', 'time_limit_minutes', 'passing_score', 'max_attempts', 'is_active']
+        widgets = {'description': forms.Textarea(attrs={'rows': 3})}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for f in self.fields:
+            if f != 'is_active':
+                self.fields[f].widget.attrs['class'] = 'form-control'
+
+
+class QuestionForm(forms.ModelForm):
+    class Meta:
+        model = Question
+        fields = ['text', 'question_type', 'points', 'order']
+        widgets = {'text': forms.Textarea(attrs={'rows': 3})}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for f in self.fields:
+            self.fields[f].widget.attrs['class'] = 'form-control'
+
+
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+        fields = ['text', 'is_correct', 'order']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['text'].widget.attrs['class'] = 'form-control'
+        self.fields['order'].widget.attrs['class'] = 'form-control'
+
+
+AnswerFormSet = inlineformset_factory(
+    Question, Answer,
+    form=AnswerForm,
+    extra=4,
+    min_num=2,
+    validate_min=True,
+    can_delete=True,
+)

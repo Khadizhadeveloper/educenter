@@ -1819,3 +1819,1594 @@ Not Found: /favicon.ico
 "GET /static/vendor/fontawesome-free/webfonts/fa-brands-400.woff2 HTTP/1.1" 200 117852
 "GET /static/vendor/fontawesome-free/webfonts/fa-v4compatibility.woff2 HTTP/1.1" 200 4792
 "GET /dashboard/ HTTP/1.1" 200 12430
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8976
+"GET /login/ HTTP/1.1" 200 8003
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 12582
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 9243
+"GET /login/ HTTP/1.1" 200 8003
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 12086
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 3836
+"GET /static/jazzmin/css/main.css HTTP/1.1" 200 14372
+"GET /static/vendor/fontawesome-free/css/all.min.css HTTP/1.1" 200 103010
+"GET /static/vendor/adminlte/js/adminlte.min.js HTTP/1.1" 200 18270
+"GET /static/vendor/bootstrap/js/bootstrap.bundle.min.js HTTP/1.1" 200 80721
+"GET /static/vendor/bootswatch/lumen/bootstrap.min.css HTTP/1.1" 200 239022
+"GET /static/vendor/adminlte/css/adminlte.min.css HTTP/1.1" 200 298755
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+"GET /static/vendor/adminlte/img/AdminLTELogo.png HTTP/1.1" 200 2637
+"GET /static/vendor/fontawesome-free/webfonts/fa-solid-900.woff2 HTTP/1.1" 304 0
+"GET /static/vendor/fontawesome-free/webfonts/fa-regular-400.woff2 HTTP/1.1" 304 0
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 11268
+"GET /admin/education/mentor/add/ HTTP/1.1" 200 43202
+"GET /static/vendor/select2/css/select2.min.css HTTP/1.1" 200 16264
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+"GET /static/admin/js/core.js HTTP/1.1" 200 6208
+"GET /static/admin/js/calendar.js HTTP/1.1" 200 9141
+"GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+"GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+"GET /static/jazzmin/js/main.js HTTP/1.1" 200 4542
+"GET /static/admin/js/actions.js HTTP/1.1" 304 0
+"GET /static/jazzmin/js/ui-builder.js HTTP/1.1" 200 12305
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /static/jazzmin/js/change_form.js HTTP/1.1" 200 6045
+"GET /static/admin/js/change_form.js HTTP/1.1" 304 0
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+"GET /static/vendor/select2/js/select2.min.js HTTP/1.1" 200 73170
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+"GET /static/vendor/fontawesome-free/webfonts/fa-brands-400.woff2 HTTP/1.1" 200 117852
+"GET /static/vendor/fontawesome-free/webfonts/fa-v4compatibility.woff2 HTTP/1.1" 200 4792
+"GET /admin/education/user/ HTTP/1.1" 200 45877
+"GET /static/jazzmin/js/change_list.js HTTP/1.1" 200 2205
+"GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /admin/education/user/4/change/ HTTP/1.1" 200 64647
+"GET /static/admin/js/SelectBox.js HTTP/1.1" 200 4530
+"GET /static/admin/js/SelectFilter2.js HTTP/1.1" 200 15845
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /admin/education/user/4/password/ HTTP/1.1" 200 36528
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"POST /admin/education/user/4/password/ HTTP/1.1" 200 36886
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"POST /admin/education/user/4/password/ HTTP/1.1" 200 36886
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"POST /admin/education/user/4/password/ HTTP/1.1" 302 0
+"GET /admin/education/user/4/change/ HTTP/1.1" 200 65118
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+- Broken pipe from ('127.0.0.1', 56462)
+- Broken pipe from ('127.0.0.1', 56463)
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8976
+"GET /login/ HTTP/1.1" 200 8003
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 12086
+"GET /admin/education/homework/add/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/education/homework/add/ HTTP/1.1" 200 3859
+"GET /static/jazzmin/css/main.css HTTP/1.1" 200 14372
+"GET /static/vendor/fontawesome-free/css/all.min.css HTTP/1.1" 200 103010
+"GET /static/vendor/bootstrap/js/bootstrap.bundle.min.js HTTP/1.1" 200 80721
+"GET /static/vendor/adminlte/js/adminlte.min.js HTTP/1.1" 200 18270
+"GET /static/vendor/bootswatch/lumen/bootstrap.min.css HTTP/1.1" 200 239022
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+"GET /static/vendor/adminlte/css/adminlte.min.css HTTP/1.1" 200 298755
+"GET /static/vendor/adminlte/img/AdminLTELogo.png HTTP/1.1" 200 2637
+"GET /static/vendor/fontawesome-free/webfonts/fa-solid-900.woff2 HTTP/1.1" 200 156400
+"GET /static/vendor/fontawesome-free/webfonts/fa-regular-400.woff2 HTTP/1.1" 304 0
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 10117
+"GET /dashboard/ HTTP/1.1" 200 11779
+Internal Server Error: /mentor/homework/add/
+Traceback (most recent call last):
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/khadizh/Desktop/educenter/education/views.py", line 136, in mentor_create_homework
+    return render(request, 'mentor/homework_create.html', {'form': form})
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'mentor_dashboard' not found. 'mentor_dashboard' is not a valid view function or pattern name.
+"GET /mentor/homework/add/ HTTP/1.1" 500 158416
+/Users/khadizh/Desktop/educenter/education/urls.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /mentor/homework/add/ HTTP/1.1" 200 9361
+"POST /mentor/homework/add/ HTTP/1.1" 302 0
+"GET /homework/ HTTP/1.1" 200 8766
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 5575
+"GET /static/css/theme.css HTTP/1.1" 200 7119
+Not Found: /favicon.ico
+Not Found: /apple-touch-icon-precomposed.png
+"GET /favicon.ico HTTP/1.1" 404 7698
+"GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 7761
+Not Found: /apple-touch-icon.png
+"GET /apple-touch-icon.png HTTP/1.1" 404 7725
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 7698
+"GET /login/ HTTP/1.1" 200 4602
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 8567
+"GET /mentor/homework/add/ HTTP/1.1" 200 5960
+"POST /mentor/homework/add/ HTTP/1.1" 302 0
+"GET /homework/ HTTP/1.1" 200 5365
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5842
+"GET /login/ HTTP/1.1" 200 4602
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 8999
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 6712
+"GET /static/css/theme.css HTTP/1.1" 304 0
+"GET /dashboard/ HTTP/1.1" 200 8719
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5842
+"GET /login/ HTTP/1.1" 200 4602
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 8567
+"GET /mentor/homework/add/ HTTP/1.1" 200 5960
+"GET /admin/education/homework/add/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/education/homework/add/ HTTP/1.1" 200 3859
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 6716
+"GET /dashboard/ HTTP/1.1" 200 8287
+"GET /mentor/homework/add/ HTTP/1.1" 200 5960
+"POST /mentor/homework/add/ HTTP/1.1" 302 0
+"GET /homework/ HTTP/1.1" 200 5341
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5842
+"GET /login/ HTTP/1.1" 200 4602
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 8999
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 6712
+"GET /static/css/theme.css HTTP/1.1" 304 0
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5842
+"GET /login/ HTTP/1.1" 200 4602
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 13561
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 5575
+"GET /register/ HTTP/1.1" 200 6722
+"POST /register/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 7271
+"GET /schedule/ HTTP/1.1" 200 4624
+"GET /homework/ HTTP/1.1" 200 4807
+"GET /grades/ HTTP/1.1" 200 4780
+"GET /login/ HTTP/1.1" 200 4602
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 9710
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 5575
+"GET /static/css/theme.css HTTP/1.1" 200 7119
+Not Found: /apple-touch-icon-precomposed.png
+Not Found: /favicon.ico
+Not Found: /apple-touch-icon.png
+"GET /favicon.ico HTTP/1.1" 404 7698
+"GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 7761
+"GET /apple-touch-icon.png HTTP/1.1" 404 7725
+"GET /login/ HTTP/1.1" 200 4602
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 13561
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5842
+"GET /login/ HTTP/1.1" 200 4602
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 8567
+"GET /mentor/homework/add/ HTTP/1.1" 200 5960
+"POST /mentor/homework/add/ HTTP/1.1" 302 0
+"GET /homework/ HTTP/1.1" 200 5341
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5842
+"GET /login/ HTTP/1.1" 200 4602
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 8999
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 5575
+"GET /login/ HTTP/1.1" 200 4602
+"POST /login/ HTTP/1.1" 200 4900
+"GET /login/ HTTP/1.1" 200 4602
+"POST /login/ HTTP/1.1" 302 0
+"GET /mentor/homework/add/ HTTP/1.1" 200 6240
+"POST /mentor/homework/add/ HTTP/1.1" 302 0
+"POST /mentor/homework/add/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 4602
+"POST /login/ HTTP/1.1" 302 0
+"GET /homework/ HTTP/1.1" 200 18054
+"GET /homework/ HTTP/1.1" 200 5596
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 5579
+"GET / HTTP/1.1" 200 5579
+"GET /static/css/theme.css HTTP/1.1" 200 14915
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 9313
+"GET /login/ HTTP/1.1" 200 4606
+"GET /static/css/theme.css HTTP/1.1" 200 14915
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 9313
+Not Found: /admin-dashboard/
+"GET /admin-dashboard/ HTTP/1.1" 404 7713
+"GET /courses/ HTTP/1.1" 200 6487
+"GET /login/ HTTP/1.1" 200 4606
+"GET /static/css/theme.css HTTP/1.1" 200 14915
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 9313
+"GET /dashboard/ HTTP/1.1" 200 9033
+"GET /schedule/ HTTP/1.1" 200 4616
+"GET /grades/ HTTP/1.1" 200 4772
+"GET / HTTP/1.1" 200 5579
+"GET /static/css/theme.css HTTP/1.1" 200 14915
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 7698
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 200 4904
+"POST /login/ HTTP/1.1" 200 4904
+"GET /register/ HTTP/1.1" 200 6726
+"POST /register/ HTTP/1.1" 200 7681
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 200 4904
+"GET /admin HTTP/1.1" 301 0
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 3331
+"GET /static/vendor/fontawesome-free/css/all.min.css HTTP/1.1" 200 103010
+"GET /static/jazzmin/css/main.css HTTP/1.1" 200 14372
+"GET /static/vendor/adminlte/js/adminlte.min.js HTTP/1.1" 200 18270
+"GET /static/vendor/bootstrap/js/bootstrap.bundle.min.js HTTP/1.1" 200 80721
+"GET /static/vendor/bootswatch/lumen/bootstrap.min.css HTTP/1.1" 200 239022
+"GET /static/vendor/adminlte/css/adminlte.min.css HTTP/1.1" 200 298755
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+"GET /static/vendor/adminlte/img/AdminLTELogo.png HTTP/1.1" 200 2637
+"GET /static/vendor/fontawesome-free/webfonts/fa-solid-900.woff2 HTTP/1.1" 200 156400
+"GET /static/vendor/fontawesome-free/webfonts/fa-regular-400.woff2 HTTP/1.1" 200 25392
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 7637
+"GET /admin/education/mentor/add/ HTTP/1.1" 200 43330
+"GET /static/vendor/select2/css/select2.min.css HTTP/1.1" 200 16264
+"GET /static/admin/js/core.js HTTP/1.1" 200 6208
+"GET /static/admin/js/calendar.js HTTP/1.1" 200 9141
+"GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+"GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+"GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+"GET /static/jazzmin/js/main.js HTTP/1.1" 200 4542
+"GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /static/jazzmin/js/ui-builder.js HTTP/1.1" 200 12305
+"GET /static/jazzmin/js/change_form.js HTTP/1.1" 200 6045
+"GET /static/vendor/select2/js/select2.min.js HTTP/1.1" 200 73170
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+"GET /static/vendor/fontawesome-free/webfonts/fa-brands-400.woff2 HTTP/1.1" 200 117852
+"GET /static/vendor/fontawesome-free/webfonts/fa-v4compatibility.woff2 HTTP/1.1" 200 4792
+"GET /login/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 6687
+"GET /static/css/theme.css HTTP/1.1" 304 0
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5846
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 13565
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 5579
+"GET / HTTP/1.1" 200 5579
+"GET /static/css/theme.css HTTP/1.1" 200 18509
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 13565
+"GET /courses/ HTTP/1.1" 200 6522
+/Users/khadizh/Desktop/educenter/education/models/__init__.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/apps.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /kpi/admin/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 4606
+"GET /static/css/theme.css HTTP/1.1" 200 18509
+"POST /login/ HTTP/1.1" 200 4904
+"GET /kpi/admin/ HTTP/1.1" 302 0
+"GET /login/?next=/kpi/admin/ HTTP/1.1" 200 4606
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 200 4904
+"GET /login/ HTTP/1.1" 200 4606
+"GET /static/css/theme.css HTTP/1.1" 200 18509
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 9904
+"GET /kpi/admin/ HTTP/1.1" 200 12990
+"GET /login/ HTTP/1.1" 200 4606
+"GET /static/css/theme.css HTTP/1.1" 200 18509
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 9313
+"GET /kpi/ HTTP/1.1" 200 9060
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 5579
+"GET /login/ HTTP/1.1" 200 4606
+"GET /static/css/theme.css HTTP/1.1" 200 18509
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 13205
+"GET /login/ HTTP/1.1" 200 4606
+"GET /static/css/theme.css HTTP/1.1" 200 18509
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 16368
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 5579
+"GET /login/ HTTP/1.1" 200 4606
+"GET /static/css/theme.css HTTP/1.1" 200 18509
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 23549
+"GET /mentor/lesson/5/attendance/ HTTP/1.1" 200 14388
+/Users/khadizh/Desktop/educenter/education/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/models/__init__.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/models/kpi.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/models/kpi.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/signals.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/signals.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/forms.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/forms.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 5579
+"GET /tests/my/ HTTP/1.1" 302 0
+"GET /tests/my/ HTTP/1.1" 302 0
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 7003
+"GET /dashboard/ HTTP/1.1" 200 15610
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5846
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 200 4904
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 5579
+Watching for file changes with StatReloader
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 14668
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5846
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 24464
+"GET /mentor/lesson/5/attendance/ HTTP/1.1" 200 14409
+"POST /mentor/lesson/5/attendance/ HTTP/1.1" 302 0
+"GET /mentor/dashboard/ HTTP/1.1" 200 24862
+"GET /mentor/homework/add/ HTTP/1.1" 200 6609
+"POST /mentor/homework/add/ HTTP/1.1" 302 0
+"GET /homework/ HTTP/1.1" 200 5639
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5846
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 14663
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 7253
+"GET /dashboard/ HTTP/1.1" 200 14383
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5846
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 200 4904
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 24841
+"GET /mentor/homework/add/ HTTP/1.1" 200 6609
+"POST /mentor/homework/add/ HTTP/1.1" 302 0
+"GET /homework/ HTTP/1.1" 200 26070
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5846
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 14663
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5846
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 24841
+"GET / HTTP/1.1" 200 7014
+"GET /dashboard/ HTTP/1.1" 200 24561
+"GET /mentor/lesson/add/ HTTP/1.1" 200 7110
+"GET /mentor/homework/add/ HTTP/1.1" 200 6609
+"GET /mentor/homework/add/ HTTP/1.1" 200 6609
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5846
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 15890
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5846
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 200 4904
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 9594
+"GET /admin/ HTTP/1.1" 200 7918
+"GET /admin/education/student/add/ HTTP/1.1" 200 44310
+"GET /static/jazzmin/css/main.css HTTP/1.1" 200 14372
+"GET /static/vendor/select2/css/select2.min.css HTTP/1.1" 200 16264
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+"GET /static/admin/js/core.js HTTP/1.1" 200 6208
+"GET /static/admin/js/calendar.js HTTP/1.1" 200 9141
+"GET /static/vendor/fontawesome-free/css/all.min.css HTTP/1.1" 200 103010
+"GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+"GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+"GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+"GET /static/jazzmin/js/main.js HTTP/1.1" 200 4542
+"GET /static/admin/js/change_form.js HTTP/1.1" 304 0
+"GET /static/jazzmin/js/ui-builder.js HTTP/1.1" 200 12305
+"GET /static/jazzmin/js/change_form.js HTTP/1.1" 200 6045
+"GET /static/vendor/adminlte/js/adminlte.min.js HTTP/1.1" 304 0
+"GET /static/vendor/bootswatch/lumen/bootstrap.min.css HTTP/1.1" 304 0
+"GET /static/vendor/adminlte/css/adminlte.min.css HTTP/1.1" 304 0
+"GET /static/vendor/bootstrap/js/bootstrap.bundle.min.js HTTP/1.1" 200 80721
+"GET /static/vendor/select2/js/select2.min.js HTTP/1.1" 200 73170
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+"GET /static/vendor/adminlte/img/AdminLTELogo.png HTTP/1.1" 200 2637
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+"GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+"GET /static/vendor/fontawesome-free/webfonts/fa-solid-900.woff2 HTTP/1.1" 304 0
+"GET /static/vendor/fontawesome-free/webfonts/fa-regular-400.woff2 HTTP/1.1" 304 0
+"GET /static/vendor/fontawesome-free/webfonts/fa-brands-400.woff2 HTTP/1.1" 200 117852
+"GET /static/vendor/fontawesome-free/webfonts/fa-v4compatibility.woff2 HTTP/1.1" 200 4792
+"GET /admin/education/enrollment/ HTTP/1.1" 200 42720
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+"GET /static/jazzmin/js/change_list.js HTTP/1.1" 200 2205
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /admin/education/enrollment/add/ HTTP/1.1" 200 40337
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /admin/education/homework/ HTTP/1.1" 200 48624
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /dashboard/ HTTP/1.1" 200 9314
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5846
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 24841
+"GET /mentor/homework/add/ HTTP/1.1" 200 6609
+"POST /mentor/homework/add/ HTTP/1.1" 302 0
+"GET /homework/ HTTP/1.1" 200 28161
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5846
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 14663
+"GET /courses/ HTTP/1.1" 200 7053
+Watching for file changes with StatReloader
+"GET /login/ HTTP/1.1" 200 4606
+"GET /static/css/theme.css HTTP/1.1" 200 18509
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 14663
+"GET /homework/ HTTP/1.1" 200 23641
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /login/ HTTP/1.1" 200 4606
+"GET /static/css/theme.css HTTP/1.1" 200 18509
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 19672
+"GET /homework/ HTTP/1.1" 200 23641
+"GET / HTTP/1.1" 200 5579
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 19672
+"GET /homework/submit/1/ HTTP/1.1" 200 8491
+"POST /homework/submit/1/ HTTP/1.1" 302 0
+"GET /homework/ HTTP/1.1" 200 23843
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5846
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 24845
+"GET /homework/ HTTP/1.1" 200 27865
+"GET /dashboard/ HTTP/1.1" 200 24565
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5846
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 19720
+"GET /homework/ HTTP/1.1" 200 23554
+"GET /homework/submit/10/ HTTP/1.1" 200 8464
+"POST /homework/submit/10/ HTTP/1.1" 302 0
+"GET /homework/ HTTP/1.1" 200 23769
+"GET /dashboard/ HTTP/1.1" 200 19440
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5846
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 24845
+"GET /homework/ HTTP/1.1" 200 28261
+"GET /admin/education/homeworksubmission/?homework__id__exact=10&status=pending HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/education/homeworksubmission/%3Fhomework__id__exact%3D10%26status%3Dpending HTTP/1.1" 200 3911
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/urls.py changed, reloading.
+/Users/khadizh/Desktop/educenter/education/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /login/ HTTP/1.1" 200 4606
+"GET /static/css/theme.css HTTP/1.1" 200 18509
+"POST /login/ HTTP/1.1" 200 4904
+"GET /login/ HTTP/1.1" 200 4606
+"GET /static/css/theme.css HTTP/1.1" 200 18509
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 24845
+"GET /homework/ HTTP/1.1" 200 31116
+"GET /login/ HTTP/1.1" 200 4606
+"GET /static/css/theme.css HTTP/1.1" 200 18509
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 24845
+"GET /homework/ HTTP/1.1" 200 31116
+"GET /mentor/homework/7/submissions/ HTTP/1.1" 200 5841
+"GET /mentor/submission/3/review/ HTTP/1.1" 200 11193
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /login/ HTTP/1.1" 200 4606
+"GET /static/css/theme.css HTTP/1.1" 200 18509
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 24845
+"GET /mentor/homework/6/submissions/ HTTP/1.1" 200 7366
+"GET /mentor/submission/3/review/ HTTP/1.1" 200 11193
+"GET /dashboard/ HTTP/1.1" 302 0
+"GET /login/?next=/dashboard/ HTTP/1.1" 200 4606
+"POST /login/?next=/dashboard/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 24845
+"GET /homework/ HTTP/1.1" 200 31116
+"GET /mentor/homework/6/submissions/ HTTP/1.1" 200 7366
+"GET /mentor/submission/3/review/ HTTP/1.1" 200 11193
+"POST /mentor/submission/3/review/ HTTP/1.1" 302 0
+"GET /mentor/homework/6/submissions/ HTTP/1.1" 200 7665
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5846
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 19720
+"GET /homework/ HTTP/1.1" 200 23503
+"GET /login/ HTTP/1.1" 200 4606
+"GET /static/css/theme.css HTTP/1.1" 200 18509
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 19720
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5846
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 24845
+"GET /login/ HTTP/1.1" 200 4606
+"GET /static/css/theme.css HTTP/1.1" 200 18509
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 19720
+"GET /schedule/ HTTP/1.1" 200 7259
+"GET /grades/ HTTP/1.1" 200 10787
+"GET /homework/ HTTP/1.1" 200 23503
+"GET /courses/ HTTP/1.1" 200 7053
+"GET /courses/1/ HTTP/1.1" 200 16926
+"GET /kpi/ HTTP/1.1" 200 9333
+"GET /login/ HTTP/1.1" 200 4606
+"GET /static/css/theme.css HTTP/1.1" 200 18509
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 19720
+"GET /grades/ HTTP/1.1" 200 11001
+"GET /schedule/ HTTP/1.1" 200 6569
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /login/ HTTP/1.1" 200 4606
+"GET /static/css/theme.css HTTP/1.1" 200 18509
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 19720
+"GET /grades/ HTTP/1.1" 200 10871
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 5579
+"GET /static/css/theme.css HTTP/1.1" 200 18509
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 200 4904
+"POST /login/ HTTP/1.1" 200 4904
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 7431
+"GET /dashboard/ HTTP/1.1" 200 7151
+"GET /admin/ HTTP/1.1" 200 7918
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5846
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 23829
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 7014
+"GET /dashboard/ HTTP/1.1" 200 36214
+"GET /mentor/lesson/4/attendance/ HTTP/1.1" 200 14407
+"GET /mentor/lesson/3/attendance/ HTTP/1.1" 200 14397
+"GET /dashboard/ HTTP/1.1" 200 37380
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5846
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 7431
+"GET / HTTP/1.1" 200 6978
+"GET /dashboard/ HTTP/1.1" 200 17212
+"GET /kpi/admin/ HTTP/1.1" 200 22827
+"GET /courses/ HTTP/1.1" 200 13847
+"GET /grades/ HTTP/1.1" 200 114147
+"GET /homework/ HTTP/1.1" 200 10340
+"GET /schedule/ HTTP/1.1" 200 17374
+"GET /dashboard/ HTTP/1.1" 200 17212
+"GET /kpi/admin/ HTTP/1.1" 200 22827
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /schedule/ HTTP/1.1" 200 17374
+"GET /static/css/theme.css HTTP/1.1" 304 0
+"GET /dashboard/ HTTP/1.1" 200 17212
+"GET /homework/ HTTP/1.1" 200 89867
+"GET /grades/ HTTP/1.1" 200 114147
+"GET /kpi/admin/ HTTP/1.1" 200 22717
+"GET /dashboard/ HTTP/1.1" 200 17212
+"GET /schedule/ HTTP/1.1" 200 17374
+"GET /homework/ HTTP/1.1" 200 89867
+"GET /dashboard/ HTTP/1.1" 200 17212
+"GET /dashboard/ HTTP/1.1" 200 21678
+"GET /dashboard/ HTTP/1.1" 200 21678
+"GET /schedule/ HTTP/1.1" 200 17314
+"GET /homework/ HTTP/1.1" 200 89867
+"GET /grades/ HTTP/1.1" 200 114147
+"GET /courses/ HTTP/1.1" 200 13818
+"GET /grades/ HTTP/1.1" 200 114147
+"GET /admin/ HTTP/1.1" 200 7928
+"GET /admin/education/student/add/ HTTP/1.1" 200 44972
+"GET /static/vendor/select2/css/select2.min.css HTTP/1.1" 200 16264
+"GET /static/jazzmin/js/main.js HTTP/1.1" 200 4542
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /static/vendor/bootstrap/js/bootstrap.bundle.min.js HTTP/1.1" 200 80721
+"GET /static/vendor/adminlte/img/AdminLTELogo.png HTTP/1.1" 200 2637
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+"GET /admin/education/user/ HTTP/1.1" 200 53976
+"GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5846
+"GET /static/css/theme.css HTTP/1.1" 304 0
+"GET /register/ HTTP/1.1" 200 6726
+"GET /admin/education/student/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/education/student/ HTTP/1.1" 200 3349
+"POST /admin/login/?next=/admin/education/student/ HTTP/1.1" 302 0
+"GET /admin/education/student/ HTTP/1.1" 200 49209
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /admin/education/student/add/ HTTP/1.1" 200 44972
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /admin/education/enrollment/ HTTP/1.1" 200 71854
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /admin/education/enrollment/add/ HTTP/1.1" 200 40982
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /admin/education/student/ HTTP/1.1" 200 49209
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /admin/education/student/add/ HTTP/1.1" 200 44972
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /admin/education/enrollment/ HTTP/1.1" 200 71854
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /admin/education/enrollment/add/ HTTP/1.1" 200 40982
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+/Users/khadizh/Desktop/educenter/education/models/__init__.py changed, reloading.
+/Users/khadizh/Desktop/educenter/education/models/__init__.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/admin.py changed, reloading.
+/Users/khadizh/Desktop/educenter/education/admin.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/admin.py changed, reloading.
+/Users/khadizh/Desktop/educenter/education/admin.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /admin/education/enrollment/add/ HTTP/1.1" 200 41465
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /admin/education/group/ HTTP/1.1" 200 48411
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /admin/education/lesson/ HTTP/1.1" 200 64216
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /admin/education/student/ HTTP/1.1" 200 49692
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /admin/education/student/add/ HTTP/1.1" 200 45455
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /admin/education/schedule/ HTTP/1.1" 200 47763
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /admin/education/group/ HTTP/1.1" 200 48411
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /admin/education/group/add/ HTTP/1.1" 200 44671
+"GET /static/admin/js/SelectBox.js HTTP/1.1" 200 4530
+"GET /static/admin/js/SelectFilter2.js HTTP/1.1" 200 15845
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+- Broken pipe from ('127.0.0.1', 61265)
+/Users/khadizh/Desktop/educenter/education/models/group.py changed, reloading.
+/Users/khadizh/Desktop/educenter/education/models/group.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/models/__init__.py changed, reloading.
+/Users/khadizh/Desktop/educenter/education/models/__init__.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/signals.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/signals.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/signals.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/signals.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/signals.py changed, reloading.
+/Users/khadizh/Desktop/educenter/education/signals.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/khadizh/Desktop/educenter/education/views.py", line 29, in home
+    return render(request, 'home.html', {'announcements': announcements})
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        template_name,
+        ^^^^^^^^^^^^^^
+        skip=history,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 1531, in do_with
+    extra_context = token_kwargs(remaining_bits, parser, support_legacy=True)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 1127, in token_kwargs
+    kwargs[key] = parser.compile_filter(value)
+                  ~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 710, in __init__
+    raise TemplateSyntaxError(
+    ...<2 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '(is_read=False).count' from 'user.notifications.filter(is_read=False).count'
+"GET / HTTP/1.1" 500 271478
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/khadizh/Desktop/educenter/education/views.py", line 29, in home
+    return render(request, 'home.html', {'announcements': announcements})
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        template_name,
+        ^^^^^^^^^^^^^^
+        skip=history,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 1531, in do_with
+    extra_context = token_kwargs(remaining_bits, parser, support_legacy=True)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 1127, in token_kwargs
+    kwargs[key] = parser.compile_filter(value)
+                  ~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 710, in __init__
+    raise TemplateSyntaxError(
+    ...<2 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '(is_read=False).count' from 'user.notifications.filter(is_read=False).count'
+"GET / HTTP/1.1" 500 271478
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/khadizh/Desktop/educenter/education/views.py", line 29, in home
+    return render(request, 'home.html', {'announcements': announcements})
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        template_name,
+        ^^^^^^^^^^^^^^
+        skip=history,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 1531, in do_with
+    extra_context = token_kwargs(remaining_bits, parser, support_legacy=True)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 1127, in token_kwargs
+    kwargs[key] = parser.compile_filter(value)
+                  ~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 710, in __init__
+    raise TemplateSyntaxError(
+    ...<2 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '(is_read=False).count' from 'user.notifications.filter(is_read=False).count'
+"GET / HTTP/1.1" 500 271478
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/config/settings.py changed, reloading.
+/Users/khadizh/Desktop/educenter/config/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8895
+"GET /dashboard/ HTTP/1.1" 200 23595
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5846
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 37912
+"GET /mentor/lesson/4/attendance/ HTTP/1.1" 200 36126
+"POST /mentor/lesson/4/attendance/ HTTP/1.1" 302 0
+"GET /mentor/dashboard/ HTTP/1.1" 200 38326
+"GET /mentor/lesson/5/attendance/ HTTP/1.1" 200 36128
+"POST /mentor/lesson/5/attendance/ HTTP/1.1" 302 0
+"GET /mentor/dashboard/ HTTP/1.1" 200 38329
+"GET /mentor/lesson/3/attendance/ HTTP/1.1" 200 36116
+"POST /mentor/lesson/3/attendance/ HTTP/1.1" 302 0
+"GET /mentor/dashboard/ HTTP/1.1" 200 38711
+"GET /mentor/lesson/2/attendance/ HTTP/1.1" 200 36132
+"POST /mentor/lesson/2/attendance/ HTTP/1.1" 302 0
+"GET /mentor/dashboard/ HTTP/1.1" 200 39093
+"GET /homework/ HTTP/1.1" 200 32293
+"GET /mentor/homework/6/submissions/ HTTP/1.1" 200 8082
+"GET /mentor/homework/10/submissions/ HTTP/1.1" 200 8072
+"GET /mentor/submission/2/review/ HTTP/1.1" 200 12197
+"POST /mentor/submission/2/review/ HTTP/1.1" 302 0
+"GET /mentor/homework/10/submissions/ HTTP/1.1" 200 8371
+"GET /mentor/homework/7/submissions/ HTTP/1.1" 200 6361
+"GET /mentor/homework/4/submissions/ HTTP/1.1" 200 6441
+"GET / HTTP/1.1" 200 7724
+"GET /static/css/theme.css HTTP/1.1" 304 0
+"GET /dashboard/ HTTP/1.1" 200 37872
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 3836
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 9845
+"GET /admin/education/student/add/ HTTP/1.1" 200 45455
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /admin/education/group/ HTTP/1.1" 200 49191
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /admin/education/group/5/change/ HTTP/1.1" 200 46369
+"GET /admin/jsi18n/ HTTP/1.1" 200 16820
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5846
+"GET /static/css/theme.css HTTP/1.1" 200 18509
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 38152
+"GET /mentor/lesson/5/attendance/ HTTP/1.1" 200 36128
+"GET /homework/ HTTP/1.1" 200 32264
+"GET /mentor/homework/add/ HTTP/1.1" 200 7406
+"GET /dashboard/ HTTP/1.1" 200 37872
+"GET /schedule/ HTTP/1.1" 200 7040
+"GET /schedule/ HTTP/1.1" 200 12539
+"GET /homework/ HTTP/1.1" 200 32264
+"GET /homework/ HTTP/1.1" 200 32264
+"GET /homework/ HTTP/1.1" 200 32264
+"GET /mentor/homework/6/submissions/ HTTP/1.1" 200 8082
+"GET /homework/ HTTP/1.1" 200 32552
+"GET /mentor/homework/6/submissions/ HTTP/1.1" 200 17269
+"GET /mentor/submission/90/review/ HTTP/1.1" 200 11891
+"POST /mentor/submission/90/review/ HTTP/1.1" 302 0
+"GET /mentor/homework/6/submissions/ HTTP/1.1" 200 17551
+"GET /grades/ HTTP/1.1" 200 115106
+"GET /mentor/grade/add/ HTTP/1.1" 200 9152
+"GET /grades/ HTTP/1.1" 200 115106
+"GET /grades/ HTTP/1.1" 200 115106
+"GET /dashboard/ HTTP/1.1" 200 54598
+"GET /mentor/tests/course/1/ HTTP/1.1" 200 13529
+"GET /mentor/tests/test/1/results/ HTTP/1.1" 200 5607
+"GET /mentor/tests/course/1/ HTTP/1.1" 200 13529
+"GET /mentor/tests/test/1/results/ HTTP/1.1" 200 20105
+Internal Server Error: /tests/result/3/
+Traceback (most recent call last):
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/khadizh/Desktop/educenter/education/views.py", line 1085, in test_result
+    return render(request, 'tests/test_result.html', {
+        'attempt': attempt,
+        'student_answers': student_answers,
+    })
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 1537, in do_with
+    raise TemplateSyntaxError(
+        "%r received an invalid token: %r" % (bits[0], remaining_bits[0])
+    )
+django.template.exceptions.TemplateSyntaxError: 'with' received an invalid token: 'in'
+"GET /tests/result/3/ HTTP/1.1" 500 244241
+Internal Server Error: /tests/result/3/
+Traceback (most recent call last):
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/khadizh/Desktop/educenter/education/views.py", line 1085, in test_result
+    return render(request, 'tests/test_result.html', {
+        'attempt': attempt,
+        'student_answers': student_answers,
+    })
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 1537, in do_with
+    raise TemplateSyntaxError(
+        "%r received an invalid token: %r" % (bits[0], remaining_bits[0])
+    )
+django.template.exceptions.TemplateSyntaxError: 'with' received an invalid token: 'in'
+"GET /tests/result/3/ HTTP/1.1" 500 244234
+Internal Server Error: /tests/result/3/
+Traceback (most recent call last):
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/khadizh/Desktop/educenter/education/views.py", line 1085, in test_result
+    return render(request, 'tests/test_result.html', {
+        'attempt': attempt,
+        'student_answers': student_answers,
+    })
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/khadizh/Desktop/educenter/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 1537, in do_with
+    raise TemplateSyntaxError(
+        "%r received an invalid token: %r" % (bits[0], remaining_bits[0])
+    )
+django.template.exceptions.TemplateSyntaxError: 'with' received an invalid token: 'in'
+"GET /tests/result/3/ HTTP/1.1" 500 244241
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /tests/result/3/ HTTP/1.1" 200 15361
+"GET /tests/result/6/ HTTP/1.1" 200 15363
+"GET /tests/result/7/ HTTP/1.1" 200 15361
+"GET /mentor/tests/test/1/results/ HTTP/1.1" 200 20033
+"GET /mentor/tests/test/1/results/ HTTP/1.1" 200 20033
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /mentor/tests/test/1/results/ HTTP/1.1" 200 20033
+"GET /mentor/tests/test/1/results/ HTTP/1.1" 200 20033
+"GET /tests/result/3/ HTTP/1.1" 200 15356
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /mentor/tests/test/1/results/ HTTP/1.1" 200 20033
+Not Found: /apple-touch-icon-precomposed.png
+"GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 13352
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 13289
+Not Found: /apple-touch-icon.png
+"GET /apple-touch-icon.png HTTP/1.1" 404 13316
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+/Users/khadizh/Desktop/educenter/education/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /mentor/tests/test/1/results/ HTTP/1.1" 200 20117
+"GET /mentor/tests/test/1/results/ HTTP/1.1" 200 20117
+"GET /tests/result/3/ HTTP/1.1" 200 15256
+"GET /tests/result/3/ HTTP/1.1" 200 15256
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5846
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 30720
+"GET /schedule/ HTTP/1.1" 200 21973
+"GET /homework/ HTTP/1.1" 200 42016
+"GET /grades/ HTTP/1.1" 200 22152
+"GET /courses/ HTTP/1.1" 200 14115
+"GET /courses/4/ HTTP/1.1" 200 24028
+"GET /dashboard/ HTTP/1.1" 200 30440
+"GET /schedule/ HTTP/1.1" 200 21973
+"GET /homework/ HTTP/1.1" 200 42016
+"GET /dashboard/ HTTP/1.1" 200 30440
+"GET /static/css/theme.css HTTP/1.1" 304 0
+"GET /homework/ HTTP/1.1" 200 42016
+"GET /homework/ HTTP/1.1" 200 42016
+"GET /homework/ HTTP/1.1" 200 43822
+"GET /homework/ HTTP/1.1" 200 45708
+"GET /homework/submit/22/ HTTP/1.1" 200 8658
+"GET /grades/ HTTP/1.1" 200 22152
+"GET /homework/ HTTP/1.1" 200 45708
+"GET /kpi/ HTTP/1.1" 200 9365
+"GET /kpi/ HTTP/1.1" 200 9348
+"GET /tests/my/ HTTP/1.1" 200 10232
+"GET /tests/result/31/ HTTP/1.1" 200 12436
+"GET /grades/ HTTP/1.1" 200 22152
+"GET /static/css/theme.css HTTP/1.1" 304 0
+"GET /homework/ HTTP/1.1" 200 45708
+"GET /schedule/ HTTP/1.1" 200 21973
+"GET /dashboard/ HTTP/1.1" 200 30422
+"GET /kpi/ HTTP/1.1" 200 9348
+"GET /tests/my/ HTTP/1.1" 200 10232
+"GET /kpi/ HTTP/1.1" 200 9348
+"GET /logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 5846
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 41395
+"GET /schedule/ HTTP/1.1" 200 21723
+"GET /homework/ HTTP/1.1" 200 73936
+"GET /grades/ HTTP/1.1" 200 41258
+"GET /courses/ HTTP/1.1" 200 13865
+"GET /dashboard/ HTTP/1.1" 200 41115
+"GET /homework/ HTTP/1.1" 200 73936
+"GET /grades/ HTTP/1.1" 200 41258
+"GET /courses/ HTTP/1.1" 200 13865
+"GET /kpi/ HTTP/1.1" 200 10839
+/Users/khadizh/Desktop/educenter/config/settings.py changed, reloading.
+/Users/khadizh/Desktop/educenter/config/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/config/settings.py changed, reloading.
+/Users/khadizh/Desktop/educenter/config/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/config/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/config/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/config/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/khadizh/Desktop/educenter/education/models/student.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 5579
+"GET /static/css/theme.css HTTP/1.1" 304 0
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 14477
+Not Found: /apple-touch-icon-precomposed.png
+Not Found: /apple-touch-icon.png
+"GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 14540
+Not Found: /favicon.ico
+"GET /apple-touch-icon.png HTTP/1.1" 404 14504
+"GET /favicon.ico HTTP/1.1" 404 14477
+"GET /login/ HTTP/1.1" 200 4606
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 25164
+"GET /kpi/ HTTP/1.1" 200 9348
+"GET /grades/ HTTP/1.1" 200 22152

@@ -1,0 +1,71 @@
+digraph ER_Part1 {
+  graph [
+    rankdir=TB
+    fontname="Helvetica"
+    fontsize=13
+    bgcolor="white"
+    pad="0.7"
+    nodesep=0.7
+    ranksep=1.2
+    label="Часть 1: Пользователи, курсы, группы, записи"
+    labelloc="t"
+    labeljust="c"
+    fontsize=16
+    fontcolor="#1e293b"
+  ]
+  node [
+    shape=record
+    fontname="Helvetica"
+    fontsize=11
+    style=filled
+    fillcolor="#f8fafc"
+    fontcolor="#1e293b"
+    color="#3b82f6"
+    penwidth=2
+  ]
+  edge [
+    fontname="Helvetica"
+    fontsize=10
+    fontcolor="#475569"
+    color="#64748b"
+    penwidth=1.4
+    arrowsize=0.9
+  ]
+
+  User [label="{User|id : int PK\lrole : string\lusername : string\lfirst_name : string\llast_name : string\lphone : string\lemail : string\l}"]
+
+  Student [label="{Student|id : int PK\luser_id : FK → User\lparent_id : FK → User\lgrade : string\lenrollment_date : date\lis_active : bool\l}"]
+
+  Mentor [label="{Mentor|id : int PK\luser_id : FK → User\lspecialization : string\lexperience_years : int\lhire_date : date\l}"]
+
+  Course [label="{Course|id : int PK\lmentor_id : FK → Mentor\lname : string\lduration_weeks : int\lmax_students : int\lstart_date : date\lend_date : date\lis_active : bool\l}"]
+
+  Group [label="{Group|id : int PK\lcourse_id : FK → Course\lmentor_id : FK → Mentor\lname : string\lmax_students : int\lis_active : bool\l}"]
+
+  GroupStudent [label="{GroupStudent|(M2M)\lgroup_id : FK → Group\lstudent_id : FK → Student\l}"]
+
+  Enrollment [label="{Enrollment|id : int PK\lstudent_id : FK → Student\lcourse_id : FK → Course\lenrollment_date : date\lis_active : bool\l}"]
+
+  Notification [label="{Notification|id : int PK\lrecipient_id : FK → User\lmessage : text\lnotification_type : string\lis_read : bool\lcreated_at : datetime\l}"]
+
+  StudentKPI [label="{StudentKPI|id : int PK\lstudent_id : FK → Student\lattendance_score : float\lhomework_score : float\lgrade_score : float\ltotal_kpi : float\ltotal_lessons : int\lattended_lessons : int\lupdated_at : datetime\l}"]
+
+  MentorKPI [label="{MentorKPI|id : int PK\lmentor_id : FK → Mentor\lavg_student_kpi : float\lavg_attendance : float\lhomework_completion_rate : float\ltotal_kpi : float\lupdated_at : datetime\l}"]
+
+  User -> Student [label="  профиль"]
+  User -> Mentor [label="  профиль"]
+  User -> Student [label="  родитель" style=dashed]
+  User -> Notification [label="  получает"]
+
+  Mentor -> Course [label="  ведёт"]
+  Mentor -> Group [label="  ведёт"]
+  Mentor -> MentorKPI [label="  KPI"]
+
+  Course -> Group [label="  группы"]
+  Course -> Enrollment [label="  записи"]
+
+  Group -> GroupStudent [label="  состав"]
+  Student -> GroupStudent [label="  входит"]
+  Student -> Enrollment [label="  записан"]
+  Student -> StudentKPI [label="  KPI"]
+}

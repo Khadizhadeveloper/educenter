@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>ER Диаграмма — Okurmen Kids</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  body { margin: 0; background: #0f172a; font-family: Inter, sans-serif; }
+  h1 { color: #f97316; text-align: center; padding: 24px 0 8px; margin: 0; font-size: 1.5rem; }
+  p  { color: #94a3b8; text-align: center; margin: 0 0 16px; font-size: .85rem; }
+  #diagram { background: #1e293b; border-radius: 16px; margin: 0 24px 32px; padding: 24px; overflow: auto; }
+  .mermaid svg { max-width: 100%; }
+</style>
+</head>
+<body>
+<h1>ER Диаграмма — Okurmen Kids</h1>
+<p>Образовательная платформа · 20 сущностей</p>
+<div id="diagram">
+<div class="mermaid">
+erDiagram
+
+  User {
+    int id PK
+    string username
+    string first_name
+    string last_name
+    string role
+    string phone
+    string email
+  }
+
+  Student {
+    int id PK
+    int user_id FK
+    int parent_id FK
+    string grade
+    date enrollment_date
+    bool is_active
+  }
+
+  Mentor {
+    int id PK
+    int user_id FK
+    string specialization
+    int experience_years
+    date hire_date
+  }
+
+  Course {
+    int id PK
+    int mentor_id FK
+    string name
+    int duration_weeks
+    int max_students
+    date start_date
+    date end_date
+    bool is_active
+  }
+
+  Group {
+    int id PK
+    int course_id FK
+    int mentor_id FK
+    string name
+    int max_students
+    bool is_active
+  }
+
+  GroupStudent {
+    int group_id FK
+    int student_id FK
+  }
+
+  Schedule {
+    int id PK
+    int course_id FK
+    int weekday
+    time start_time
+    time end_time
+    string room
+  }
+
+  Lesson {
+    int id PK
+    int course_id FK
+    string title
+    date date
+    time start_time
+    time end_time
+    string room
+    bool is_cancelled
+  }
+
+  Homework {
+    int id PK
+    int lesson_id FK
+    string title
+    string description
+    datetime due_date
+  }
+
+  HomeworkSubmission {
+    int id PK
+    int homework_id FK
+    int student_id FK
+    string content
+    string status
+    int grade
+    string feedback
+    datetime submitted_at
+    datetime checked_at
+  }
+
+  Grade {
+    int id PK
+    int student_id FK
+    int course_id FK
+    int lesson_id FK
+    int grade
+    string comment
+    date date
+  }
+
+  Attendance {
+    int id PK
+    int lesson_id FK
+    int student_id FK
+    string status
+    string notes
+  }
+
+  Enrollment {
+    int id PK
+    int student_id FK
+    int course_id FK
+    date enrollment_date
+    bool is_active
+  }
+
+  Notification {
+    int id PK
+    int recipient_id FK
+    string message
+    string notification_type
+    bool is_read
+    datetime created_at
+  }
+
+  StudentKPI {
+    int id PK
+    int student_id FK
+    float attendance_score
+    float homework_score
+    float grade_score
+    float total_kpi
+    int total_lessons
+    int attended_lessons
+    datetime updated_at
+  }
+
+  MentorKPI {
+    int id PK
+    int mentor_id FK
+    float avg_student_kpi
+    float avg_attendance
+    float homework_completion_rate
+    float total_kpi
+    datetime updated_at
+  }
+
+  Topic {
+    int id PK
+    int course_id FK
+    string title
+    string description
+  }
+
+  Test {
+    int id PK
+    int topic_id FK
+    string title
+    int passing_score
+    bool is_active
+  }
+
+  Question {
+    int id PK
+    int test_id FK
+    string text
+    float points
+  }
+
+  Answer {
+    int id PK
+    int question_id FK
+    string text
+    bool is_correct
+  }
+
+  TestAttempt {
+    int id PK
+    int test_id FK
+    int student_id FK
+    float score
+    bool is_passed
+    datetime started_at
+    datetime finished_at
+  }
+
+  StudentAnswer {
+    int id PK
+    int attempt_id FK
+    int question_id FK
+    bool is_correct
+    float points_earned
+  }
+
+  User ||--o| Student : "профиль"
+  User ||--o| Mentor  : "профиль"
+  User ||--o{ Notification : "получает"
+  User ||--o{ Student : "родитель"
+
+  Mentor ||--o{ Course : "ведёт"
+  Mentor ||--o{ Group  : "ведёт"
+  Mentor ||--|| MentorKPI : "KPI"
+
+  Course ||--o{ Schedule   : "расписание"
+  Course ||--o{ Lesson     : "занятия"
+  Course ||--o{ Enrollment : "записи"
+  Course ||--o{ Group      : "группы"
+  Course ||--o{ Grade      : "оценки"
+  Course ||--o{ Topic      : "темы"
+
+  Group ||--o{ GroupStudent : ""
+  Student ||--o{ GroupStudent : ""
+
+  Lesson ||--o{ Homework   : "задания"
+  Lesson ||--o{ Attendance : "посещаемость"
+  Lesson ||--o{ Grade      : "оценки"
+
+  Homework ||--o{ HomeworkSubmission : "сдачи"
+
+  Student ||--o{ Enrollment         : "записан"
+  Student ||--o{ HomeworkSubmission : "сдаёт"
+  Student ||--o{ Attendance         : "посещает"
+  Student ||--o{ Grade              : "получает"
+  Student ||--o{ TestAttempt        : "проходит"
+  Student ||--|| StudentKPI         : "KPI"
+
+  Topic ||--o{ Test : "тесты"
+  Test  ||--o{ Question    : "вопросы"
+  Test  ||--o{ TestAttempt : "попытки"
+
+  Question ||--o{ Answer        : "варианты"
+  Question ||--o{ StudentAnswer : "ответы"
+
+  TestAttempt ||--o{ StudentAnswer : "ответы"
+</div>
+</div>
+<script>
+  mermaid.initialize({ startOnLoad: true, theme: 'dark', er: { diagramPadding: 30, entityPadding: 15 } });
+</script>
+</body>
+</html>

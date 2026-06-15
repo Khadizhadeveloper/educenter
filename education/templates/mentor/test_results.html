@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block title %}Результаты — {{ test.title }}{% endblock %}
+
+{% block content %}
+<div class="row mb-3 align-items-center">
+    <div class="col">
+        <h1 class="fw-bold" style="color:var(--ok-white);">
+            <i class="bi bi-bar-chart-line-fill" style="color:var(--ok-accent);"></i> Результаты теста
+        </h1>
+        <p class="ok-muted">{{ test.title }} · {{ test.topic.course.name }}</p>
+    </div>
+    <div class="col-auto">
+        <a href="{% url 'mentor_topic_list' test.topic.course_id %}" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-arrow-left"></i> К тестам
+        </a>
+    </div>
+</div>
+
+{% if attempts %}
+<!-- Stats row -->
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="icon"><i class="bi bi-people-fill"></i></div>
+            <div><h3>{{ attempts|length }}</h3><p>Попыток</p></div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-card grad-cyan">
+            <div class="icon"><i class="bi bi-bar-chart-fill"></i></div>
+            <div><h3>{{ avg_score }}%</h3><p>Средний балл</p></div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-card grad-green">
+            <div class="icon"><i class="bi bi-patch-check-fill"></i></div>
+            <div><h3>{{ passed_count }}</h3><p>Зачтено</p></div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th>Ученик</th>
+                        <th>Дата</th>
+                        <th>Попытка</th>
+                        <th style="width:120px">Результат</th>
+                        <th>Статус</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for att in attempts %}
+                    <tr>
+                        <td><strong style="color:var(--ok-white);">{{ att.student.user.get_full_name }}</strong></td>
+                        <td><small class="ok-muted">{{ att.finished_at|date:"d.m.Y H:i" }}</small></td>
+                        <td><span class="badge bg-secondary">#{{ att.attempt_number }}</span></td>
+                        <td>
+                            <div class="d-flex align-items-center gap-2">
+                                <div style="height:6px;width:70px;background:var(--ok-surface-2);border-radius:999px;overflow:hidden;">
+                                    <div style="height:100%;width:{{ att.score }}%;background:{% if att.is_passed %}#4ade80{% else %}#f87171{% endif %};border-radius:999px;"></div>
+                                </div>
+                                <strong style="color:var(--ok-accent);">{{ att.score|floatformat:0 }}%</strong>
+                            </div>
+                        </td>
+                        <td>
+                            {% if att.is_passed %}
+                            <span class="badge bg-success">Зачёт</span>
+                            {% else %}
+                            <span class="badge bg-danger">Не зачтено</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'test_result' att.id %}" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-eye"></i> Детали
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="card">
+    <div class="card-body text-center py-5">
+        <i class="bi bi-clipboard-x" style="font-size:3rem;color:var(--ok-muted);"></i>
+        <h5 class="mt-3" style="color:var(--ok-white);">Никто ещё не проходил этот тест</h5>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

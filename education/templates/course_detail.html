@@ -112,6 +112,24 @@
 
     <!-- Боковая панель -->
     <div class="col-md-4">
+        <!-- Тесты -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="bi bi-journal-bookmark-fill" style="color:var(--ok-accent);"></i> Тесты
+            </div>
+            <div class="card-body">
+                <a href="{% url 'test_topic_list' course.id %}" class="btn btn-primary w-100">
+                    <i class="bi bi-play-circle"></i>
+                    {% if user.role == 'mentor' or user.role == 'admin' %}Управление тестами{% else %}Перейти к тестам{% endif %}
+                </a>
+                {% if user.role == 'mentor' %}
+                <a href="{% url 'mentor_topic_list' course.id %}" class="btn btn-outline-primary w-100 mt-2">
+                    <i class="bi bi-pencil-square"></i> Редактировать темы
+                </a>
+                {% endif %}
+            </div>
+        </div>
+
         <!-- Действия -->
         <div class="card mb-4">
             <div class="card-header">

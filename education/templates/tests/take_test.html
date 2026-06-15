@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% block title %}{{ test.title }}{% endblock %}
+
+{% block extra_css %}
+<style>
+.question-card { border-left: 3px solid var(--ok-accent); margin-bottom: 1.25rem; }
+.answer-option { display: flex; align-items: flex-start; gap: .75rem; padding: .6rem 1rem;
+    border: 1px solid var(--ok-border-2); border-radius: var(--ok-radius);
+    cursor: pointer; transition: all .15s; margin-bottom: .5rem; }
+.answer-option:hover { border-color: var(--ok-accent); background: rgba(249,115,22,.06); }
+.answer-option input { margin-top: .2rem; accent-color: var(--ok-accent); }
+.answer-option.selected { border-color: var(--ok-accent); background: rgba(249,115,22,.10); }
+#timer { font-size: 1.4rem; font-weight: 800; font-variant-numeric: tabular-nums;
+    color: var(--ok-accent); }
+#timer.danger { color: #f87171; animation: pulse .5s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row mb-3 align-items-center">
+    <div class="col">
+        <h1 class="fw-bold" style="color:var(--ok-white);">
+            <i class="bi bi-pencil-square" style="color:var(--ok-accent);"></i> {{ test.title }}
+        </h1>
+        <p class="ok-muted">{{ test.topic.title }} · {{ test.topic.course.name }}</p>
+    </div>
+    {% if deadline_ts %}
+    <div class="col-auto text-end">
+        <div class="ok-muted small mb-1">Осталось времени</div>
+        <div id="timer">--:--</div>
+    </div>
+    {% endif %}
+</div>
+
+{% if test.description %}
+<div class="alert alert-info mb-4">{{ test.description }}</div>
+{% endif %}
+
+<form method="post" id="testForm">
+    {% csrf_token %}
+    <input type="hidden" name="attempt_id" value="{{ attempt.id }}">
+
+    {% for question in questions %}
+    <div class="card question-card mb-3">
+        <div class="card-header d-flex justify-content-between">
+            <span style="color:var(--ok-white);">
+                <strong>{{ forloop.counter }}.</strong> {{ question.text }}
+            </span>
+            <span class="badge bg-secondary">{{ question.points }} б.</span>
+        </div>
+        <div class="card-body">
+            <p class="ok-muted small mb-3">
+                {% if question.question_type == 'single' %}
+                <i class="bi bi-circle"></i> Один правильный ответ
+                {% else %}
+                <i class="bi bi-check2-square"></i> Несколько правильных ответов
+                {% endif %}
+            </p>
+            {% for answer in question.answers.all %}
+            <label class="answer-option {% if answer.id in saved_answers|default_if_none:'' %}selected{% endif %}"
+                   id="lbl_{{ question.id }}_{{ answer.id }}">
+                <input type="{% if question.question_type == 'single' %}radio{% else %}checkbox{% endif %}"
+                       name="q_{{ question.id }}"
+                       value="{{ answer.id }}"
+                       {% if saved_answers %}
+                           {% for qid, ans_ids in saved_answers.items %}
+                               {% if qid == question.id %}
+                                   {% if answer.id in ans_ids %}checked{% endif %}
+                               {% endif %}
+                           {% endfor %}
+                       {% endif %}
+                       onchange="syncLabel(this)">
+                <span>{{ answer.text }}</span>
+            </label>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="d-flex gap-3 justify-content-end mt-4 mb-5">
+        <a href="{% url 'test_topic_list' test.topic.course_id %}" class="btn btn-outline-secondary">
+            <i class="bi bi-x-circle"></i> Отмена
+        </a>
+        <button type="submit" class="btn btn-primary btn-lg px-5" onclick="return confirmSubmit()">
+            <i class="bi bi-send-fill"></i> Завершить тест
+        </button>
+    </div>
+</form>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function syncLabel(inp) {
+    const name = inp.name;
+    if (inp.type === 'radio') {
+        document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+            r.closest('.answer-option').classList.remove('selected');
+        });
+    }
+    inp.closest('.answer-option').classList.toggle('selected', inp.checked);
+}
+
+function confirmSubmit() {
+    return confirm('Завершить тест и отправить ответы? Изменить их будет нельзя.');
+}
+
+{% if deadline_ts %}
+(function() {
+    const deadline = {{ deadline_ts }};
+    const timerEl  = document.getElementById('timer');
+    const form     = document.getElementById('testForm');
+
+    function tick() {
+        const left = deadline - Date.now();
+        if (left <= 0) {
+            timerEl.textContent = '00:00';
+            timerEl.classList.add('danger');
+            form.submit();
+            return;
+        }
+        const m = String(Math.floor(left / 60000)).padStart(2, '0');
+        const s = String(Math.floor((left % 60000) / 1000)).padStart(2, '0');
+        timerEl.textContent = `${m}:${s}`;
+        if (left < 60000) timerEl.classList.add('danger');
+    }
+    tick();
+    setInterval(tick, 1000);
+})();
+{% endif %}
+</script>
+{% endblock %}

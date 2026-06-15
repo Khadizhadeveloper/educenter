@@ -1,0 +1,125 @@
+digraph ER {
+  graph [
+    rankdir=TB
+    fontname="Helvetica"
+    fontsize=12
+    bgcolor="white"
+    pad="0.6"
+    nodesep=0.5
+    ranksep=1.0
+    splines=ortho
+  ]
+  node [
+    shape=record
+    fontname="Helvetica"
+    fontsize=10
+    style=filled
+    fillcolor="#f8fafc"
+    fontcolor="#1e293b"
+    color="#3b82f6"
+    penwidth=1.5
+  ]
+  edge [
+    fontname="Helvetica"
+    fontsize=9
+    fontcolor="#475569"
+    color="#64748b"
+    penwidth=1.2
+    arrowsize=0.8
+  ]
+
+  User [label="{User|id : int PK\lrole : string\lusername : string\lfirst_name : string\llast_name : string\lphone : string\lemail : string\l}"]
+
+  Student [label="{Student|id : int PK\luser_id : FK → User\lparent_id : FK → User\lgrade : string\lenrollment_date : date\lis_active : bool\l}"]
+
+  Mentor [label="{Mentor|id : int PK\luser_id : FK → User\lspecialization : string\lexperience_years : int\lhire_date : date\l}"]
+
+  Course [label="{Course|id : int PK\lmentor_id : FK → Mentor\lname : string\lduration_weeks : int\lmax_students : int\lstart_date : date\lend_date : date\lis_active : bool\l}"]
+
+  Group [label="{Group|id : int PK\lcourse_id : FK → Course\lmentor_id : FK → Mentor\lname : string\lmax_students : int\lis_active : bool\l}"]
+
+  GroupStudent [label="{GroupStudent|group_id : FK → Group\lstudent_id : FK → Student\l}"]
+
+  Schedule [label="{Schedule|id : int PK\lcourse_id : FK → Course\lweekday : int\lstart_time : time\lend_time : time\lroom : string\l}"]
+
+  Lesson [label="{Lesson|id : int PK\lcourse_id : FK → Course\ltitle : string\ldate : date\lstart_time : time\lend_time : time\lroom : string\lis_cancelled : bool\l}"]
+
+  Homework [label="{Homework|id : int PK\llesson_id : FK → Lesson\ltitle : string\ldescription : text\ldue_date : datetime\l}"]
+
+  HomeworkSubmission [label="{HomeworkSubmission|id : int PK\lhomework_id : FK → Homework\lstudent_id : FK → Student\lcontent : text\lstatus : string\lgrade : int\lfeedback : text\lsubmitted_at : datetime\lchecked_at : datetime\l}"]
+
+  Grade [label="{Grade|id : int PK\lstudent_id : FK → Student\lcourse_id : FK → Course\llesson_id : FK → Lesson\lgrade : int\lcomment : string\ldate : date\l}"]
+
+  Attendance [label="{Attendance|id : int PK\llesson_id : FK → Lesson\lstudent_id : FK → Student\lstatus : string\lnotes : string\l}"]
+
+  Enrollment [label="{Enrollment|id : int PK\lstudent_id : FK → Student\lcourse_id : FK → Course\lenrollment_date : date\lis_active : bool\l}"]
+
+  Notification [label="{Notification|id : int PK\lrecipient_id : FK → User\lmessage : text\lnotification_type : string\lis_read : bool\lcreated_at : datetime\l}"]
+
+  StudentKPI [label="{StudentKPI|id : int PK\lstudent_id : FK → Student\lattendance_score : float\lhomework_score : float\lgrade_score : float\ltotal_kpi : float\ltotal_lessons : int\lattended_lessons : int\lupdated_at : datetime\l}"]
+
+  MentorKPI [label="{MentorKPI|id : int PK\lmentor_id : FK → Mentor\lavg_student_kpi : float\lavg_attendance : float\lhomework_completion_rate : float\ltotal_kpi : float\lupdated_at : datetime\l}"]
+
+  Topic [label="{Topic|id : int PK\lcourse_id : FK → Course\ltitle : string\ldescription : text\l}"]
+
+  Test [label="{Test|id : int PK\ltopic_id : FK → Topic\ltitle : string\lpassing_score : int\lis_active : bool\l}"]
+
+  Question [label="{Question|id : int PK\ltest_id : FK → Test\ltext : text\lpoints : float\l}"]
+
+  Answer [label="{Answer|id : int PK\lquestion_id : FK → Question\ltext : string\lis_correct : bool\l}"]
+
+  TestAttempt [label="{TestAttempt|id : int PK\ltest_id : FK → Test\lstudent_id : FK → Student\lscore : float\lis_passed : bool\lstarted_at : datetime\lfinished_at : datetime\l}"]
+
+  StudentAnswer [label="{StudentAnswer|id : int PK\lattempt_id : FK → TestAttempt\lquestion_id : FK → Question\lis_correct : bool\lpoints_earned : float\l}"]
+
+  // User relations
+  User -> Student [label="профиль"]
+  User -> Mentor [label="профиль"]
+  User -> Notification [label="получает"]
+  User -> Student [label="родитель" style=dashed]
+
+  // Mentor relations
+  Mentor -> Course [label="ведёт"]
+  Mentor -> Group [label="ведёт"]
+  Mentor -> MentorKPI [label="KPI"]
+
+  // Course relations
+  Course -> Schedule [label="расписание"]
+  Course -> Lesson [label="занятия"]
+  Course -> Enrollment [label="записи"]
+  Course -> Group [label="группы"]
+  Course -> Grade [label="оценки"]
+  Course -> Topic [label="темы"]
+
+  // Group relations
+  Group -> GroupStudent
+  Student -> GroupStudent
+
+  // Lesson relations
+  Lesson -> Homework [label="задания"]
+  Lesson -> Attendance [label="посещаемость"]
+  Lesson -> Grade [label="оценки"]
+
+  // Homework relations
+  Homework -> HomeworkSubmission [label="сдачи"]
+
+  // Student relations
+  Student -> Enrollment [label="записан"]
+  Student -> HomeworkSubmission [label="сдаёт"]
+  Student -> Attendance [label="посещает"]
+  Student -> Grade [label="получает"]
+  Student -> TestAttempt [label="проходит"]
+  Student -> StudentKPI [label="KPI"]
+
+  // Test relations
+  Topic -> Test [label="тесты"]
+  Test -> Question [label="вопросы"]
+  Test -> TestAttempt [label="попытки"]
+
+  // Question/Answer relations
+  Question -> Answer [label="варианты"]
+  Question -> StudentAnswer [label="ответы"]
+
+  // Attempt relations
+  TestAttempt -> StudentAnswer [label="ответы"]
+}

@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block title %}Результат теста{% endblock %}
+
+{% block extra_css %}
+<style>
+.result-ring { width:120px;height:120px;position:relative;display:inline-flex;align-items:center;justify-content:center; }
+.result-ring svg { position:absolute;top:0;left:0;transform:rotate(-90deg); }
+.result-ring .val { font-size:1.8rem;font-weight:900;color:var(--ok-white);z-index:1; }
+.answer-row { border-left:4px solid transparent;padding:.5rem 1rem;border-radius:0 var(--ok-radius) var(--ok-radius) 0;margin-bottom:.5rem; }
+.answer-row.correct-q  { border-color:#4ade80; background:rgba(74,222,128,.06); }
+.answer-row.wrong-q    { border-color:#f87171; background:rgba(248,113,113,.06); }
+.ans-chip { display:inline-block;padding:.15rem .6rem;border-radius:999px;font-size:.78rem;margin:.2rem; }
+.ans-selected { background:rgba(249,115,22,.2); border:1px solid var(--ok-accent); color:var(--ok-accent); }
+.ans-correct  { background:rgba(74,222,128,.2); border:1px solid #4ade80; color:#4ade80; }
+.ans-wrong    { background:rgba(248,113,113,.2); border:1px solid #f87171; color:#f87171; }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<div class="row mb-4 align-items-center">
+    <div class="col">
+        <h1 class="fw-bold" style="color:var(--ok-white);">
+            <i class="bi bi-trophy-fill" style="color:var(--ok-accent);"></i> Результат теста
+        </h1>
+        <p class="ok-muted">{{ attempt.test.title }} · {{ attempt.test.topic.course.name }}</p>
+    </div>
+    <div class="col-auto">
+        <a href="{% url 'test_topic_list' attempt.test.topic.course_id %}" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-arrow-left"></i> К тестам курса
+        </a>
+    </div>
+</div>
+
+<!-- Score card -->
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="d-flex align-items-center gap-4 flex-wrap">
+            <div class="result-ring">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                    <circle cx="60" cy="60" r="50" fill="none" stroke="var(--ok-surface-2)" stroke-width="12"/>
+                    <circle cx="60" cy="60" r="50" fill="none"
+                        stroke="{% if attempt.is_passed %}#4ade80{% else %}#f87171{% endif %}"
+                        stroke-width="12"
+                        stroke-dasharray="{{ dash_value }} 314.16"
+                        stroke-linecap="round"/>
+                </svg>
+                <div class="val">{{ attempt.score|floatformat:0 }}<span style="font-size:.9rem">%</span></div>
+            </div>
+            <div>
+                {% if attempt.is_passed %}
+                <h3 class="fw-bold text-success mb-1"><i class="bi bi-patch-check-fill"></i> Зачёт</h3>
+                {% else %}
+                <h3 class="fw-bold text-danger mb-1"><i class="bi bi-x-circle-fill"></i> Не зачтено</h3>
+                {% endif %}
+                <p class="ok-muted mb-1">Попытка #{{ attempt.attempt_number }}</p>
+                <p class="ok-muted mb-1">Минимальный балл: {{ attempt.test.passing_score }}%</p>
+                {% if attempt.duration_seconds %}
+                <p class="ok-muted mb-0">
+                    <i class="bi bi-clock"></i>
+                    {{ attempt.started_at|date:"H:i" }} → {{ attempt.finished_at|date:"H:i" }}
+                </p>
+                {% endif %}
+            </div>
+            <div class="ms-auto d-flex gap-2 flex-wrap">
+                {% if request.user.role == 'student' %}
+                <a href="{% url 'test_take' attempt.test_id %}" class="btn btn-primary btn-sm">
+                    <i class="bi bi-arrow-repeat"></i> Попробовать снова
+                </a>
+                <a href="{% url 'test_my_results' %}" class="btn btn-outline-secondary btn-sm">
+                    <i class="bi bi-list-check"></i> История
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Answers review -->
+<div class="card">
+    <div class="card-header"><i class="bi bi-card-checklist"></i> Разбор ответов</div>
+    <div class="card-body">
+        {% for sa in student_answers %}
+        <div class="answer-row {% if sa.is_correct %}correct-q{% else %}wrong-q{% endif %} mb-3">
+            <div class="d-flex justify-content-between mb-1">
+                <strong style="color:var(--ok-white);">{{ forloop.counter }}. {{ sa.question.text }}</strong>
+                <span>
+                    {% if sa.is_correct %}
+                    <span class="badge bg-success"><i class="bi bi-check-lg"></i> +{{ sa.points_earned|floatformat:0 }} б.</span>
+                    {% else %}
+                    <span class="badge bg-danger"><i class="bi bi-x-lg"></i> 0 б.</span>
+                    {% endif %}
+                </span>
+            </div>
+            <div>
+                {% for ans in sa.answers %}
+                <span class="ans-chip
+                    {% if ans.is_correct %}ans-correct{% elif ans.is_selected %}ans-wrong{% endif %}
+                    {% if ans.is_selected %}ans-selected{% endif %}">
+                    {% if ans.is_selected %}<i class="bi bi-check2"></i> {% endif %}
+                    {{ ans.text }}
+                    {% if ans.is_correct %}<i class="bi bi-check-circle-fill ms-1" style="color:#4ade80"></i>{% endif %}
+                </span>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

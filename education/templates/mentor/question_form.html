@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block title %}{{ action }}{% endblock %}
+
+{% block extra_css %}
+<style>
+.answer-row { background:var(--ok-surface-2);border-radius:var(--ok-radius);padding:1rem;margin-bottom:.75rem;border:1px solid var(--ok-border-2); }
+.answer-row .delete-row { opacity:.4;transition:.15s; }
+.answer-row:hover .delete-row { opacity:1; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-9">
+
+        <div class="mb-3 d-flex align-items-center gap-2">
+            <a href="{% url 'mentor_test_edit' test.id %}" class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-arrow-left"></i>
+            </a>
+            <div>
+                <h1 class="fw-bold mb-0" style="color:var(--ok-white);">{{ action }}</h1>
+                <p class="ok-muted mb-0 small">{{ test.title }} · {{ test.topic.course.name }}</p>
+            </div>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <!-- Question -->
+            <div class="card mb-4">
+                <div class="card-header"><i class="bi bi-question-circle"></i> Вопрос</div>
+                <div class="card-body">
+                    {% for field in q_form %}
+                    <div class="mb-3">
+                        <label class="form-label" style="color:var(--ok-white);">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}<div class="text-danger small">{{ field.errors.as_text }}</div>{% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Answers formset -->
+            <div class="card mb-4">
+                <div class="card-header"><i class="bi bi-list-check"></i> Варианты ответов</div>
+                <div class="card-body">
+                    {{ a_formset.management_form }}
+                    {% if a_formset.non_form_errors %}
+                    <div class="alert alert-danger">{{ a_formset.non_form_errors }}</div>
+                    {% endif %}
+
+                    <div id="answers-container">
+                        {% for aform in a_formset %}
+                        <div class="answer-row">
+                            {% for hidden in aform.hidden_fields %}{{ hidden }}{% endfor %}
+                            <div class="row g-2 align-items-center">
+                                <div class="col-1 text-center">
+                                    <div class="form-check">
+                                        {{ aform.is_correct }}
+                                    </div>
+                                    <small class="ok-muted" style="font-size:.65rem;">Верный</small>
+                                </div>
+                                <div class="col-8">
+                                    {{ aform.text }}
+                                    {% if aform.text.errors %}<div class="text-danger small">{{ aform.text.errors.as_text }}</div>{% endif %}
+                                </div>
+                                <div class="col-2">
+                                    <label class="form-label ok-muted small mb-1">Порядок</label>
+                                    {{ aform.order }}
+                                </div>
+                                <div class="col-1 text-end">
+                                    {% if aform.instance.pk %}
+                                    <div class="form-check delete-row">
+                                        {{ aform.DELETE }}
+                                        <label class="form-check-label text-danger" for="{{ aform.DELETE.id_for_label }}">
+                                            <i class="bi bi-trash"></i>
+                                        </label>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex gap-2 justify-content-end">
+                <a href="{% url 'mentor_test_edit' test.id %}" class="btn btn-outline-secondary">Отмена</a>
+                <button type="submit" name="add_another" value="1" class="btn btn-outline-primary">
+                    <i class="bi bi-plus-circle"></i> Сохранить и добавить ещё
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-check-lg"></i> Сохранить
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

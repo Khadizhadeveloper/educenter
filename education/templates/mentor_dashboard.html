@@ -1,99 +1,131 @@
 {% extends 'base.html' %}
+{% block title %}Панель тренера - Okurmen Kids{% endblock %}
 
-{% block title %}Панель ментора - Okurmen Kids{% endblock %}
+{% block extra_css %}
+<style>
+.kpi-ring-sm { width:84px;height:84px;position:relative;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0; }
+.kpi-ring-sm svg { position:absolute;top:0;left:0;transform:rotate(-90deg); }
+.kpi-ring-sm .kpi-val { font-size:1.2rem;font-weight:800;color:var(--ok-white);z-index:1;line-height:1; }
+.mini-bar { height:6px;border-radius:999px;background:var(--ok-surface-2);overflow:hidden;margin-bottom:2px; }
+.mini-bar .fill { height:100%;border-radius:999px; }
+.fill-att { background:linear-gradient(90deg,#38bdf8,#0284c7); }
+.fill-hw  { background:linear-gradient(90deg,var(--ok-accent),var(--ok-accent-dark)); }
+.fill-gr  { background:linear-gradient(90deg,#4ade80,#16a34a); }
+.fill-tot { background:linear-gradient(90deg,var(--ok-accent),#c2410c); }
+</style>
+{% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-12 mb-4">
-        <h1 class="display-4 fw-bold mb-4">
-            <i class="bi bi-mortarboard-fill"></i> Панель ментора
+<div class="row mb-3">
+    <div class="col-12">
+        <h1 class="fw-bold" style="color:var(--ok-white);">
+            <i class="bi bi-mortarboard-fill" style="color:var(--ok-accent);"></i> Панель тренера
         </h1>
-        <p class="display-4 fw-bold mb-4">Добро пожаловать, {{ user.get_full_name }}</p>
+        <p class="ok-muted">Добро пожаловать, {{ user.get_full_name }}!</p>
     </div>
 </div>
 
-<!-- Статистика -->
+<!-- Stat cards -->
 <div class="row g-4 mb-4">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="stat-card">
             <div class="icon"><i class="bi bi-book-fill"></i></div>
-            <div>
-                <h3>{{ my_courses.count }}</h3>
-                <p>Мои курсы</p>
-            </div>
+            <div><h3>{{ my_courses.count }}</h3><p>Мои курсы</p></div>
         </div>
     </div>
-
-    <div class="col-md-4">
-        <div class="stat-card">
+    <div class="col-md-3">
+        <div class="stat-card grad-cyan">
             <div class="icon"><i class="bi bi-calendar-check-fill"></i></div>
-            <div>
-                <h3>{{ today_lessons.count }}</h3>
-                <p>Занятий сегодня</p>
-            </div>
+            <div><h3>{{ today_lessons.count }}</h3><p>Занятий сегодня</p></div>
         </div>
     </div>
-
-    <div class="col-md-4">
-        <div class="stat-card">
+    <div class="col-md-3">
+        <div class="stat-card grad-pink">
             <div class="icon"><i class="bi bi-clipboard-check-fill"></i></div>
-            <div>
-                <h3>{{ pending_homework }}</h3>
-                <p>ДЗ на проверке</p>
+            <div><h3>{{ pending_homework }}</h3><p>ДЗ на проверке</p></div>
+        </div>
+    </div>
+    <!-- KPI stat card -->
+    <div class="col-md-3">
+        <div class="stat-card" style="background:linear-gradient(135deg,#7c2d12,#c2410c);">
+            <div class="icon" style="background:rgba(255,255,255,.15);color:#fff;">
+                <i class="bi bi-graph-up-arrow"></i>
             </div>
+            <div><h3>{{ mentor_kpi.total_kpi|floatformat:0 }}%</h3><p>Мой KPI</p></div>
         </div>
     </div>
 </div>
 
-<div class="row g-4">
-    <!-- Мои курсы -->
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <i class="bi bi-book"></i> Мои курсы
-            </div>
+<!-- KPI виджет + занятия сегодня -->
+<div class="row g-4 mb-4">
+
+    <!-- KPI виджет тренера -->
+    <div class="col-md-5">
+        <div class="card h-100">
+            <div class="card-header"><i class="bi bi-trophy-fill"></i> Мой KPI</div>
             <div class="card-body">
-                {% if my_courses %}
-                    <div class="list-group list-group-flush">
-                        {% for course in my_courses %}
-                            <a href="{% url 'course_detail' course.id %}" class="list-group-item list-group-item-action">
-                                <div class="d-flex justify-content-between align-items-start">
-                                    <div>
-                                        <h6 class="mb-1">{{ course.name }}</h6>
-                                        <p class="mb-1 text-muted small">{{ course.description|truncatewords:10 }}</p>
-                                        <small class="text-muted">
-                                            <i class="bi bi-people"></i> {{ course.enrollments.count }} учеников
-                                        </small>
-                                    </div>
-                                    <span class="badge bg-primary">{{ course.duration_weeks }} нед.</span>
-                                </div>
-                            </a>
-                        {% endfor %}
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="kpi-ring-sm">
+                        <svg width="84" height="84" viewBox="0 0 84 84">
+                            <circle cx="42" cy="42" r="34" fill="none" stroke="var(--ok-surface-2)" stroke-width="9"/>
+                            <circle cx="42" cy="42" r="34" fill="none"
+                                stroke="{% if mentor_kpi.total_kpi >= 85 %}#4ade80{% elif mentor_kpi.total_kpi >= 70 %}#38bdf8{% elif mentor_kpi.total_kpi >= 50 %}#fbbf24{% else %}#f87171{% endif %}"
+                                stroke-width="9"
+                                stroke-dasharray="calc({{ mentor_kpi.total_kpi }} * 2.136) 213.6"
+                                stroke-linecap="round"/>
+                        </svg>
+                        <div class="kpi-val">{{ mentor_kpi.total_kpi|floatformat:0 }}<span style="font-size:.6rem">%</span></div>
                     </div>
-                {% else %}
-                    <p class="text-muted">У вас пока нет курсов</p>
-                {% endif %}
+                    <div>
+                        <div class="fw-bold" style="color:var(--ok-white);">{{ mentor_kpi.kpi_label }}</div>
+                        <small class="ok-muted">{{ mentor_kpi.students_count }} учеников · {{ mentor_kpi.courses_count }} курсов</small>
+                    </div>
+                </div>
+
+                <div class="mb-2">
+                    <div class="d-flex justify-content-between mb-1">
+                        <small><i class="bi bi-people-fill text-info"></i> Ср. KPI учеников</small>
+                        <small class="fw-bold">{{ mentor_kpi.avg_student_kpi|floatformat:0 }}%</small>
+                    </div>
+                    <div class="mini-bar"><div class="fill fill-att" style="width:{{ mentor_kpi.avg_student_kpi }}%"></div></div>
+                </div>
+                <div class="mb-2">
+                    <div class="d-flex justify-content-between mb-1">
+                        <small><i class="bi bi-calendar-check" style="color:var(--ok-accent)"></i> Посещаемость групп</small>
+                        <small class="fw-bold">{{ mentor_kpi.avg_attendance|floatformat:0 }}%</small>
+                    </div>
+                    <div class="mini-bar"><div class="fill fill-hw" style="width:{{ mentor_kpi.avg_attendance }}%"></div></div>
+                </div>
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between mb-1">
+                        <small><i class="bi bi-journal-check text-success"></i> Выполнение ДЗ</small>
+                        <small class="fw-bold">{{ mentor_kpi.homework_completion_rate|floatformat:0 }}%</small>
+                    </div>
+                    <div class="mini-bar"><div class="fill fill-gr" style="width:{{ mentor_kpi.homework_completion_rate }}%"></div></div>
+                </div>
+
+                <a href="{% url 'mentor_kpi' %}" class="btn btn-primary btn-sm w-100">
+                    <i class="bi bi-bar-chart-fill"></i> Подробный KPI
+                </a>
             </div>
         </div>
     </div>
 
     <!-- Занятия сегодня -->
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <i class="bi bi-calendar-day"></i> Занятия сегодня
-            </div>
+    <div class="col-md-7">
+        <div class="card h-100">
+            <div class="card-header"><i class="bi bi-calendar-day"></i> Занятия сегодня</div>
             <div class="card-body">
                 {% if today_lessons %}
                     <div class="list-group list-group-flush">
                         {% for lesson in today_lessons %}
                             <div class="list-group-item">
-                                <div class="d-flex justify-content-between align-items-start">
+                                <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <h6 class="mb-1">{{ lesson.title }}</h6>
-                                        <p class="mb-1 text-muted small">{{ lesson.course.name }}</p>
-                                        <small class="text-muted">
-                                            <i class="bi bi-clock"></i> {{ lesson.start_time|time:"H:i" }} - {{ lesson.end_time|time:"H:i" }}
+                                        <p class="mb-1 ok-muted small">{{ lesson.course.name }}</p>
+                                        <small class="ok-muted">
+                                            <i class="bi bi-clock"></i> {{ lesson.start_time|time:"H:i" }} – {{ lesson.end_time|time:"H:i" }}
                                             <i class="bi bi-geo-alt ms-2"></i> {{ lesson.room }}
                                         </small>
                                     </div>
@@ -107,42 +139,329 @@
                         {% endfor %}
                     </div>
                 {% else %}
-                    <p class="text-muted">Сегодня нет занятий</p>
+                    <p class="ok-muted">Сегодня нет занятий</p>
                 {% endif %}
             </div>
         </div>
     </div>
 </div>
 
-<!-- Быстрые действия -->
-<div class="row mt-4">
-    <div class="col-12">
+<!-- Мои группы -->
+<div class="card mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span><i class="bi bi-people-fill" style="color:var(--ok-accent)"></i> Мои группы</span>
+        <small class="ok-muted">{{ my_groups.count }} групп</small>
+    </div>
+    <div class="card-body p-0">
+        {% if my_groups %}
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th>Группа</th>
+                        <th>Курс</th>
+                        <th>Студентов</th>
+                        <th>Заполненность</th>
+                        <th>Студенты</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for group in my_groups %}
+                    <tr>
+                        <td><strong style="color:var(--ok-white);">{{ group.name }}</strong></td>
+                        <td><small class="ok-muted">{{ group.course.name }}</small></td>
+                        <td>
+                            <span style="color:var(--ok-white);">{{ group.students.count }}</span>
+                            <small class="ok-muted">/ {{ group.max_students }}</small>
+                        </td>
+                        <td style="min-width:120px;">
+                            {% with pct=group.students.count|divisibleby:group.max_students %}
+                            <div style="height:6px;background:var(--ok-surface-2);border-radius:999px;overflow:hidden;">
+                                {% widthratio group.students.count group.max_students 100 as fill_pct %}
+                                <div style="height:100%;width:{{ fill_pct }}%;border-radius:999px;
+                                    background:{% if fill_pct == '100' %}#ef4444{% elif fill_pct|add:'0' > 70 %}var(--ok-accent){% else %}#22c55e{% endif %};"></div>
+                            </div>
+                            {% endwith %}
+                        </td>
+                        <td>
+                            <div class="d-flex flex-wrap gap-1">
+                                {% for student in group.students.all %}
+                                <span class="badge" style="background:var(--ok-surface-2);color:var(--ok-text);font-weight:400;">
+                                    {{ student.user.get_full_name }}
+                                </span>
+                                {% endfor %}
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="p-4 text-center ok-muted">
+            <i class="bi bi-people" style="font-size:2rem;"></i>
+            <p class="mt-2 mb-0">Нет групп</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- ДЗ на проверке -->
+<div class="card mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span><i class="bi bi-clipboard2-check-fill" style="color:var(--ok-accent)"></i> ДЗ на проверке
+            {% if pending_homework %}
+            <span class="badge bg-warning ms-2">{{ pending_homework }}</span>
+            {% endif %}
+        </span>
+        <a href="{% url 'homework_list' %}" class="btn btn-sm btn-outline-secondary">Все задания</a>
+    </div>
+    <div class="card-body p-0">
+        {% if pending_submissions %}
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th>Ученик</th>
+                        <th>Задание</th>
+                        <th>Курс</th>
+                        <th>Сдано</th>
+                        <th>Статус</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sub in pending_submissions %}
+                    <tr>
+                        <td><strong style="color:var(--ok-white);">{{ sub.student.user.get_full_name }}</strong></td>
+                        <td><span style="color:var(--ok-white);">{{ sub.homework.title }}</span></td>
+                        <td><small class="ok-muted">{{ sub.homework.lesson.course.name }}</small></td>
+                        <td><small class="ok-muted">{{ sub.submitted_at|date:"d.m H:i" }}</small></td>
+                        <td>
+                            {% if sub.status == 'late' %}
+                                <span class="badge bg-danger">Опоздание</span>
+                            {% else %}
+                                <span class="badge bg-warning">Ожидает</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'mentor_review_submission' sub.id %}" class="btn btn-sm btn-primary">
+                                <i class="bi bi-check2-square"></i> Проверить
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="p-4 text-center ok-muted">
+            <i class="bi bi-check2-all" style="font-size:2rem;"></i>
+            <p class="mt-2 mb-0">Все работы проверены</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Посещаемость -->
+<div class="card mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span><i class="bi bi-calendar-check-fill"></i> Посещаемость — последние 7 дней</span>
+    </div>
+    <div class="card-body p-0">
+        {% if lessons_with_attendance %}
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th>Дата</th>
+                        <th>Занятие</th>
+                        <th>Курс</th>
+                        <th style="width:200px">Посещаемость</th>
+                        <th>Статус</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in lessons_with_attendance %}
+                    <tr>
+                        <td>
+                            <strong style="color:var(--ok-white)">{{ item.lesson.date|date:"d.m" }}</strong>
+                            <br><small class="ok-muted">{{ item.lesson.start_time|time:"H:i" }}</small>
+                        </td>
+                        <td>
+                            <span style="color:var(--ok-white)">{{ item.lesson.title }}</span>
+                        </td>
+                        <td><small class="ok-muted">{{ item.lesson.course.name }}</small></td>
+                        <td>
+                            {% if item.is_marked %}
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="mini-bar flex-grow-1" style="height:8px">
+                                        <div class="fill fill-att" style="width:{{ item.attendance_pct }}%"></div>
+                                    </div>
+                                    <small>{{ item.present }}/{{ item.enrolled }}</small>
+                                </div>
+                                <small class="ok-muted">{{ item.attendance_pct }}%</small>
+                            {% else %}
+                                <small class="ok-muted">— не отмечено</small>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if item.is_marked %}
+                                <span class="badge bg-success">Отмечено</span>
+                            {% else %}
+                                <span class="badge bg-warning">Не отмечено</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'mentor_attendance' item.lesson.id %}"
+                               class="btn btn-sm {% if item.is_marked %}btn-outline-primary{% else %}btn-primary{% endif %}">
+                                {% if item.is_marked %}
+                                    <i class="bi bi-pencil-square"></i> Изменить
+                                {% else %}
+                                    <i class="bi bi-check2-square"></i> Отметить
+                                {% endif %}
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="p-4 text-center ok-muted">
+            <i class="bi bi-calendar-x" style="font-size:2rem"></i>
+            <p class="mt-2 mb-0">За последние 7 дней занятий не было</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- KPI учеников -->
+{% if student_kpis %}
+<div class="card mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span><i class="bi bi-people-fill"></i> KPI учеников</span>
+        <a href="{% url 'mentor_kpi' %}" class="btn btn-primary btn-sm">
+            <i class="bi bi-table"></i> Полная таблица
+        </a>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th>Ученик</th>
+                        <th style="width:160px">Посещаемость</th>
+                        <th style="width:160px">Домашние</th>
+                        <th style="width:160px">Оценки</th>
+                        <th style="width:90px">KPI</th>
+                        <th>Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for k in student_kpis|slice:":6" %}
+                    <tr>
+                        <td><strong>{{ k.student.user.get_full_name }}</strong></td>
+                        <td>
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="mini-bar flex-grow-1" style="height:8px"><div class="fill fill-att" style="width:{{ k.attendance_score }}%"></div></div>
+                                <small>{{ k.attendance_score|floatformat:0 }}%</small>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="mini-bar flex-grow-1" style="height:8px"><div class="fill fill-hw" style="width:{{ k.homework_score }}%"></div></div>
+                                <small>{{ k.homework_score|floatformat:0 }}%</small>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="mini-bar flex-grow-1" style="height:8px"><div class="fill fill-gr" style="width:{{ k.grade_score }}%"></div></div>
+                                <small>{{ k.grade_score|floatformat:0 }}%</small>
+                            </div>
+                        </td>
+                        <td><strong style="color:var(--ok-accent)">{{ k.total_kpi|floatformat:1 }}%</strong></td>
+                        <td><span class="badge bg-{{ k.kpi_color }}">{{ k.kpi_label }}</span></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Мои курсы + быстрые действия -->
+<div class="row g-4">
+    <div class="col-md-6">
         <div class="card">
-            <div class="card-header">
-                <i class="bi bi-lightning-fill"></i> Быстрые действия
+            <div class="card-header"><i class="bi bi-book"></i> Мои курсы</div>
+            <div class="card-body">
+                {% if my_courses %}
+                    <div class="list-group list-group-flush">
+                        {% for course in my_courses %}
+                            <a href="{% url 'course_detail' course.id %}" class="list-group-item list-group-item-action">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-1">{{ course.name }}</h6>
+                                        <small class="ok-muted"><i class="bi bi-people"></i> {{ course.enrollments.count }} учеников</small>
+                                    </div>
+                                    <span class="badge bg-primary">{{ course.duration_weeks }} нед.</span>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="ok-muted">У вас пока нет курсов</p>
+                {% endif %}
             </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header"><i class="bi bi-lightning-fill"></i> Быстрые действия</div>
             <div class="card-body">
                 <div class="row g-3">
-                    <div class="col-md-3">
+                    <div class="col-6">
                         <a href="{% url 'mentor_create_lesson' %}" class="btn btn-outline-primary w-100">
                             <i class="bi bi-plus-circle"></i> Создать занятие
                         </a>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-6">
                         <a href="{% url 'mentor_create_homework' %}" class="btn btn-outline-success w-100">
                             <i class="bi bi-journal-plus"></i> Добавить ДЗ
                         </a>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-6">
                         <a href="{% url 'mentor_give_grade' %}" class="btn btn-outline-warning w-100">
                             <i class="bi bi-star"></i> Выставить оценку
                         </a>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-6">
                         <a href="{% url 'homework_list' %}" class="btn btn-outline-info w-100">
                             <i class="bi bi-clipboard-check"></i> Проверить ДЗ
                         </a>
                     </div>
+                    {% if my_courses %}
+                    <div class="col-12">
+                        <div class="dropdown w-100">
+                            <button class="btn btn-outline-secondary w-100 dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-journal-bookmark-fill"></i> Тесты курса
+                            </button>
+                            <ul class="dropdown-menu w-100">
+                                {% for course in my_courses %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'mentor_topic_list' course.id %}">
+                                        {{ course.name }}
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -11,6 +11,7 @@ from .models.grade import Grade
 from .models.attendance import Attendance
 from .models.announcement import Announcement
 from .models.enrollment import Enrollment
+from .models.group import Group
 
 
 @admin.register(User)
@@ -141,6 +142,18 @@ class GradeAdmin(admin.ModelAdmin):
     list_filter = ('grade', 'date', 'course')
     search_fields = ('student__user__first_name', 'student__user__last_name', 'course__name')
     date_hierarchy = 'date'
+
+
+@admin.register(Group)
+class GroupAdmin(admin.ModelAdmin):
+    list_display = ('name', 'course', 'mentor', 'student_count', 'is_active')
+    list_filter = ('is_active', 'course', 'mentor')
+    search_fields = ('name', 'course__name')
+    filter_horizontal = ('students',)
+
+    def student_count(self, obj):
+        return obj.students.count()
+    student_count.short_description = 'Студентов'
 
 
 @admin.register(Announcement)

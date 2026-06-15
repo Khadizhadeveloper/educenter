@@ -13,7 +13,7 @@
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Theme (unified styles) -->
     <link rel="stylesheet" href="{% static 'css/theme.css' %}">
 
@@ -60,6 +60,64 @@
                             <i class="bi bi-book"></i> Курсы
                         </a>
                     </li>
+                    {% if user.role == 'student' %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'test_my_results' %}">
+                            <i class="bi bi-pencil-square"></i> Тесты
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if user.role == 'student' or user.role == 'parent' %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'student_kpi' %}">
+                            <i class="bi bi-graph-up"></i> KPI
+                        </a>
+                    </li>
+                    {% elif user.role == 'mentor' %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'mentor_kpi' %}">
+                            <i class="bi bi-graph-up-arrow"></i> KPI
+                        </a>
+                    </li>
+                    {% elif user.role == 'admin' %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'admin_kpi' %}">
+                            <i class="bi bi-speedometer2"></i> KPI
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    {% if user.role == 'admin' or user.role == 'mentor' %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link position-relative" href="#" data-bs-toggle="dropdown" aria-label="Уведомления">
+                            <i class="bi bi-bell-fill"></i>
+                            {% if unread_notifications_count %}
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:.6rem;">
+                                {{ unread_notifications_count }}
+                            </span>
+                            {% endif %}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" style="min-width:320px;max-height:400px;overflow-y:auto;">
+                            {% if recent_notifications %}
+                                {% for n in recent_notifications %}
+                                <li>
+                                    <a class="dropdown-item {% if not n.is_read %}fw-bold{% endif %} py-2"
+                                       href="{% url 'mark_notification_read' n.id %}"
+                                       style="white-space:normal;font-size:.85rem;{% if not n.is_read %}background:rgba(255,100,0,.07);{% endif %}">
+                                        <i class="bi {% if n.notification_type == 'group_full' %}bi-exclamation-circle-fill text-warning{% elif n.notification_type == 'group_created' %}bi-plus-circle-fill text-success{% else %}bi-info-circle-fill text-info{% endif %} me-1"></i>
+                                        {{ n.message }}
+                                        <br><small class="text-muted">{{ n.created_at|date:"d.m H:i" }}</small>
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider my-0"></li>
+                                {% endfor %}
+                                <li><a class="dropdown-item text-center text-muted small py-2" href="{% url 'notifications' %}">Все уведомления</a></li>
+                            {% else %}
+                                <li><span class="dropdown-item text-muted small">Нет уведомлений</span></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                    {% endif %}
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">

@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% block title %}Мой KPI - Okurmen Kids{% endblock %}
+
+{% block extra_css %}
+<style>
+.kpi-ring {
+  width: 140px; height: 140px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.kpi-ring svg { position: absolute; top: 0; left: 0; transform: rotate(-90deg); }
+.kpi-ring .kpi-val {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--ok-white);
+  z-index: 1;
+  line-height: 1;
+}
+.kpi-ring .kpi-pct {
+  font-size: .85rem;
+  color: var(--ok-muted);
+}
+.component-bar { height: 12px; border-radius: 999px; overflow: hidden; background: var(--ok-surface-2); }
+.component-bar .fill { height: 100%; border-radius: 999px; transition: width .8s ease; }
+.fill-attendance { background: linear-gradient(90deg, #38bdf8, #0284c7); }
+.fill-homework   { background: linear-gradient(90deg, var(--ok-accent), var(--ok-accent-dark)); }
+.fill-grade      { background: linear-gradient(90deg, #4ade80, #16a34a); }
+.fill-total      { background: linear-gradient(90deg, var(--ok-accent), #c2410c); }
+</style>
+{% endblock %}
+
+{% block content %}
+
+{% if is_parent %}
+  <!-- PARENT VIEW -->
+  <div class="mb-4">
+    <h1 class="fw-bold"><i class="bi bi-graph-up" style="color:var(--ok-accent)"></i> KPI моих детей</h1>
+    <p class="ok-muted">Прогресс по каждому ребёнку</p>
+  </div>
+
+  <div class="row g-4">
+    {% for kpi in kpi_list %}
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-header">
+          <i class="bi bi-person-fill"></i> {{ kpi.student.user.get_full_name }}
+        </div>
+        <div class="card-body">
+          <div class="text-center mb-4">
+            <div class="kpi-ring mx-auto">
+              <svg width="140" height="140" viewBox="0 0 140 140">
+                <circle cx="70" cy="70" r="58" fill="none" stroke="var(--ok-surface-2)" stroke-width="12"/>
+                <circle cx="70" cy="70" r="58" fill="none"
+                  stroke="{% if kpi.total_kpi >= 85 %}#4ade80{% elif kpi.total_kpi >= 70 %}#38bdf8{% elif kpi.total_kpi >= 50 %}#fbbf24{% else %}#f87171{% endif %}"
+                  stroke-width="12"
+                  stroke-dasharray="{{ kpi.total_kpi|floatformat:0 }} 100"
+                  stroke-dasharray="364.4"
+                  style="stroke-dasharray:{{ kpi.total_kpi }}% 100%;stroke-dashoffset:0;stroke-dasharray:calc({{ kpi.total_kpi }} * 3.644) 364.4"
+                  stroke-linecap="round"/>
+              </svg>
+              <div class="text-center">
+                <div class="kpi-val">{{ kpi.total_kpi|floatformat:0 }}<span style="font-size:.9rem">%</span></div>
+              </div>
+            </div>
+            <div class="mt-2">
+              <span class="badge bg-{{ kpi.kpi_color }} fs-6">{{ kpi.kpi_label }}</span>
+            </div>
+          </div>
+          {% include 'kpi/_components.html' with kpi=kpi %}
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12"><p class="ok-muted">Нет данных о детях.</p></div>
+    {% endfor %}
+  </div>
+
+{% else %}
+  <!-- STUDENT VIEW -->
+  <div class="mb-4">
+    <h1 class="fw-bold"><i class="bi bi-graph-up" style="color:var(--ok-accent)"></i> Мой KPI</h1>
+    <p class="ok-muted">Личный показатель эффективности обучения</p>
+  </div>
+
+  <div class="row g-4">
+    <!-- Big KPI card -->
+    <div class="col-md-4">
+      <div class="card text-center h-100">
+        <div class="card-header"><i class="bi bi-trophy-fill"></i> Общий KPI</div>
+        <div class="card-body d-flex flex-column align-items-center justify-content-center py-4">
+          <div class="kpi-ring mb-3">
+            <svg width="140" height="140" viewBox="0 0 140 140">
+              <circle cx="70" cy="70" r="58" fill="none" stroke="var(--ok-surface-2)" stroke-width="14"/>
+              <circle cx="70" cy="70" r="58" fill="none"
+                stroke="{% if kpi.total_kpi >= 85 %}#4ade80{% elif kpi.total_kpi >= 70 %}#38bdf8{% elif kpi.total_kpi >= 50 %}#fbbf24{% else %}#f87171{% endif %}"
+                stroke-width="14"
+                stroke-dasharray="calc({{ kpi.total_kpi }} * 3.644) 364.4"
+                stroke-linecap="round"/>
+            </svg>
+            <div class="text-center">
+              <div class="kpi-val">{{ kpi.total_kpi|floatformat:0 }}<span style="font-size:.9rem">%</span></div>
+            </div>
+          </div>
+          <span class="badge bg-{{ kpi.kpi_color }} fs-5 px-4 py-2">{{ kpi.kpi_label }}</span>
+          <p class="ok-muted mt-3 mb-0" style="font-size:.82rem">
+            Обновлено: {{ kpi.updated_at|date:"d.m.Y H:i" }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Components -->
+    <div class="col-md-8">
+      <div class="card h-100">
+        <div class="card-header"><i class="bi bi-bar-chart-fill"></i> Детализация</div>
+        <div class="card-body">
+          {% include 'kpi/_components.html' with kpi=kpi %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats row -->
+  <div class="row g-4 mt-2">
+    <div class="col-md-4">
+      <div class="stat-card">
+        <div class="icon"><i class="bi bi-calendar-check-fill"></i></div>
+        <div>
+          <h3>{{ kpi.attended_lessons }}/{{ kpi.total_lessons }}</h3>
+          <p>Посещено занятий</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card grad-pink">
+        <div class="icon"><i class="bi bi-journal-check"></i></div>
+        <div>
+          <h3>{{ kpi.submitted_homeworks }}/{{ kpi.total_homeworks }}</h3>
+          <p>Сдано домашних заданий</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card grad-cyan">
+        <div class="icon"><i class="bi bi-star-fill"></i></div>
+        <div>
+          <h3>{{ kpi.grades_count }}</h3>
+          <p>Оценок получено</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% endblock %}

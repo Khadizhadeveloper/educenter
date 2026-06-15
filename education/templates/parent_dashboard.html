@@ -1,102 +1,92 @@
 {% extends 'base.html' %}
-
 {% block title %}Панель родителя - Okurmen Kids{% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-12 mb-4">
-        <h1 class="text-white">
-            <i class="bi bi-house-heart-fill"></i> Добро пожаловать, {{ user.get_full_name }}!
+<div class="row mb-3">
+    <div class="col-12">
+        <h1 class="fw-bold" style="color:var(--ok-white);">
+            <i class="bi bi-house-heart-fill" style="color:var(--ok-accent);"></i> Добро пожаловать, {{ user.get_full_name }}!
         </h1>
-        <p class="bi bi-mortarboard-fill">Панель управления для родителей</p>
+        <p class="ok-muted">Панель управления для родителей</p>
     </div>
 </div>
 
 <!-- Мои дети -->
-<div class="row mb-4">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                <i class="bi bi-people-fill"></i> Мои дети
-            </div>
-            <div class="card-body">
-                {% if children %}
-                    <div class="row">
-                        {% for child in children %}
-                            <div class="col-md-4 mb-3">
-                                <div class="card border-primary">
-                                    <div class="card-body text-center">
-                                        {% if child.user.avatar %}
-                                            <img src="{{ child.user.avatar.url }}" class="rounded-circle mb-3" style="width: 80px; height: 80px; object-fit: cover;">
-                                        {% else %}
-                                            <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px; font-size: 2rem;">
-                                                {{ child.user.first_name.0 }}{{ child.user.last_name.0 }}
-                                            </div>
-                                        {% endif %}
-                                        <h5 class="card-title">{{ child.user.get_full_name }}</h5>
-                                        <p class="text-muted mb-2">Класс: {{ child.grade }}</p>
-                                        <div class="d-flex justify-content-around mt-3">
-                                            <div>
-                                                <small class="text-muted">Курсы</small>
-                                                <h6>{{ child.enrollments.count }}</h6>
-                                            </div>
-                                            <div>
-                                                <small class="text-muted">Средняя оценка</small>
-                                                <h6>
-                                                    {% if child.grades.exists %}
-                                                        {{ child.grades.all|first }}
-                                                    {% else %}
-                                                        -
-                                                    {% endif %}
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+<div class="card mb-4">
+    <div class="card-header"><i class="bi bi-people-fill"></i> Мои дети</div>
+    <div class="card-body">
+        {% if children %}
+        <div class="row g-3">
+            {% for child in children %}
+            <div class="col-md-4">
+                <div class="card" style="border-left:3px solid var(--ok-accent);">
+                    <div class="card-body text-center">
+                        {% if child.user.avatar %}
+                            <img src="{{ child.user.avatar.url }}" class="rounded-circle mb-3" style="width:80px;height:80px;object-fit:cover;">
+                        {% else %}
+                            <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                                 style="width:80px;height:80px;font-size:2rem;background:var(--ok-accent);color:#fff;">
+                                {{ child.user.first_name.0 }}{{ child.user.last_name.0 }}
                             </div>
-                        {% endfor %}
+                        {% endif %}
+                        <h5 style="color:var(--ok-white);">{{ child.user.get_full_name }}</h5>
+                        {% if child.grade %}<p class="ok-muted mb-2">Класс: {{ child.grade }}</p>{% endif %}
+                        <div class="d-flex justify-content-around mt-3">
+                            <div>
+                                <div class="fw-bold" style="color:var(--ok-accent);">{{ child.enrollments.count }}</div>
+                                <small class="ok-muted">Курсов</small>
+                            </div>
+                            <div>
+                                <div class="fw-bold" style="color:#4ade80;">
+                                    {% with g=child.grades.all|first %}{% if g %}{{ g.grade }}{% else %}—{% endif %}{% endwith %}
+                                </div>
+                                <small class="ok-muted">Посл. оценка</small>
+                            </div>
+                        </div>
+                        <a href="{% url 'student_kpi' %}" class="btn btn-outline-primary btn-sm mt-3 w-100">
+                            <i class="bi bi-graph-up"></i> KPI
+                        </a>
                     </div>
-                {% else %}
-                    <p class="text-muted">Нет добавленных детей</p>
-                {% endif %}
+                </div>
             </div>
+            {% endfor %}
         </div>
+        {% else %}
+        <p class="ok-muted">Нет добавленных детей. Обратитесь к администратору.</p>
+        {% endif %}
     </div>
 </div>
 
-<!-- Расписание на неделю -->
-<div class="row mb-4">
+<div class="row g-4 mb-4">
+    <!-- Расписание -->
     <div class="col-md-8">
-        <div class="card">
-            <div class="card-header">
-                <i class="bi bi-calendar-week"></i> Расписание на неделю
-            </div>
+        <div class="card h-100">
+            <div class="card-header"><i class="bi bi-calendar-week"></i> Расписание на неделю</div>
             <div class="card-body">
                 {% if upcoming_schedule %}
-                    <div class="list-group list-group-flush">
-                        {% for item in upcoming_schedule %}
-                            <div class="list-group-item">
-                                <div class="d-flex justify-content-between align-items-start">
-                                    <div>
-                                        <h6 class="mb-1">{{ item.lesson.course.name }}</h6>
-                                        <p class="mb-1">
-                                            <span class="badge bg-info">{{ item.child.user.get_full_name }}</span>
-                                        </p>
-                                        <small class="text-muted">
-                                            <i class="bi bi-calendar3"></i> {{ item.lesson.date|date:"d.m.Y" }}
-                                            <i class="bi bi-clock ms-2"></i> {{ item.lesson.start_time|time:"H:i" }} - {{ item.lesson.end_time|time:"H:i" }}
-                                            <i class="bi bi-geo-alt ms-2"></i> {{ item.lesson.room }}
-                                        </small>
-                                    </div>
-                                </div>
+                <div class="list-group list-group-flush">
+                    {% for item in upcoming_schedule %}
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="mb-1" style="color:var(--ok-white);">{{ item.lesson.course.name }}</h6>
+                                <span class="badge bg-info mb-1">{{ item.child.user.get_full_name }}</span>
+                                <br>
+                                <small class="ok-muted">
+                                    <i class="bi bi-calendar3"></i> {{ item.lesson.date|date:"d.m.Y" }}
+                                    &nbsp;<i class="bi bi-clock"></i> {{ item.lesson.start_time|time:"H:i" }} – {{ item.lesson.end_time|time:"H:i" }}
+                                    &nbsp;<i class="bi bi-geo-alt"></i> {{ item.lesson.room }}
+                                </small>
                             </div>
-                        {% endfor %}
+                        </div>
                     </div>
+                    {% endfor %}
+                </div>
                 {% else %}
-                    <p class="text-muted">Нет занятий на этой неделе</p>
+                <p class="ok-muted">Нет занятий на этой неделе</p>
                 {% endif %}
                 <div class="mt-3">
-                    <a href="{% url 'schedule' %}" class="btn btn-primary">
+                    <a href="{% url 'schedule' %}" class="btn btn-primary btn-sm">
                         <i class="bi bi-calendar3"></i> Полное расписание
                     </a>
                 </div>
@@ -106,32 +96,26 @@
 
     <!-- Домашние задания -->
     <div class="col-md-4">
-        <div class="card">
-            <div class="card-header">
-                <i class="bi bi-journal-text"></i> Домашние задания
-            </div>
+        <div class="card h-100">
+            <div class="card-header"><i class="bi bi-journal-text"></i> Домашние задания</div>
             <div class="card-body">
                 {% if pending_homework %}
-                    <div class="list-group list-group-flush">
-                        {% for hw in pending_homework %}
-                            <div class="list-group-item px-0">
-                                <div class="d-flex justify-content-between align-items-start">
-                                    <div class="flex-grow-1">
-                                        <h6 class="mb-1">{{ hw.homework.title }}</h6>
-                                        <small class="text-muted">{{ hw.student.user.get_full_name }}</small>
-                                        <br>
-                                        <small class="text-muted">
-                                            <i class="bi bi-clock"></i>
-                                            Срок: {{ hw.homework.due_date|date:"d.m.Y H:i" }}
-                                        </small>
-                                    </div>
-                                    <span class="badge bg-warning">Ожидает</span>
-                                </div>
+                <div class="list-group list-group-flush">
+                    {% for hw in pending_homework %}
+                    <div class="list-group-item px-0">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="mb-1" style="color:var(--ok-white);font-size:.9rem;">{{ hw.homework.title }}</h6>
+                                <small class="ok-muted">{{ hw.student.user.get_full_name }}</small><br>
+                                <small class="ok-muted"><i class="bi bi-clock"></i> до {{ hw.homework.due_date|date:"d.m H:i" }}</small>
                             </div>
-                        {% endfor %}
+                            <span class="badge bg-warning">Ожидает</span>
+                        </div>
                     </div>
+                    {% endfor %}
+                </div>
                 {% else %}
-                    <p class="text-muted">Нет невыполненных заданий</p>
+                <p class="ok-muted">Нет невыполненных заданий</p>
                 {% endif %}
                 <div class="mt-3">
                     <a href="{% url 'homework_list' %}" class="btn btn-primary btn-sm w-100">
@@ -140,93 +124,51 @@
                 </div>
             </div>
         </div>
-
-        <!-- Быстрая статистика -->
-        <div class="card mt-4">
-            <div class="card-header">
-                <i class="bi bi-graph-up"></i> Статистика
-            </div>
-            <div class="card-body">
-                <div class="mb-3">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span>Посещаемость</span>
-                        <strong class="text-success">95%</strong>
-                    </div>
-                    <div class="progress" style="height: 8px;">
-                        <div class="progress-bar bg-success" style="width: 95%"></div>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span>Выполнение ДЗ</span>
-                        <strong class="text-info">87%</strong>
-                    </div>
-                    <div class="progress" style="height: 8px;">
-                        <div class="progress-bar bg-info" style="width: 87%"></div>
-                    </div>
-                </div>
-                <div class="mb-0">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span>Средний балл</span>
-                        <strong class="text-primary">4.5</strong>
-                    </div>
-                    <div class="progress" style="height: 8px;">
-                        <div class="progress-bar bg-primary" style="width: 90%"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
 <!-- Последние оценки -->
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                <i class="bi bi-star-fill"></i> Последние оценки
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Ученик</th>
-                                <th>Курс</th>
-                                <th>Оценка</th>
-                                <th>Дата</th>
-                                <th>Комментарий</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for child in children %}
-                                {% for grade in child.grades.all|slice:":5" %}
-                                    <tr>
-                                        <td>{{ child.user.get_full_name }}</td>
-                                        <td>{{ grade.course.name }}</td>
-                                        <td>
-                                            <span class="badge {% if grade.grade >= 4 %}bg-success{% elif grade.grade >= 3 %}bg-warning{% else %}bg-danger{% endif %}">
-                                                {{ grade.grade }}
-                                            </span>
-                                        </td>
-                                        <td>{{ grade.date|date:"d.m.Y" }}</td>
-                                        <td>{{ grade.comment|truncatewords:10 }}</td>
-                                    </tr>
-                                {% endfor %}
-                            {% empty %}
-                                <tr>
-                                    <td colspan="5" class="text-center text-muted">Оценок пока нет</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-                <div class="mt-3">
-                    <a href="{% url 'grades' %}" class="btn btn-primary">
-                        <i class="bi bi-star"></i> Все оценки
-                    </a>
-                </div>
-            </div>
+<div class="card">
+    <div class="card-header"><i class="bi bi-star-fill"></i> Последние оценки</div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th>Ученик</th>
+                        <th>Курс</th>
+                        <th>Оценка</th>
+                        <th>Дата</th>
+                        <th>Комментарий</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for child in children %}
+                        {% for grade in child.grades.all|slice:":5" %}
+                        <tr>
+                            <td style="color:var(--ok-white);">{{ child.user.get_full_name }}</td>
+                            <td class="ok-muted">{{ grade.course.name }}</td>
+                            <td>
+                                <span class="badge {% if grade.grade >= 8 %}bg-success{% elif grade.grade >= 5 %}bg-warning{% else %}bg-danger{% endif %}">
+                                    {{ grade.grade }}
+                                </span>
+                            </td>
+                            <td><small class="ok-muted">{{ grade.date|date:"d.m.Y" }}</small></td>
+                            <td class="ok-muted">{{ grade.comment|truncatewords:8|default:"—" }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center ok-muted py-4">Оценок пока нет</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="p-3">
+            <a href="{% url 'grades' %}" class="btn btn-primary btn-sm">
+                <i class="bi bi-star"></i> Все оценки
+            </a>
         </div>
     </div>
 </div>

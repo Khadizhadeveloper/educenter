@@ -24,7 +24,79 @@
                 {% endif %}
             </div>
             <div class="card-body">
-                {% if student_assignments %}
+                {% if mentor_assignments %}
+                    <!-- Тренер: назначенные ДЗ со статистикой сдачи -->
+                    <div class="table-responsive">
+                        <table class="table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Задание</th>
+                                    <th>Урок / Курс</th>
+                                    <th>Срок сдачи</th>
+                                    <th style="width:160px">Сдано</th>
+                                    <th>На проверке</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in mentor_assignments %}
+                                {% with hw=item.homework %}
+                                <tr>
+                                    <td>
+                                        <strong style="color:var(--ok-white);">{{ hw.title }}</strong>
+                                        {% if hw.description %}
+                                        <br><small class="ok-muted">{{ hw.description|truncatewords:10 }}</small>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <span style="color:var(--ok-white);">{{ hw.lesson.title }}</span>
+                                        <br><small class="ok-muted">{{ hw.lesson.course.name }}</small>
+                                    </td>
+                                    <td>
+                                        <small class="ok-muted">{{ hw.due_date|date:"d.m.Y H:i" }}</small>
+                                        {% if hw.due_date < now %}
+                                        <br><span class="badge bg-secondary" style="font-size:.65rem;">Истёк</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if item.enrolled %}
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div style="height:6px;flex:1;background:var(--ok-surface-2);border-radius:999px;overflow:hidden;">
+                                                <div style="height:100%;width:{% widthratio item.submitted item.enrolled 100 %}%;background:var(--ok-accent);border-radius:999px;"></div>
+                                            </div>
+                                            <small>{{ item.submitted }}/{{ item.enrolled }}</small>
+                                        </div>
+                                        {% else %}
+                                        <small class="ok-muted">—</small>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if item.pending > 0 %}
+                                        <span class="badge bg-warning">{{ item.pending }} ожид.</span>
+                                        {% else %}
+                                        <span class="ok-muted small">—</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if item.pending > 0 %}
+                                        <a href="{% url 'mentor_homework_submissions' hw.id %}"
+                                           class="btn btn-sm btn-primary">
+                                            <i class="bi bi-check2-square"></i> Проверить
+                                        </a>
+                                    {% else %}
+                                        <a href="{% url 'mentor_homework_submissions' hw.id %}"
+                                           class="btn btn-sm btn-outline-secondary">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                    {% endif %}
+                                    </td>
+                                </tr>
+                                {% endwith %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% elif student_assignments %}
                     <!-- Отображение для студента: все задания по его курсам + статус сдачи (если есть) -->
                     <div class="table-responsive">
                         <table class="table table-hover">
@@ -138,13 +210,14 @@
                                             {% endif %}
                                         </td>
                                         <td>
-                                            {% if user.role == 'mentor' and hw.status == 'pending' %}
-                                                <a href="/admin/education/homeworksubmission/{{ hw.id }}/change/" class="btn btn-sm btn-success" title="Проверить">
-                                                    <i class="bi bi-check-circle"></i>
-                                                </a>
-                                            {% else %}
-                                                <a href="#" class="btn btn-sm btn-info" title="Подробнее">
-                                                    <i class="bi bi-info-circle"></i>
+                                            {% if user.role == 'mentor' %}
+                                                <a href="{% url 'mentor_review_submission' hw.id %}"
+                                                   class="btn btn-sm {% if hw.status == 'pending' or hw.status == 'late' %}btn-primary{% else %}btn-outline-secondary{% endif %}">
+                                                    {% if hw.status == 'pending' or hw.status == 'late' %}
+                                                        <i class="bi bi-check2-square"></i>
+                                                    {% else %}
+                                                        <i class="bi bi-eye"></i>
+                                                    {% endif %}
                                                 </a>
                                             {% endif %}
                                         </td>

@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %}Мои результаты тестов{% endblock %}
+
+{% block content %}
+<div class="row mb-3">
+    <div class="col">
+        <h1 class="fw-bold" style="color:var(--ok-white);">
+            <i class="bi bi-clock-history" style="color:var(--ok-accent);"></i> Мои результаты
+        </h1>
+        <p class="ok-muted">История всех пройденных тестов</p>
+    </div>
+</div>
+
+{% if attempts %}
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="icon"><i class="bi bi-pencil-square"></i></div>
+            <div><h3>{{ total_count }}</h3><p>Тестов пройдено</p></div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-card grad-cyan">
+            <div class="icon"><i class="bi bi-bar-chart-fill"></i></div>
+            <div><h3>{{ avg_score }}%</h3><p>Средний балл</p></div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-card grad-green">
+            <div class="icon"><i class="bi bi-patch-check-fill"></i></div>
+            <div><h3>{{ passed_count }}</h3><p>Зачтено</p></div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th>Тест</th>
+                        <th>Курс</th>
+                        <th>Дата</th>
+                        <th>Попытка</th>
+                        <th style="width:100px">Результат</th>
+                        <th>Статус</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for att in attempts %}
+                    <tr>
+                        <td><strong style="color:var(--ok-white);">{{ att.test.title }}</strong></td>
+                        <td><small class="ok-muted">{{ att.test.topic.course.name }}</small></td>
+                        <td><small class="ok-muted">{{ att.started_at|date:"d.m.Y H:i" }}</small></td>
+                        <td><span class="badge bg-secondary">#{{ att.attempt_number }}</span></td>
+                        <td>
+                            <strong style="color:var(--ok-accent);">{{ att.score|floatformat:0 }}%</strong>
+                        </td>
+                        <td>
+                            {% if att.is_passed %}
+                            <span class="badge bg-success"><i class="bi bi-patch-check-fill"></i> Зачёт</span>
+                            {% else %}
+                            <span class="badge bg-danger"><i class="bi bi-x-circle"></i> Не зачтено</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'test_result' att.id %}" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="card">
+    <div class="card-body text-center py-5">
+        <i class="bi bi-clipboard-x" style="font-size:3rem;color:var(--ok-muted);"></i>
+        <h5 class="mt-3" style="color:var(--ok-white);">Вы ещё не проходили тестов</h5>
+        <a href="{% url 'course_list' %}" class="btn btn-primary mt-2">
+            <i class="bi bi-book"></i> Перейти к курсам
+        </a>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

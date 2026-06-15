@@ -1,0 +1,84 @@
+digraph ER_Part2 {
+  graph [
+    rankdir=TB
+    fontname="Helvetica"
+    fontsize=13
+    bgcolor="white"
+    pad="0.7"
+    nodesep=0.7
+    ranksep=1.2
+    label="Часть 2: Занятия, ДЗ, оценки, тесты"
+    labelloc="t"
+    labeljust="c"
+    fontsize=16
+    fontcolor="#1e293b"
+  ]
+  node [
+    shape=record
+    fontname="Helvetica"
+    fontsize=11
+    style=filled
+    fillcolor="#f8fafc"
+    fontcolor="#1e293b"
+    color="#3b82f6"
+    penwidth=2
+  ]
+  edge [
+    fontname="Helvetica"
+    fontsize=10
+    fontcolor="#475569"
+    color="#64748b"
+    penwidth=1.4
+    arrowsize=0.9
+  ]
+
+  Course [label="{Course|id : int PK\lname : string\l(см. Часть 1)\l}" fillcolor="#e0f2fe" color="#0284c7"]
+  Student [label="{Student|id : int PK\l(см. Часть 1)\l}" fillcolor="#e0f2fe" color="#0284c7"]
+
+  Schedule [label="{Schedule|id : int PK\lcourse_id : FK → Course\lweekday : int\lstart_time : time\lend_time : time\lroom : string\l}"]
+
+  Lesson [label="{Lesson|id : int PK\lcourse_id : FK → Course\ltitle : string\ldate : date\lstart_time : time\lend_time : time\lroom : string\lis_cancelled : bool\l}"]
+
+  Homework [label="{Homework|id : int PK\llesson_id : FK → Lesson\ltitle : string\ldescription : text\ldue_date : datetime\l}"]
+
+  HomeworkSubmission [label="{HomeworkSubmission|id : int PK\lhomework_id : FK → Homework\lstudent_id : FK → Student\lcontent : text\lstatus : string\lgrade : int\lfeedback : text\lsubmitted_at : datetime\lchecked_at : datetime\l}"]
+
+  Grade [label="{Grade|id : int PK\lstudent_id : FK → Student\lcourse_id : FK → Course\llesson_id : FK → Lesson\lgrade : int\lcomment : string\ldate : date\l}"]
+
+  Attendance [label="{Attendance|id : int PK\llesson_id : FK → Lesson\lstudent_id : FK → Student\lstatus : string\lnotes : string\l}"]
+
+  Topic [label="{Topic|id : int PK\lcourse_id : FK → Course\ltitle : string\ldescription : text\l}"]
+
+  Test [label="{Test|id : int PK\ltopic_id : FK → Topic\ltitle : string\lpassing_score : int\lis_active : bool\l}"]
+
+  Question [label="{Question|id : int PK\ltest_id : FK → Test\ltext : text\lpoints : float\l}"]
+
+  Answer [label="{Answer|id : int PK\lquestion_id : FK → Question\ltext : string\lis_correct : bool\l}"]
+
+  TestAttempt [label="{TestAttempt|id : int PK\ltest_id : FK → Test\lstudent_id : FK → Student\lscore : float\lis_passed : bool\lstarted_at : datetime\lfinished_at : datetime\l}"]
+
+  StudentAnswer [label="{StudentAnswer|id : int PK\lattempt_id : FK → TestAttempt\lquestion_id : FK → Question\lis_correct : bool\lpoints_earned : float\l}"]
+
+  Course -> Schedule [label="  расписание"]
+  Course -> Lesson [label="  занятия"]
+  Course -> Topic [label="  темы"]
+  Course -> Grade [label="  оценки"]
+
+  Lesson -> Homework [label="  задания"]
+  Lesson -> Attendance [label="  посещаемость"]
+  Lesson -> Grade [label="  оценки"]
+
+  Homework -> HomeworkSubmission [label="  сдачи"]
+  Student -> HomeworkSubmission [label="  сдаёт"]
+  Student -> Attendance [label="  посещает"]
+  Student -> Grade [label="  получает"]
+  Student -> TestAttempt [label="  проходит"]
+
+  Topic -> Test [label="  тесты"]
+  Test -> Question [label="  вопросы"]
+  Test -> TestAttempt [label="  попытки"]
+
+  Question -> Answer [label="  варианты"]
+  Question -> StudentAnswer [label="  ответы"]
+  TestAttempt -> StudentAnswer [label="  ответы"]
+}

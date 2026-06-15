@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% block title %}Тесты — {{ course.name }}{% endblock %}
+
+{% block content %}
+<div class="row mb-3">
+    <div class="col">
+        <h1 class="fw-bold" style="color:var(--ok-white);">
+            <i class="bi bi-journal-bookmark-fill" style="color:var(--ok-accent);"></i> Тесты
+        </h1>
+        <p class="ok-muted">{{ course.name }}</p>
+    </div>
+    <div class="col-auto d-flex align-items-center gap-2">
+        {% if request.user.role == 'mentor' %}
+        <a href="{% url 'mentor_topic_create' course.id %}" class="btn btn-primary btn-sm">
+            <i class="bi bi-plus-circle"></i> Добавить тему
+        </a>
+        {% endif %}
+        {% if request.user.role == 'student' %}
+        <a href="{% url 'test_my_results' %}" class="btn btn-outline-primary btn-sm">
+            <i class="bi bi-clock-history"></i> Мои результаты
+        </a>
+        {% endif %}
+        <a href="{% url 'course_detail' course.id %}" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-arrow-left"></i> Курс
+        </a>
+    </div>
+</div>
+
+{% if topics %}
+    {% for topic in topics %}
+    <div class="card mb-3">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span><i class="bi bi-folder2-open" style="color:var(--ok-accent);"></i> {{ topic.title }}</span>
+            {% if request.user.role == 'mentor' %}
+            <a href="{% url 'mentor_test_create' topic.id %}" class="btn btn-sm btn-outline-primary">
+                <i class="bi bi-plus"></i> Тест
+            </a>
+            {% endif %}
+        </div>
+        {% if topic.description %}
+        <div class="card-body pb-0">
+            <p class="ok-muted small mb-0">{{ topic.description }}</p>
+        </div>
+        {% endif %}
+        <div class="card-body p-0">
+            {% with tests=topic.tests.all %}
+            {% if tests %}
+            <div class="list-group list-group-flush">
+                {% for test in tests %}
+                {% if test.is_active or request.user.role == 'mentor' %}
+                <div class="list-group-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="mb-1" style="color:var(--ok-white);">
+                                {{ test.title }}
+                                {% if not test.is_active %}<span class="badge bg-secondary ms-1">Неактивен</span>{% endif %}
+                            </h6>
+                            <small class="ok-muted">
+                                <i class="bi bi-question-circle"></i> {{ test.questions_count }} вопр.
+                                {% if test.time_limit_minutes > 0 %}
+                                &nbsp;·&nbsp;<i class="bi bi-clock"></i> {{ test.time_limit_minutes }} мин.
+                                {% endif %}
+                                &nbsp;·&nbsp;<i class="bi bi-check2-circle"></i> Порог: {{ test.passing_score }}%
+                                {% if test.max_attempts > 0 %}
+                                &nbsp;·&nbsp;<i class="bi bi-arrow-repeat"></i> Макс. попыток: {{ test.max_attempts }}
+                                {% endif %}
+                            </small>
+                        </div>
+                        <div class="d-flex gap-2 align-items-center">
+                            {% if request.user.role == 'student' %}
+                                {% with att=student_attempts|default_if_none:'none' %}
+                                {% with my_att=student_attempts.test.id %}
+                                {% endwith %}
+                                {% endwith %}
+                                {% for tid, att in student_attempts.items %}
+                                    {% if tid == test.id %}
+                                        <span class="badge bg-{% if att.is_passed %}success{% else %}danger{% endif %}">
+                                            {{ att.score|floatformat:0 }}%
+                                        </span>
+                                    {% endif %}
+                                {% endfor %}
+                                <a href="{% url 'test_take' test.id %}" class="btn btn-sm btn-primary">
+                                    <i class="bi bi-play-fill"></i> Пройти
+                                </a>
+                            {% elif request.user.role == 'mentor' %}
+                                <a href="{% url 'mentor_test_results' test.id %}" class="btn btn-sm btn-outline-info">
+                                    <i class="bi bi-bar-chart-line"></i> Результаты
+                                </a>
+                                <a href="{% url 'mentor_test_edit' test.id %}" class="btn btn-sm btn-outline-primary">
+                                    <i class="bi bi-pencil"></i> Редактировать
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="p-3 text-center ok-muted">
+                <i class="bi bi-clipboard-x" style="font-size:1.5rem;"></i>
+                <p class="mb-0 mt-1 small">В этой теме пока нет тестов</p>
+            </div>
+            {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+    {% endfor %}
+{% else %}
+<div class="card">
+    <div class="card-body text-center py-5">
+        <i class="bi bi-journal-x" style="font-size:3rem;color:var(--ok-muted);"></i>
+        <h5 class="mt-3" style="color:var(--ok-white);">Темы ещё не добавлены</h5>
+        {% if request.user.role == 'mentor' %}
+        <a href="{% url 'mentor_topic_create' course.id %}" class="btn btn-primary mt-2">
+            <i class="bi bi-plus-circle"></i> Создать первую тему
+        </a>
+        {% else %}
+        <p class="ok-muted">Тренер ещё не добавил темы для тестирования</p>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}
